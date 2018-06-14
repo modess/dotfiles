@@ -57,9 +57,6 @@ alias vm='vagrant ssh'
 alias vr="vagrant reload"
 alias vp="vagrant provision"
 alias vdf="vagrant destroy -f"
-alias uska-envreset='de uska-mysql mysql -uroot -proot -e "DROP DATABASE IF EXISTS uska; CREATE DATABASE uska;" && de uska-php-fpm php artisan migrate -v && de uska-php-fpm php artisan db:seed'
-
-alias sub="subliminal --opensubtitles bzkt qmNNR2DPCgXmQ4Yq download -l en "
 
 export PATH=vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -71,6 +68,3 @@ export NODE_PATH=/usr/lib/node_modules
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
-
-
-#source "/home/niklas/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
