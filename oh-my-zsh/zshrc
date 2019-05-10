@@ -4,11 +4,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/niklas/.oh-my-zsh
 
-
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="spaceship"
+#source "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 ZSH_THEME="avit"
 
 # Plugins
@@ -59,6 +59,7 @@ alias vp="vagrant provision"
 alias vdf="vagrant destroy -f"
 
 export PATH=vendor/bin:$PATH
+export PATH=~/.dotfiles/scripts:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:`yarn global bin`"
@@ -66,5 +67,9 @@ export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export NODE_PATH=/usr/lib/node_modules
 
 if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+    PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 fi
+
+
+
+source "/home/niklas/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

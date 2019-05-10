@@ -1,0 +1,5 @@
+#!/bin/bash
+pacman -Qi "$@" | grep -q "Installed"
+if [ $? == 0 ]; then
+   sudo pacman -Rns "$@"
+fi
