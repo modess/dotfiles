@@ -181,10 +181,10 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     nmap <Leader>gn :GitGutterNextHunk<CR>
     nmap <Leader>gp :GitGutterPrevHunk<CR>
     set signcolumn=yes
-    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-    let g:gitgutter_sign_modified_removed = emoji#for('collision')
+    " let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+    " let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+    " let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+    " let g:gitgutter_sign_modified_removed = emoji#for('collision')
 
     " php documentor
     au BufRead,BufNewFile *.php inoremap <buffer> <C-K> :call PhpDoc()<CR>
@@ -202,7 +202,7 @@ set gcr=a:blinkon0              "Disable cursor blink
 set autoread                    "Reload files changed outside vim
 set linespace=14
 set list
-set listchars=tab:▸-,eol:¬,nbsp:_
+" set listchars=tab:-,eol:¬,nbsp:_
 set encoding=utf-8
 set fileencoding=utf-8
 set cursorline

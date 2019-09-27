@@ -6,23 +6,20 @@ CYAN='\033[0;36m'
 MAGENTA='\033[0;35m'
 NC='\033[0m'
 
-printf " > ${MAGENTA}Fetch origin & upstream.${NC}\n"
+printf " > ${MAGENTA}Fetch origin.${NC}\n"
 
 git fetch origin
-git fetch upstream
 
-printf " > ${MAGENTA}Checkout and rebase development.${NC}\n"
+printf " > ${MAGENTA}Pull (fast forward) master and develop..${NC}\n"
 
-git checkout development
-git rebase upstream/development
+git checkout master
+git pull --ff-only
+
+git checkout develop
+git pull --ff-only
 
 printf " > ${MAGENTA}Delete merged branches.${NC}\n"
 
-git branch --merged | grep -v -e "master" -e "development" | xargs git branch -D
-
-printf " > ${MAGENTA}Prune origin & upstream.${NC}\n"
-
-git remote prune origin
-git remote prune upstream
+git branch --merged | grep -v -e "master" -e "develop" | xargs git branch -D
 
 printf " > ${CYAN}Done.${NC}\n"

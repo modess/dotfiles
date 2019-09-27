@@ -2,14 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/niklas/.oh-my-zsh
+export ZSH=/Users/niklas/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="spaceship"
-#source "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-ZSH_THEME="avit"
+#source "/Users/niklas/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+# ZSH_THEME="spaceship"
+ZSH_THEME="agnoster"
 
 # Plugins
 plugins=(git vagrant bower composer gem laravel npm)
@@ -37,7 +37,7 @@ alias gfu="git fetch upstream"
 alias grud="git rebase upstream/development"
 alias grum="git rebase upstream/master"
 alias gfrud="gco development && gfu && grud"
-alias grd="git rebase development"
+alias grd="git rebase develop"
 alias grm="git rebase master"
 alias gfrua="gfu && gco master && grum && gco development && grud"
 alias gprune="~/.dotfiles/scripts/gitprune"
@@ -50,6 +50,8 @@ alias de="docker exec -it --user $(id -u):$(id -g) "
 alias art="php artisan"
 alias cu="composer update"
 alias cda="composer dump-autoload"
+alias cr="composer require"
+alias crd="composer require --dev "
 alias behatrun="php artisan behat:run --format progress --env=testing"
 alias vu="vagrant up"
 alias vh="vagrant halt"
@@ -57,19 +59,43 @@ alias vm='vagrant ssh'
 alias vr="vagrant reload"
 alias vp="vagrant provision"
 alias vdf="vagrant destroy -f"
+alias p4merge='/Applications/p4merge.app/Contents/MacOS/p4merge'
 
-export PATH=vendor/bin:$PATH
-export PATH=~/.dotfiles/scripts:$PATH
+export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
+export PATH=~/.dotfiles/scripts:$PATH
 export NODE_PATH=/usr/lib/node_modules
 
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 fi
 
+prompt_end() {
+    if [[ -n $CURRENT_BG ]]; then
+        print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    else
+        print -n "%{%k%}"
+    fi
 
+    print -n "%{%f%}"
+    CURRENT_BG=''
 
-source "/home/niklas/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+    #Adds the new line and ➜ as the start character.
+    printf "\n ➜";
+}
+
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+  prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+    fi
+}
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/Users/niklas/Library/Python/3.7/bin:$PATH"
+
+[ -f .aws-credentials ] && source .aws-credentials
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
