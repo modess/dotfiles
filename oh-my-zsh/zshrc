@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/niklas/.oh-my-zsh
+export ZSH=/home/niklas/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -59,7 +59,9 @@ alias vm='vagrant ssh'
 alias vr="vagrant reload"
 alias vp="vagrant provision"
 alias vdf="vagrant destroy -f"
-alias p4merge='/Applications/p4merge.app/Contents/MacOS/p4merge'
+alias sub='subliminal download -l en '
+
+phpco() { docker run --init -v $PWD:/mnt/src:cached --rm -u "$(id -u):$(id -g)" frbit/phpco:latest $@; return $?; }
 
 export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -92,10 +94,7 @@ prompt_context() {
   prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
     fi
 }
-export PATH="/usr/local/opt/php@7.2/bin:$PATH"
-export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/Users/niklas/Library/Python/3.7/bin:$PATH"
 
 [ -f .aws-credentials ] && source .aws-credentials
+[ -f .github_token ] && source .github_token
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
