@@ -1,7 +1,3 @@
 #!/bin/bash
 
-# Clean unneeded dependencies
-yay -Yc
-
-# Upgrade all packages
-yay -Syu --devel --timeupdate
+yay -Syu --answerupgrade none --answerclean none --answerdiff none --save

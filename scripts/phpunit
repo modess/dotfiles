@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILE=docker/phpunit
+if [ -f "$FILE" ]; then
+    ./docker/phpunit "$@"
+else
+    phpunit "$@"
+fi

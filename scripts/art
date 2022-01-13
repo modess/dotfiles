@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FILE=docker/artisan
+if [ -f "./docker/artisan" ]; then
+    ./docker/artisan "$@"
+elif [ -f "./vendor/bin/sail" ]; then
+    ./vendor/bin/sail artisan "$@"
+else
+    php artisan "$@"
+fi

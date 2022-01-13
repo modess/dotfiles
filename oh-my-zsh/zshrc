@@ -7,8 +7,6 @@ export ZSH=/home/niklas/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#source "/Users/niklas/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-# ZSH_THEME="spaceship"
 ZSH_THEME="agnoster"
 
 # Plugins
@@ -40,26 +38,22 @@ alias gfrud="gco development && gfu && grud"
 alias grd="git rebase develop"
 alias grm="git rebase master"
 alias gfrua="gfu && gco master && grum && gco development && grud"
-alias gprune="~/.dotfiles/scripts/gitprune"
 
 alias dcu="docker-compose up -d"
 alias dcd="docker-compose down"
 alias dck="docker-compose kill"
 alias de="docker exec -it --user $(id -u):$(id -g) "
 
-alias art="php artisan"
 alias cu="composer update"
 alias cda="composer dump-autoload"
 alias cr="composer require"
 alias crd="composer require --dev "
-alias behatrun="php artisan behat:run --format progress --env=testing"
 alias vu="vagrant up"
 alias vh="vagrant halt"
 alias vm='vagrant ssh'
 alias vr="vagrant reload"
 alias vp="vagrant provision"
 alias vdf="vagrant destroy -f"
-alias sub='subliminal download -l en '
 
 phpco() { docker run --init -v $PWD:/mnt/src:cached --rm -u "$(id -u):$(id -g)" frbit/phpco:latest $@; return $?; }
 
@@ -70,10 +64,6 @@ export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export PATH=~/.dotfiles/scripts:$PATH
 export NODE_PATH=/usr/lib/node_modules
-
-if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
-fi
 
 prompt_end() {
     if [[ -n $CURRENT_BG ]]; then
@@ -97,4 +87,3 @@ prompt_context() {
 
 [ -f .aws-credentials ] && source .aws-credentials
 [ -f .github_token ] && source .github_token
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
