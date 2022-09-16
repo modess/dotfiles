@@ -10,7 +10,7 @@ export ZSH=/home/niklas/.oh-my-zsh
 ZSH_THEME="agnoster"
 
 # Plugins
-plugins=(git vagrant bower composer gem laravel npm)
+plugins=(git composer gem laravel npm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -39,6 +39,7 @@ alias grd="git rebase develop"
 alias grm="git rebase master"
 alias gfrua="gfu && gco master && grum && gco development && grud"
 
+alias dc="docker-compose"
 alias dcu="docker-compose up -d"
 alias dcd="docker-compose down"
 alias dck="docker-compose kill"
@@ -48,12 +49,6 @@ alias cu="composer update"
 alias cda="composer dump-autoload"
 alias cr="composer require"
 alias crd="composer require --dev "
-alias vu="vagrant up"
-alias vh="vagrant halt"
-alias vm='vagrant ssh'
-alias vr="vagrant reload"
-alias vp="vagrant provision"
-alias vdf="vagrant destroy -f"
 
 phpco() { docker run --init -v $PWD:/mnt/src:cached --rm -u "$(id -u):$(id -g)" frbit/phpco:latest $@; return $?; }
 
@@ -64,6 +59,9 @@ export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export PATH=~/.dotfiles/scripts:$PATH
 export NODE_PATH=/usr/lib/node_modules
+
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 
 prompt_end() {
     if [[ -n $CURRENT_BG ]]; then
@@ -85,5 +83,6 @@ prompt_context() {
     fi
 }
 
-[ -f .aws-credentials ] && source .aws-credentials
-[ -f .github_token ] && source .github_token
+[ -f ~/.aws-credentials ] && source ~/.aws-credentials
+[ -f ~/.github_token ] && source ~/.github_token
+[ -f ~/.aliases ] && source ~/.aliases
