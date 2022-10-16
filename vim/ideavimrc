@@ -1,0 +1,11 @@
+source ~/.vimrc
+
+set NERDTree
+set sneak
+
+set clipboard+=unnamed
+
+set showmode
+
+:set relativenumber
+:set number
