@@ -1,0 +1,28 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+window:
+  opacity: 0.9
+  padding:
+    x: 12
+    y: 12
+
+font:
+  size: 8
+  normal:
+    family: JetBrains Mono
+    style: Regular
+  bold:
+    family: JetBrains Mono
+    style: Bold
+  italic:
+    family: JetBrains Mono
+    style: Italic
+  bold_italic:
+    family: JetBrains Mono
+    style: Bold Italic
+
+selection:
+  save_to_clipboard: true
+
+env:
+  TERM: xterm-256color
