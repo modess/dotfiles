@@ -17,6 +17,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Alacritty comptaible key bindings
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
 # Aliases
 alias conf_zsh="vim ~/.zshrc"
 alias conf_polybar="vim ~/.config/polybar/config.ini"
