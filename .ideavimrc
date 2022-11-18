@@ -1,0 +1,14 @@
+source ~/.vimrc
+let mapleader=","
+
+set NERDTree
+set sneak
+
+" set clipboard+=unnamed
+map <Leader><Leader>c <c-_><c-_>
+set easymotion
+
+set showmode
+
+:set relativenumber
+:set number

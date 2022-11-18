@@ -1,20 +1,29 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Path to your oh-my-zsh installation.
+export EDITOR=vim
 export ZSH=/home/niklas/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Plugins
-plugins=(git composer gem laravel npm)
+plugins=(
+    git
+    zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
+alias conf_zsh="vim ~/.zshrc"
+alias conf_polybar="vim ~/.config/polybar/config.ini"
+alias conf_i3="vim ~/.config/i3/config"
+alias conf_vim="vim ~/.vimrc"
+alias conf_alacritty="vim ~/.config/alacritty/alacritty.yml"
+
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%cn)%Creset' --abbrev-commit --date=relative"
 alias gu="git up"
 alias gco="git checkout"
@@ -32,12 +41,8 @@ alias gr="git rebase"
 alias gra="git rebase --abort"
 alias grc="git rebase --continue"
 alias gfu="git fetch upstream"
-alias grud="git rebase upstream/development"
-alias grum="git rebase upstream/master"
-alias gfrud="gco development && gfu && grud"
 alias grd="git rebase develop"
 alias grm="git rebase master"
-alias gfrua="gfu && gco master && grum && gco development && grud"
 
 alias dc="docker-compose"
 alias dcu="docker-compose up -d"
@@ -52,37 +57,22 @@ alias crd="composer require --dev "
 
 phpco() { docker run --init -v $PWD:/mnt/src:cached --rm -u "$(id -u):$(id -g)" frbit/phpco:latest $@; return $?; }
 
+# Path
 export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export PATH=~/.dotfiles/scripts:$PATH
+export PATH=$PATH:/var/lib/flatpak/exports/share
 export NODE_PATH=/usr/lib/node_modules
-
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 
-prompt_end() {
-    if [[ -n $CURRENT_BG ]]; then
-        print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
-    else
-        print -n "%{%k%}"
-    fi
-
-    print -n "%{%f%}"
-    CURRENT_BG=''
-
-    #Adds the new line and ➜ as the start character.
-    printf "\n ➜";
-}
-
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-  prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-    fi
-}
-
+# Includes
 [ -f ~/.aws-credentials ] && source ~/.aws-credentials
 [ -f ~/.github_token ] && source ~/.github_token
 [ -f ~/.aliases ] && source ~/.aliases
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

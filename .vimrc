@@ -33,12 +33,6 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
 
     Bundle 'VundleVim/Vundle.vim'
 
-    Bundle 'rbgrouleff/bclose.vim'
-    Bundle 'Shougo/neocomplcache.vim'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'mtscout6/syntastic-local-eslint.vim'
     Bundle 'sandeepcr529/Buffet.vim'
     Bundle 'tomtom/tcomment_vim'
     Bundle 'tomtom/tlib_vim'
@@ -46,20 +40,10 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     Bundle 'airblade/vim-gitgutter'
     Bundle 'sheerun/vim-polyglot'
     Bundle 'bling/vim-airline'
-    Bundle 'spf13/PIV'
     Bundle 'myusuf3/numbers.vim'
-    Bundle 'ervandew/supertab'
-    Bundle 'tpope/vim-surround'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'sumpygump/php-documentor-vim'
     Bundle 'editorconfig/editorconfig-vim'
-    Bundle 'xsbeats/vim-blade'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'gcmt/taboo.vim'
     Bundle 'godlygeek/tabular'
     Bundle 'kristijanhusak/vim-hybrid-material'
-    Bundle 'junegunn/vim-emoji'
-    Bundle 'mxw/vim-jsx'
 
     " colorscheme
     "Bundle 'modess/molokai'
@@ -70,44 +54,12 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
 
     let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-    " enable neo-completion
-    let g:neocomplcache_enable_at_startup = 1
-
-    " spf13/PIV defaults to folding everything, disable that
-    let g:DisableAutoPHPFolding = 1
-
-    " phpqa
-    if filereadable("~/.phpcs.xml")
-        let g:phpqa_codesniffer_args = "--standard=~/.phpcs.xml"
-    endif
-    let g:phpqa_codesniffer_autorun = 0
-    if filereadable("~/.phpmd.xml")
-        let g:phpqa_messdetector_ruleset = "~/.phpmd.xml"
-    endif
-    let g:phpqa_messdetector_autorun = 0
-    map <Leader>C :Phpcs<CR>
-
     " disable relative line numbers in certain buffers
     let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'startify', 'vimshell', 'w3m']
-
-    " nerdtree
-    let NERDTreeIgnore=['\.DS_Store$', '\~$']
-    let NERDTreeShowHidden = 1
-    map <Leader>rt :NERDTreeToggle<CR>
-    map <Leader>rr :NERDTree .<CR>
 
     " align
     map <Leader>v :Tabularize /=/<CR>
     map <Leader>V :Tabularize /=>/<CR>
-
-    " buffer close
-    map <Leader>d :Bclose<CR>
-    map <Leader>q :Bclose!<CR>
-
-    " tagbar
-    nmap <Leader>tb :TagbarToggle<CR>
-    let g:tagbar_autofocus = 1
-    let g:tagbar_autoclose = 1
 
     " nerdcommenter
     map <Leader>c <c-_><c-_>
@@ -117,66 +69,6 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     let g:airline_powerline_fonts=1
     set laststatus=2  " always show the status bar
 
-    " easymotion
-    let g:EasyMotion_leader_key = '<Leader>'
-
-    " buffer list
-    nmap <Leader>l :Bufferlistsw<CR>
-
-    " taboo
-    map <Leader>tr :TabooRename
-
-    " syntastic
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-
-    let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-    let g:syntastic_javascript_phpcs_exec='~/.composer/vendor/bin/phpcs'
-
-    let g:syntastic_javascript_checkers = ['eslint']
-    let g:syntastic_javascript_eslint_exec='/usr/bin/eslint'
-    function! FindConfig(prefix, what, where)
-
-    let cfg = findfile(a:what, escape(a:where, ' ') . ';')
-        return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
-    endfunction
-
-    autocmd FileType javascript let b:syntastic_javascript_eslint_args =
-        \ get(g:, 'syntastic_javascript_eslint_args', '') .
-        \ FindConfig('-c', '.eslint', expand('<afile>:p:h', 1))
-
-    " ctrlp
-    set wildmode=list:longest
-    set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-    set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-    set wildignore+=backupvim*
-    set wildignore+=*sass-cache*
-    set wildignore+=*node_modules*
-    set wildignore+=*bower_components*
-    set wildignore+=*DS_Store*
-    set wildignore+=vendor/rails/**
-    set wildignore+=vendor/cache/**
-    set wildignore+=*.gem
-    set wildignore+=log/**
-    set wildignore+=tmp/**
-    set wildignore+=.vagrant/**
-    set wildignore+=build/**
-    set wildignore+=public/**
-    set wildignore+=*dist*
-    set wildignore+=*.png,*.jpg,*.gif
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_use_caching = 1
-    let g:ctrlp_clear_cache_on_exit = 0
-    let g:ctrlp_dotfiles = 0
-    let g:ctrlp_show_hidden=1
-    nmap <C-i> :CtrlPClearAllCaches \| :CtrlP<CR>
-
     " git gutter
     nmap <Leader>gn :GitGutterNextHunk<CR>
     nmap <Leader>gp :GitGutterPrevHunk<CR>
@@ -185,11 +77,6 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     " let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
     " let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
     " let g:gitgutter_sign_modified_removed = emoji#for('collision')
-
-    " php documentor
-    au BufRead,BufNewFile *.php inoremap <buffer> <C-K> :call PhpDoc()<CR>
-    au BufRead,BufNewFile *.php nnoremap <buffer> <C-K> :call PhpDoc()<CR>
-    au BufRead,BufNewFile *.php vnoremap <buffer> <C-K> :call PhpDocRange()<CR>
 endif
 
 " general config
@@ -312,34 +199,9 @@ autocmd FileAppendPre   * :call TrimWhiteSpace()
 autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre     * :call TrimWhiteSpace()
 
-" gui specific settings
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=r
-    set guioptions-=L
-    set guioptions-=e
-    set guifont=Ubuntu\ Mono\ Bold\ 14
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
-    set noeb
-    set novb
-    set belloff=
-    set noeb vb t_vb=
-    au GUIEnter * set vb t_vb=
-endif
-
-" autolist height
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
-
 " file type specific settings
 augroup configgroup
     autocmd!
-    au BufRead,BufNewFile *.coffee set filetype=coffee
-    au BufRead,BufNewFile *.hbs set filetype=mustache
-    au BufRead,BufNewFile *.blade.php set filetype=blade
 
     au BufNewFile,BufRead *.md,*.markdown,*.txt set wrap
     au BufNewFile,BufReadPost *.hbs,*.coffee,*.js,*.md,*.markdown,*.sass,*.scss,*.yml,*.yaml setl shiftwidth=2 expandtab
