@@ -1,5 +1,8 @@
 #!/bin/sh
 
+primary=$(xrdb -query | grep 'color4:'| awk '{print $NF}')
+disabled=$(xrdb -query | grep 'color8:'| awk '{print $NF}')
+
 get_icon() {
     case $1 in
         # Icons for weather-icons
@@ -53,7 +56,7 @@ get_duration() {
 }
 
 KEY=`cat ~/.polybar_openweathermap`
-CITY=""
+CITY="Stockholm"
 UNITS="metric"
 SYMBOL="°"
 
@@ -66,7 +69,7 @@ if [ -n "$CITY" ]; then
         CITY_PARAM="q=$CITY"
     fi
 
-    current=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
+    current=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS&lang=se")
     forecast=$(curl -sf "$API/forecast?appid=$KEY&$CITY_PARAM&units=$UNITS&cnt=1")
 else
     location=$(curl -sf "https://location.services.mozilla.com/v1/geolocate?key=geoclue")
@@ -75,17 +78,20 @@ else
         location_lat="$(echo "$location" | jq '.location.lat')"
         location_lon="$(echo "$location" | jq '.location.lng')"
 
-        current=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS")
+        current=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS&lang=se")
         forecast=$(curl -sf "$API/forecast?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS&cnt=1")
     fi
 fi
 
 if [ -n "$current" ] && [ -n "$forecast" ]; then
     current_temp=$(echo "$current" | jq ".main.temp" | cut -d "." -f 1)
+    feelslike_temp=$(echo "$current" | jq ".main.feels_like" | cut -d "." -f 1)
     current_icon=$(echo "$current" | jq -r ".weather[0].icon")
 
     forecast_temp=$(echo "$forecast" | jq ".list[].main.temp" | cut -d "." -f 1)
     forecast_icon=$(echo "$forecast" | jq -r ".list[].weather[0].icon")
+
+    weather_desc=$(echo "$current" | jq -r ".weather[0].description")
 
 
     if [ "$current_temp" -gt "$forecast_temp" ]; then
@@ -96,18 +102,17 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
         trend=""
     fi
 
-
     sun_rise=$(echo "$current" | jq ".sys.sunrise")
     sun_set=$(echo "$current" | jq ".sys.sunset")
     now=$(date +%s)
 
-    if [ "$sun_rise" -gt "$now" ]; then
-        daytime=" $(get_duration "$((sun_rise-now))")"
-    elif [ "$sun_set" -gt "$now" ]; then
-        daytime=" $(get_duration "$((sun_set-now))")"
+    if [ "$sun_set" -gt "$now" ]; then
+        sun_set=$(date -d @$sun_set +%H:%M)
+        daytime="%{F$primary}%{F-} $sun_set"
     else
-        daytime=" $(get_duration "$((sun_rise-now))")"
+        sun_rise=$(date -d @$sun_rise +%H:%M)
+        daytime="%{F$primary}%{F-} $sun_rise"
     fi
 
-    echo "$(get_icon "$current_icon") $current_temp$SYMBOL  $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL   $daytime"
+    echo "%{F$primary}$(get_icon "$current_icon")%{F-} $current_temp$SYMBOL ($feelslike_temp$SYMBOL) $weather_desc / %{F$primary}$trend  $(get_icon "$forecast_icon")%{F-} $forecast_temp$SYMBOL / $daytime"
 fi

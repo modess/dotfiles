@@ -44,6 +44,7 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     Bundle 'editorconfig/editorconfig-vim'
     Bundle 'godlygeek/tabular'
     Bundle 'kristijanhusak/vim-hybrid-material'
+    Bundle 'easymotion/vim-easymotion'
 
     " colorscheme
     "Bundle 'modess/molokai'

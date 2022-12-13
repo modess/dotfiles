@@ -4,10 +4,10 @@ secondary=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
 green=$(xrdb -query | grep 'color2:'| awk '{print $NF}')
 disabled=$(xrdb -query | grep 'color8:'| awk '{print $NF}')
 
-status=$(playerctl status 2>&1)
-nowplaying=$(playerctl metadata --format "{{ artist }} - {{ title }}" 2>&1)
-shuffle=$(playerctl shuffle 2>&1)
-loop=$(playerctl loop 2>&1)
+status=$(playerctl status --player=spotify 2>&1)
+nowplaying=$(playerctl metadata --player=spotify --format "{{ artist }} - {{ title }}" 2>&1)
+shuffle=$(playerctl --player=spotify shuffle 2>&1)
+loop=$(playerctl --player=spotify loop 2>&1)
 
 if [[ "$status" == "Playing" ]]; then
     if [[ "$shuffle" == "Off" ]]; then
