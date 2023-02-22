@@ -9,10 +9,8 @@ filetype plugin indent on
 set t_Co=256
 
 " leader binding
-let mapleader = ","
-
-" jk is escape
-inoremap jk <esc>
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -23,7 +21,6 @@ set hidden
 syntax on
 
 " default colorscheme
-colorscheme desert
 set background=dark
 
 " if vundle is installed
@@ -46,8 +43,6 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     Bundle 'kristijanhusak/vim-hybrid-material'
     Bundle 'easymotion/vim-easymotion'
 
-    " colorscheme
-    "Bundle 'modess/molokai'
     call vundle#end()            " required
     filetype plugin indent on    " required
 
@@ -74,10 +69,6 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     nmap <Leader>gn :GitGutterNextHunk<CR>
     nmap <Leader>gp :GitGutterPrevHunk<CR>
     set signcolumn=yes
-    " let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-    " let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-    " let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-    " let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
 
 " general config
@@ -90,7 +81,6 @@ set gcr=a:blinkon0              "Disable cursor blink
 set autoread                    "Reload files changed outside vim
 set linespace=14
 set list
-" set listchars=tab:-,eol:¬,nbsp:_
 set encoding=utf-8
 set fileencoding=utf-8
 set cursorline
@@ -98,27 +88,36 @@ set ignorecase
 set whichwrap+=<,>,[,],h,l
 set go-=T
 
+" save on enter
+nnoremap <CR> :w<CR>
+
+" close buffer
+nnoremap <Leader>w :bd<cr>
+
+" exit vim
+nnoremap <Leader>q :q<cr>
+
+" easymotion
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0
+map fw <Plug>(easymotion-w)
+map fW <Plug>(easymotion-W)
+map fe <Plug>(easymotion-bd-e)
+map fE <Plug>(easymotion-bd-E)
+map fb <Plug>(easymotion-b)
+map fB <Plug>(easymotion-B)
+map ff <Plug>(easymotion-s)
+map ft <Plug>(easymotion-bd-t)
+map F <Plug>(easymotion-repeat)
+map <C-f> <Plug>(easymotion-next)
+map <C-F> <Plug>(easymotion-prev)
+map fj <Plug>(easymotion-sol-j)
+map fk <Plug>(easymotion-sol-k)
+
 " make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
-
-" disable mouse
-autocmd BufEnter * set mouse=
-
-" disable arrow keys in normal mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" faster access to command line
-nmap <space> :
-
-" tabs
-map <Leader>tn :tabnew<CR>
-map <Leader>tp :tabprevious<CR>
-map <Leader>tq :tabclose<CR>
-map <Leader>. :tabnext<CR>
 
 " search settings
 set incsearch        "Find the next match as we type the search
@@ -157,12 +156,28 @@ set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
 
 " scrolling
-set scrolloff=3
+set scrolloff=8
 set sidescrolloff=10
 set sidescroll=1
 
 " remove search higlighting
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
+nnoremap <silent> <Leader>k :nohlsearch<CR>
+
+" esc in insert mode
+inoremap jj <Esc>
+inoremap jk <Esc>:w<cr>
+
+" finish lines with , or ;
+inoremap .. <Esc>A;
+inoremap ,, <Esc>A,
+nnoremap .. <Esc>A;<Esc>
+nnoremap ,, <Esc>A,<Esc>
+
+" moves lines
+nnoremap <A-j> :move .+1<cr>==
+nnoremap <A-k> :move .-2<cr>==
+inoremap <A-j> <Esc>:move .+1<cr>==gi
+inoremap <A-k> <Esc>:move .-2<cr>==gi
 
 " splits
 set splitright
@@ -178,13 +193,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-
-" edit vimrc
-map <Leader>ev :e $MYVIMRC<CR>
-
-" move lines up/down
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
 
 " reformat entire file
 nmap <Leader>= ggVG=

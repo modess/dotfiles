@@ -1,0 +1,4 @@
+gui:
+  showFileTree: false # for rendering changes files in a tree format
+git:
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty="%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%cn)%Creset" {{branchName}} --'

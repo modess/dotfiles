@@ -28,6 +28,16 @@ font pango: JetBrains Mono Nerd Font 8
 
 # set the mod key to the winkey:
 set $mod Mod4
+set $ws1key 1
+set $ws2key 2
+set $ws3key 3
+set $ws4key 4
+set $ws5key 5
+set $ws6key 6
+set $ws7key 7
+set $ws8key 8
+set $ws9key 9
+set $ws10key 0
 
 #####################
 # workspace layout: #
@@ -48,6 +58,7 @@ workspace_layout default
 # extra options for windows: #
 ##############################
 
+#border_radius 10
 default_border normal 0
 for_window[all] title_window_icon on
 
@@ -69,16 +80,16 @@ bindsym $mod+Ctrl+Shift+l move workspace to output right
 bindsym $mod+Ctrl+Shift+h move workspace to output left
 
 # switch to workspace
-bindsym $mod+1    workspace  $ws1
-bindsym $mod+2    workspace  $ws2
-bindsym $mod+3    workspace  $ws3
-bindsym $mod+4    workspace  $ws4
-bindsym $mod+5    workspace  $ws5
-bindsym $mod+6    workspace  $ws6
-bindsym $mod+7    workspace  $ws7
-bindsym $mod+8    workspace  $ws8
-bindsym $mod+9    workspace  $ws9
-bindsym $mod+0    workspace  $ws10
+bindsym $mod+$ws1key    workspace  $ws1
+bindsym $mod+$ws2key    workspace  $ws2
+bindsym $mod+$ws3key    workspace  $ws3
+bindsym $mod+$ws4key    workspace  $ws4
+bindsym $mod+$ws5key    workspace  $ws5
+bindsym $mod+$ws6key    workspace  $ws6
+bindsym $mod+$ws7key    workspace  $ws7
+bindsym $mod+$ws8key    workspace  $ws8
+bindsym $mod+$ws9key    workspace  $ws9
+bindsym $mod+$ws10key   workspace  $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace  $ws1
@@ -120,7 +131,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Return exec kitty
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+w kill
 
 # Lock the system
 # lock with a picture:
@@ -234,16 +245,17 @@ workspace $ws3 output DP3
 workspace $ws4 output DP3
 workspace $ws5 output DP3
 workspace $ws6 output DP3
-workspace $ws7 output DP3
-workspace $ws8 output eDPI1
+workspace $ws7 output eDPI1
+workspace $ws8 output DP3
 workspace $ws9 output DP3
 workspace $ws10 output DP3
 
 # bind program to workspace and focus to them on startup:
-assign [class="jetbrains-phpstorm|GitKraken|jetbrains-datagrip|code-oss"] $ws2
-assign [class="DBeaver"] $ws4
-assign [class="Spotify"] $ws9
-assign [class="Slack|Signal|Franz"] $ws10
+assign [class="jetbrains-phpstorm|GitKraken|code-oss"] $ws2
+assign [class="jetbrains-datagrip"] $ws4
+assign [class="Spotify"] $ws8
+assign [class="Signal"] $ws9
+assign [class="Slack|Franz"] $ws10
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=Brave-browser] focus
@@ -326,6 +338,7 @@ exec_always --no-startup-id autotiling
 exec $HOME/.local/share/tresorit/tresorit --hidden
 exec mullvad-vpn
 exec solaar --window=hide
+exec signal-desktop
 
 exec setxkbmap -option caps:escape
 

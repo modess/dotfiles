@@ -1,0 +1,355 @@
+#######################
+# config starts here: #
+#######################
+
+# disable focus between monitors
+focus_wrapping workspace
+
+# Do not focus with mouse
+focus_follows_mouse no
+
+# Font for window titles
+font pango: JetBrains Mono Nerd Font 8
+
+# set the mod key to the winkey:
+set $mod Mod4
+
+#####################
+# workspace layout: #
+#####################
+
+# default i3 tiling mode:
+workspace_layout default
+
+##############################
+# extra options for windows: #
+##############################
+
+# Default border
+default_border normal 0
+
+# Show icons in title bars
+for_window[all] title_window_icon on
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer 0
+
+# move focused workspace between monitors
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
+set $ws1_key_colemak a
+set $ws2_key_colemak r
+set $ws3_key_colemak s
+set $ws4_key_colemak t
+set $ws5_key_colemak g
+set $ws6_key_colemak m
+set $ws7_key_colemak n
+set $ws8_key_colemak e
+set $ws9_key_colemak i
+set $ws10_key_colemak o
+
+set $ws1_key_qwerty 1
+set $ws2_key_qwerty 2
+set $ws3_key_qwerty 3
+set $ws4_key_qwerty 4
+set $ws5_key_qwerty 5
+set $ws6_key_qwerty 6
+set $ws7_key_qwerty 7
+set $ws8_key_qwerty 8
+set $ws9_key_qwerty 9
+set $ws10_key_qwerty 0
+
+# switch to workspace
+bindsym $mod+$ws1_key_colemak    workspace  $ws1
+bindsym $mod+$ws2_key_colemak    workspace  $ws2
+bindsym $mod+$ws3_key_colemak    workspace  $ws3
+bindsym $mod+$ws4_key_colemak    workspace  $ws4
+bindsym $mod+$ws5_key_colemak    workspace  $ws5
+bindsym $mod+$ws6_key_colemak    workspace  $ws6
+bindsym $mod+$ws7_key_colemak    workspace  $ws7
+bindsym $mod+$ws8_key_colemak    workspace  $ws8
+bindsym $mod+$ws9_key_colemak    workspace  $ws9
+bindsym $mod+$ws10_key_colemak   workspace  $ws10
+
+bindsym $mod+$ws1_key_qwerty    workspace  $ws1
+bindsym $mod+$ws2_key_qwerty    workspace  $ws2
+bindsym $mod+$ws3_key_qwerty    workspace  $ws3
+bindsym $mod+$ws4_key_qwerty    workspace  $ws4
+bindsym $mod+$ws5_key_qwerty    workspace  $ws5
+bindsym $mod+$ws6_key_qwerty    workspace  $ws6
+bindsym $mod+$ws7_key_qwerty    workspace  $ws7
+bindsym $mod+$ws8_key_qwerty    workspace  $ws8
+bindsym $mod+$ws9_key_qwerty    workspace  $ws9
+bindsym $mod+$ws10_key_qwerty   workspace  $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+$ws1_key_colemak    move container to workspace  $ws1
+bindsym $mod+Shift+$ws2_key_colemak    move container to workspace  $ws2
+bindsym $mod+Shift+$ws3_key_colemak    move container to workspace  $ws3
+bindsym $mod+Shift+$ws4_key_colemak    move container to workspace  $ws4
+bindsym $mod+Shift+$ws5_key_colemak    move container to workspace  $ws5
+bindsym $mod+Shift+$ws6_key_colemak    move container to workspace  $ws6
+bindsym $mod+Shift+$ws7_key_colemak    move container to workspace  $ws7
+bindsym $mod+Shift+$ws8_key_colemak    move container to workspace  $ws8
+bindsym $mod+Shift+$ws9_key_colemak    move container to workspace  $ws9
+bindsym $mod+Shift+$ws10_key_colemak    move container to workspace  $ws10
+
+bindsym $mod+Shift+$ws1_key_qwerty    move container to workspace  $ws1
+bindsym $mod+Shift+$ws2_key_qwerty    move container to workspace  $ws2
+bindsym $mod+Shift+$ws3_key_qwerty    move container to workspace  $ws3
+bindsym $mod+Shift+$ws4_key_qwerty    move container to workspace  $ws4
+bindsym $mod+Shift+$ws5_key_qwerty    move container to workspace  $ws5
+bindsym $mod+Shift+$ws6_key_qwerty    move container to workspace  $ws6
+bindsym $mod+Shift+$ws7_key_qwerty    move container to workspace  $ws7
+bindsym $mod+Shift+$ws8_key_qwerty    move container to workspace  $ws8
+bindsym $mod+Shift+$ws9_key_qwerty    move container to workspace  $ws9
+bindsym $mod+Shift+$ws10_key_qwerty    move container to workspace  $ws10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+z mode "default"
+}
+bindsym $mod+z mode "resize"
+
+######################################
+# keybindings for different actions: #
+######################################
+
+# start a termina
+bindsym $mod+Return exec kitty
+
+# kill focused window
+bindsym $mod+w kill
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to update i3)
+bindsym $mod+Shift+y restart
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+| split h
+
+# split in vertical orientation
+bindsym $mod+- split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+u layout tabbed
+bindsym $mod+y layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Multimedia Keys
+
+# volume
+bindsym XF86AudioRaiseVolume exec ~/.config/i3/changevolume up
+bindsym XF86AudioLowerVolume exec ~/.config/i3/changevolume down
+
+# gradular volume control
+bindsym $mod+XF86AudioRaiseVolume exec ~/.config/i3/changevolume up-1
+bindsym $mod+XF86AudioLowerVolume exec ~/.config/i3/changevolume down-1
+
+# mute
+bindsym XF86AudioMute exec amixer sset Master toggle
+
+# audio control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+## App shortcuts
+bindsym $mod+p exec flameshot gui
+
+##########################################
+# configuration for workspace behaviour: #
+##########################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1:etc"
+set $ws2 "2:term"
+set $ws3 "3:dev"
+set $ws4 "4:www"
+set $ws5 "5:db"
+set $ws6 "6:monitor2"
+set $ws7 "7:slack"
+set $ws8 "8:etc"
+set $ws9 "9:signal"
+set $ws10 "10:spotify"
+
+# use workspaces on different displays:
+# where you have to replace VGA-0/HDMI-0 with the names for your displays
+# you can get from xrandr command
+workspace $ws1 output DP3
+workspace $ws2 output DP3
+workspace $ws3 output DP3
+workspace $ws4 output DP3
+workspace $ws5 output DP3
+workspace $ws6 output eDPI1
+workspace $ws7 output DP3
+workspace $ws8 output DP3
+workspace $ws9 output DP3
+workspace $ws10 output DP3
+
+# bind program to workspace
+assign [class="code-oss"] $ws3
+assign [class="DBeaver"] $ws4
+assign [class="Spotify"] $ws10
+assign [class="Signal"] $ws9
+assign [class="Slack"] $ws7
+
+# automatic set focus new window if it opens on another workspace then the current:
+#for_window [class=Brave-browser] focus
+
+##############
+# compositor #
+##############
+
+exec_always --no-startup-id picom --config  ~/.config/picom.conf
+
+#############################################
+# autostart applications/services on login: #
+#############################################
+
+#get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# dex execute .desktop files + apps using /etc/xdg/autostart.
+# when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
+# in this cases better disable dex and use manual starting apps using xdg/autostart
+# if enabled you should comment welcome app.
+# https://github.com/jceb/dex
+exec --no-startup-id dex --autostart --environment i3
+
+# start a script to setup displays
+# uncomment the next line, use arandr to setup displays and save the file as monitor:
+exec --no-startup-id autorandr external
+bindsym $mod+Shift+F1 exec autorandr external
+bindsym $mod+Shift+F2 exec autorandr laptop
+
+# set wallpaper
+exec --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-2098428.jpeg
+
+# set powersavings for display:
+exec --no-startup-id xset s 480 dpms 600 600 600
+
+# Desktop notifications
+exec --no-startup-id ~/.config/dunst/run.sh
+
+# autotiling script
+# https://github.com/nwg-piotr/autotiling
+exec_always --no-startup-id autotiling
+
+# Autostart apps
+exec $HOME/.local/share/tresorit/tresorit --hidden
+exec mullvad-vpn
+exec solaar --window=hide
+exec signal-desktop
+exec unclutter --timeout=1
+
+###############
+# system tray #
+###############
+# start blueberry app for managing bluetooth devices from tray:
+exec --no-startup-id blueberry-tray
+
+# networkmanager-applet
+exec --no-startup-id nm-applet
+
+# battery
+exec --no-startup-id cbatticon
+
+##################
+# floating rules #
+##################
+
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Anki" instance="anki"] floating enable
+
+######################################
+# color settings for bar and windows #
+######################################
+
+exec_always --no-startup-id xrdb -load ~/.Xresources
+set_from_resource $background background
+set_from_resource $foreground foreground
+set_from_resource $primary color4
+set_from_resource $secondary color5
+set_from_resource $black color0
+
+# class                 border      bground     text        indicator   child_border
+client.focused          $secondary  $secondary  $black      $black      $secondary
+client.focused_inactive $black      $black      $secondary  $black      $black
+client.unfocused        $black      $black      $foreground $black      $black
+client.urgent           $secondary  $secondary  $foreground $secondary  $secondary
+client.background       $background
+
+############################################
+# bar settings                             #
+############################################
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#####################################
+# Application menu handled by rofi: #
+#####################################
+
+# applications
+bindsym $mod+space exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+
+# windows
+bindsym $mod+BackSpace exec rofi -modi drun -show window -config ~/.config/rofi/rofidmenu.rasi
+
+# bitwarden
+bindsym $mod+b exec bwmenu -c 60
+
+# emoji
+bindsym $mod+period exec rofi -show emoji -modi emoji:rofimoji -config ~/.config/rofi/rofidmenu.rasi
+
+# calculator
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | xclip" -kb-accept-custom="Alt+Return" -config ~/.config/rofi/rofidmenu.rasi
+
+# powermenu
+bindsym $mod+Shift+q exec ~/.config/i3/powermenu
