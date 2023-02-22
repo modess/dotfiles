@@ -21,7 +21,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias vim="nvim"
+alias vv="nvim"
 
+alias gg="lazygit"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%cn)%Creset' --abbrev-commit --date=relative"
 alias gu="git up"
 alias gco="git checkout"
