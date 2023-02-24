@@ -77,8 +77,3 @@ require('bufferline').setup({
     },
   },
 })
-
-vim.keymap.set('n', '<A-l>', ':BufferLineCycleNext<cr>')
-vim.keymap.set('n', '<A-h>', ':BufferLineCyclePrev<cr>')
-vim.keymap.set('n', '<A-right>', ':BufferLineCycleNext<cr>')
-vim.keymap.set('n', '<A-left>', ':BufferLineCyclePrev<cr>')

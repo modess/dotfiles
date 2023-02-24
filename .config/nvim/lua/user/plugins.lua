@@ -21,10 +21,6 @@ require('packer').init({
     },
   })
 
-
-vim.keymap.set('n', '<leader>Ps', ':PackerSync<cr>')
-vim.keymap.set('n', '<leader>Pc', ':PackerCompile<cr>')
-
 local use = require('packer').use
 
 -- Packer can manage itself.
@@ -97,13 +93,7 @@ use({
   })
 
 -- All closing buffers without closing the split window.
-use({
-    'famiu/bufdelete.nvim',
-    config = function()
-      vim.keymap.set('n', '<Leader>q', ':Bdelete<CR>')
-      vim.keymap.set('n', '<Leader>Q', ':q<CR>')
-    end,
-  })
+use('famiu/bufdelete.nvim')
 
 -- Split arrays and methods onto multiple lines, or join them back up.
 use({
@@ -208,12 +198,6 @@ use({
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
-      vim.keymap.set('n', 'Gn', ':Gitsigns next_hunk<CR>')
-      vim.keymap.set('n', 'Gp', ':Gitsigns prev_hunk<CR>')
-      vim.keymap.set('n', 'Gs', ':Gitsigns stage_hunk<CR>')
-      vim.keymap.set('n', 'Gu', ':Gitsigns undo_stage_hunk<CR>')
-      vim.keymap.set('n', 'Gp', ':Gitsigns preview_hunk<CR>')
-      vim.keymap.set('n', 'Gb', ':Gitsigns blame_line<CR>')
     end,
   })
 
@@ -286,7 +270,7 @@ use {
   'phaazon/hop.nvim',
   branch = 'v2', -- optional but strongly recommended
   config = function()
-    require('user/plugins/hop')
+    require('hop').setup()
   end
 }
 
@@ -337,6 +321,7 @@ use {
   requires = {'nvim-tree/nvim-web-devicons'}
 }
 
+-- Barbecue (winbar)
 use({
   "utilyre/barbecue.nvim",
   tag = "*",

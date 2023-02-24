@@ -31,6 +31,9 @@ require('telescope').setup({
     find_files = {
       hidden = true,
     },
+    live_grep = {
+      hidden = true,
+    },
     buffers = {
       previewer = false,
       layout_config = {
@@ -48,15 +51,3 @@ require('telescope').setup({
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('live_grep_args')
-
-vim.keymap.set('n', '<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]])
-vim.keymap.set('n', '<leader>b', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-vim.keymap.set('n', '<leader>h', [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]])
-vim.keymap.set('n', '<leader>e', [[<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>]])
-vim.keymap.set('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
-vim.keymap.set('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
-vim.keymap.set('n', '<leader>gt', [[<cmd>lua require('telescope.builtin').git_stash()<CR>]])
-vim.keymap.set('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
-vim.keymap.set('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
-vim.keymap.set('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_bcommits()<CR>]])
