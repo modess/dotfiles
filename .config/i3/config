@@ -32,7 +32,7 @@ default_border normal 0
 for_window[all] title_window_icon on
 
 # Set inner/outer gaps
-gaps inner 10
+gaps inner 15
 gaps outer 0
 
 # move focused workspace between monitors
@@ -269,7 +269,7 @@ bindsym $mod+Shift+F1 exec autorandr external
 bindsym $mod+Shift+F2 exec autorandr laptop
 
 # set wallpaper
-exec --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-2098428.jpeg
+exec --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-755726.jpeg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
