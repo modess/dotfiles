@@ -98,14 +98,14 @@ vim.keymap.set('n', '<leader>b', [[<cmd>lua require('telescope.builtin').buffers
 vim.keymap.set('n', '<leader>h', [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]])
 vim.keymap.set('n', '<leader>e', [[<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>]])
 vim.keymap.set('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
-vim.keymap.set('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
-vim.keymap.set('n', '<leader>gt', [[<cmd>lua require('telescope.builtin').git_stash()<CR>]])
 vim.keymap.set('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
-vim.keymap.set('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
-vim.keymap.set('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_bcommits()<CR>]])
+vim.keymap.set('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_bcommits()<CR>]])
+vim.keymap.set('n', '<leader>gf', ':Easypick changed_files<cr>')
+vim.keymap.set('n', '<leader>gc', ':Easypick conflicts<cr>')
 
 vim.keymap.set("n", "<leader>dd", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>dw", "<cmd>Telescope dir live_grep<CR>", { noremap = true, silent = true })
+
 
 -- LSP
 vim.keymap.set('n', '<Leader>D', '<cmd>lua vim.diagnostic.open_float()<CR>')
