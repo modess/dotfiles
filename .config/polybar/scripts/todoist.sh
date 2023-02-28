@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if ! wget -q --spider https://startpage.com; then
+if ! ping -c 1 9.9.9.9 &> /dev/null; then
     echo ""
     exit 0
 fi
 
 API_KEY=`cat ~/.polybar_todoist`
-tasks=$(curl -sf "https://api.todoist.com/rest/v2/tasks?filter=today,overdue" -H "Authorization: Bearer $API_KEY" | jq ". | length")
+tasks=$(curl -sG "https://api.todoist.com/rest/v2/tasks" --data-urlencode "filter=due before: +0 hours" -H "Authorization: Bearer $API_KEY" | jq ". | length")
 
 secondary=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
 
