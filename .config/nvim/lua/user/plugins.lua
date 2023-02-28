@@ -52,9 +52,6 @@ use('farmergreg/vim-lastplace')
 -- Automatically create parent dirs when saving.
 use('jessarcher/vim-heritage')
 
--- Navigate seamlessly between Vim windows and Tmux panes.
-use('christoomey/vim-tmux-navigator')
-
 -- Useful commands like :Rename and :SudoWrite.
 use('tpope/vim-eunuch')
 
@@ -77,12 +74,12 @@ use({
   })
 
 -- Automatically add closing brackets, quotes, etc.
--- use({
---     'windwp/nvim-autopairs',
---     config = function()
---       require('nvim-autopairs').setup()
---     end,
---   })
+use({
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  })
 
 -- Add smooth scrolling to avoid jarring jumps
 use({
@@ -309,18 +306,6 @@ use {
   end,
 }
 
--- Dashboard
-use {
-  'glepnir/dashboard-nvim',
-  event = 'VimEnter',
-  config = function()
-    require('dashboard').setup {
-      -- config
-    }
-  end,
-  requires = {'nvim-tree/nvim-web-devicons'}
-}
-
 -- Barbecue (winbar)
 use({
   "utilyre/barbecue.nvim",
@@ -347,6 +332,24 @@ use ({
     require('user/plugins/easypick')
   end
 })
+
+-- Github copilot
+use {
+  "zbirenbaum/copilot.lua",
+  cmd = "Copilot",
+  event = "InsertEnter",
+  config = function()
+    require("copilot").setup({
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = "<C-Space>",
+          dismiss = "<C-w>",
+        }
+      }
+    })
+  end,
+}
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
