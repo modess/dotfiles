@@ -207,16 +207,16 @@ bindsym $mod+p exec flameshot gui
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:etc"
-set $ws2 "2:term"
-set $ws3 "3:dev"
-set $ws4 "4:www"
-set $ws5 "5:db"
-set $ws6 "6:monitor2"
-set $ws7 "7:slack"
-set $ws8 "8:etc"
-set $ws9 "9:signal"
-set $ws10 "10:spotify"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
@@ -234,7 +234,7 @@ workspace $ws10 output DP3
 
 # bind program to workspace
 assign [class="code-oss"] $ws3
-assign [class="DBeaver"] $ws4
+assign [class="DBeaver"] $ws5
 assign [class="Spotify"] $ws10
 assign [class="Signal"] $ws9
 assign [class="Slack"] $ws7
@@ -272,7 +272,7 @@ bindsym $mod+Shift+F2 exec autorandr laptop
 exec --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-755726.jpeg
 
 # set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
+# exec --no-startup-id xset s 480 dpms 600 600 600
 
 # Desktop notifications
 exec --no-startup-id ~/.config/dunst/run.sh
@@ -314,13 +314,14 @@ for_window [class="Anki" instance="anki"] floating enable
 
 exec_always --no-startup-id xrdb -load ~/.Xresources
 set_from_resource $background background
+set_from_resource $backgroundAlt color8
 set_from_resource $foreground foreground
 set_from_resource $primary color4
 set_from_resource $secondary color5
 set_from_resource $black color0
 
 # class                 border      bground     text        indicator   child_border
-client.focused          $secondary  $secondary  $black      $black      $secondary
+client.focused          $background $background $primary    $black      $black
 client.focused_inactive $black      $black      $secondary  $black      $black
 client.unfocused        $black      $black      $foreground $black      $black
 client.urgent           $secondary  $secondary  $foreground $secondary  $secondary
