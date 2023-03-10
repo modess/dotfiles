@@ -164,6 +164,15 @@ use({
   end,
 })
 
+-- Trouble
+use {
+  "folke/trouble.nvim",
+  requires = "nvim-tree/nvim-web-devicons",
+  config = function()
+    require("trouble").setup({})
+  end
+}
+
 -- File tree sidebar
 use({
     'kyazdani42/nvim-tree.lua',
@@ -350,6 +359,13 @@ use {
     })
   end,
 }
+
+use ({
+  'knubie/vim-kitty-navigator',
+  config = function()
+    vim.g.kitty_navigator_map_keys = 0
+  end
+})
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins

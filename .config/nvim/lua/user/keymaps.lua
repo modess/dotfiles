@@ -4,7 +4,6 @@ vim.g.maplocalleader = ' '
 
 -- Save
 vim.keymap.set('n', '<cr>', ':w<cr>')
-vim.keymap.set('n', 'mm', ':w<cr>')
 
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
@@ -40,7 +39,7 @@ vim.keymap.set('n', '<leader><leader>', '<c-^>')
 vim.keymap.set('i', 'jj', '<Esc>');
 
 -- Esc and save in insert mode
-vim.keymap.set('i', 'mm', '<Esc>:w<cr>');
+vim.keymap.set('i', 'yy', '<Esc>:w<cr>');
 
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<Leader>k', ':nohlsearch<CR>')
@@ -48,14 +47,17 @@ vim.keymap.set('n', '<Leader>k', ':nohlsearch<CR>')
 -- Splits
 vim.keymap.set('n', '<leader>|', ':vs<C-l><CR>')
 vim.keymap.set('n', '<leader>-', ':split<CR>')
-vim.keymap.set('n', '<c-left>', '<c-w>h')
-vim.keymap.set('n', '<c-down>', '<c-w>j')
-vim.keymap.set('n', '<c-up>', '<c-w>k')
-vim.keymap.set('n', '<c-right>', '<c-w>l')
-vim.keymap.set('n', '<c-h>', '<c-w>h')
-vim.keymap.set('n', '<c-j>', '<c-w>j')
-vim.keymap.set('n', '<c-k>', '<c-w>k')
-vim.keymap.set('n', '<c-l>', '<c-w>l')
+vim.keymap.set('n', '<c-left>', ':KittyNavigateLeft<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-down>', ':KittyNavigateDown<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-up>', ':KittyNavigateUp<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-right>', ':KittyNavigateRight<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-h>', ':KittyNavigateLeft<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-j>', ':KittyNavigateDown<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-k>', ':KittyNavigateUp<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-l>', ':KittyNavigateRight<cr>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>+', ':exe "resize " . (winheight(0) * 3/2)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>-', ':exe "resize " . (winheight(0) * 2/3)<CR>', { noremap = true, silent = true })
 
 -- Move lines up and down.
 vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
@@ -106,6 +108,13 @@ vim.keymap.set('n', '<leader>gc', ':Easypick conflicts<cr>')
 vim.keymap.set("n", "<leader>dd", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>dw", "<cmd>Telescope dir live_grep<CR>", { noremap = true, silent = true })
 
+-- Trouble
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",  {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",  {silent = true, noremap = true})
 
 -- LSP
 vim.keymap.set('n', '<Leader>D', '<cmd>lua vim.diagnostic.open_float()<CR>')
