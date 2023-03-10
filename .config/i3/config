@@ -234,7 +234,7 @@ workspace $ws10 output DP3
 
 # bind program to workspace
 assign [class="code-oss"] $ws3
-assign [class="DBeaver"] $ws5
+assign [class="DBeaver"] $ws3
 assign [class="Spotify"] $ws10
 assign [class="Signal"] $ws9
 assign [class="Slack"] $ws7
@@ -287,6 +287,8 @@ exec mullvad-vpn
 exec solaar --window=hide
 exec signal-desktop
 exec unclutter --timeout=1
+
+#exec --no-startup-id ~/code/xborder/xborders --config ~/.config/i3/borders_settings
 
 ###############
 # system tray #
