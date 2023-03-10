@@ -10,10 +10,9 @@ API_KEY=`cat /home/niklas/.polybar_todoist`
 overdue=$(curl -sG "https://api.todoist.com/rest/v2/tasks" --data-urlencode "filter=due before: +0 hours" -H "Authorization: Bearer $API_KEY" | jq ". | length")
 today=$(curl -sG "https://api.todoist.com/rest/v2/tasks" --data-urlencode "filter=today" -H "Authorization: Bearer $API_KEY" | jq ". | length")
 
-if [[ "$overdue" -gt 0 && "$today" -gt 0 ]]; then
-   /usr/bin/notify-send -u critical -h string:fgcolor:#ff4444 " $overdue overdue tasks! -  $today tasks today"
-elif [[ "$overdue" -gt 0 ]]; then
+if [[ "$overdue" -gt 0 ]]; then
    /usr/bin/notify-send -u critical -h string:fgcolor:#ff4444 " $overdue overdue tasks!"
-elif [[ "$today" -gt 0 ]]; then
+fi
+if [[ "$today" -gt 0 ]]; then
    /usr/bin/notify-send -u normal -t 60000 " $today tasks today"
 fi
