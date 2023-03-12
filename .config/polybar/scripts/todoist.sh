@@ -5,7 +5,7 @@ if ! ping -c 1 9.9.9.9 &> /dev/null; then
     exit 0
 fi
 
-API_KEY=`cat ~/.polybar_todoist`
+API_KEY=`cat ~/.secrets/todoist`
 tasks=$(curl -sG "https://api.todoist.com/rest/v2/tasks" --data-urlencode "filter=due before: +0 hours" -H "Authorization: Bearer $API_KEY" | jq ". | length")
 
 secondary=$(xrdb -query | grep 'color5:'| awk '{print $NF}')

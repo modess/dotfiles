@@ -55,7 +55,7 @@ get_duration() {
 
 }
 
-KEY=`cat ~/.polybar_openweathermap`
+KEY=`cat ~/.secrets/openweathermap`
 CITY="Stockholm"
 UNITS="metric"
 SYMBOL="°"
