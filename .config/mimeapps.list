@@ -1,0 +1,20 @@
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/firefox.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+application/x-xpinstall=firefox.desktop
+application/xhtml+xml=firefox.desktop
+text/html=firefox.desktop
+text/xml=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+
+[Added Associations]
+text/markdown=nvim.desktop;
+application/pdf=firefox.desktop;
+image/jpeg=org.gnome.gThumb.desktop;feh.desktop;
+text/x-chdr=code-oss.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/http=firefox.desktop;
+image/png=org.gnome.gThumb.desktop;
