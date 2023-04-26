@@ -14,7 +14,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
     zsh-autosuggestions
-    fasd
+    fzf-zsh-plugin
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -66,6 +67,8 @@ alias cat="grc cat"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
+export QT_STYLE_OVERRIDE=adwaita
+
 # Path
 export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -73,22 +76,28 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export PATH=~/.dotfiles/scripts:$PATH
+export PATH=~/.scripts:$PATH
 export PATH=$PATH:/var/lib/flatpak/exports/share
 export NODE_PATH=/usr/lib/node_modules
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 export XDG_CONFIG_HOME=$HOME/.config/
+export NODE_OPTIONS=--openssl-legacy-provider
 
 # Includes
 [ -f ~/.aws-credentials ] && source ~/.aws-credentials
 [ -f ~/.github_token ] && source ~/.github_token
+[ -f ~/.secrets/chatgpt ] && source ~/.secrets/chatgpt
 [ -f ~/.aliases ] && source ~/.aliases
 
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+[[ -f /etc/grc.zsh ]] && source /etc/grc.zsh
 
-[[ ! -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f ~/.fzf/fzf.zsh ]] && source ~/.fzf/fzf.zsh
+
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH=$PATH:/home/niklas/.spicetify

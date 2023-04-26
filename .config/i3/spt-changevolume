@@ -1,0 +1,51 @@
+#!/bin/bash
+
+function send_notification() {
+    volume=$(spt playback --format %v)
+    dunstify -a "changesptvolume" -u low -r "9993" -h int:value:"$volume" -i "spt-volume-$1" " : ${volume}%" -t 2000
+}
+
+VOLUME=$(spt playback --format %v)
+
+case $1 in
+up-1)
+    NEW_VOLUME=$(($VOLUME + 1))
+
+    if (( $NEW_VOLUME > 100 )); then
+        NEW_VOLUME=100
+    fi
+
+    spt playback --volume $NEW_VOLUME
+	send_notification $1
+	;;
+up)
+    NEW_VOLUME=$(($VOLUME + 5))
+
+    if (( $NEW_VOLUME > 100 )); then
+        NEW_VOLUME=100
+    fi
+
+    spt playback --volume $NEW_VOLUME
+	send_notification $1
+	;;
+down-1)
+    NEW_VOLUME=$(($VOLUME - 1))
+
+    if (( $NEW_VOLUME < 0 )); then
+        NEW_VOLUME=0
+    fi
+
+    spt playback --volume $NEW_VOLUME
+	send_notification $1
+	;;
+down)
+    NEW_VOLUME=$(($VOLUME - 5))
+
+    if (( $NEW_VOLUME < 0 )); then
+        NEW_VOLUME=0
+    fi
+
+    spt playback --volume $NEW_VOLUME
+	send_notification $1
+	;;
+esac

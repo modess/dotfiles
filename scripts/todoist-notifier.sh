@@ -6,7 +6,7 @@ if ! ping -c 1 9.9.9.9 &> /dev/null; then
     exit 0
 fi
 
-API_KEY=`cat /home/niklas/.polybar_todoist`
+API_KEY=`cat /home/niklas/.secrets/todoist`
 overdue=$(curl -sG "https://api.todoist.com/rest/v2/tasks" --data-urlencode "filter=due before: +0 hours" -H "Authorization: Bearer $API_KEY" | jq ". | length")
 today=$(curl -sG "https://api.todoist.com/rest/v2/tasks" --data-urlencode "filter=today" -H "Authorization: Bearer $API_KEY" | jq ". | length")
 

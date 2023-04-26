@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! wget -q --spider https://startpage.com; then
+if ! ping -c 1 9.9.9.9 &> /dev/null; then
     echo ""
     exit 0
 fi

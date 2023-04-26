@@ -1,13 +1,280 @@
-source ~/.vimrc
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+
+let mapleader=" "
+let localmapleader=" "
 
 set NERDTree
-set sneak
-
-" set clipboard+=unnamed
-map <Leader><Leader>c <c-_><c-_>
 set easymotion
+set ideajoin
+set multiple-cursors
+set surround
+
+set clipboard+=unnamed
+set clipboard+=ideaput
 
 set showmode
 
-:set relativenumber
-:set number
+set relativenumber
+set number
+
+set ignorecase
+set smartcase
+set scrolloff=3
+
+set incsearch
+set hls
+
+" Source ideavimrc
+nmap <leader>Z :source ~/.ideavimrc<CR>
+
+" Save
+nmap <CR> :w<CR>
+
+" Redo
+nmap U <C-r>
+
+" Keep centered when jumping search results
+nmap n nzzzv
+
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+" These create newlines like o and O but stay in normal mode
+nmap <leader>o o<Esc>k
+nmap <leader>O O<Esc>j
+
+" Re-select visual selection after indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Maintain cursor position when yanking a visual selection
+vnoremap y myy`y
+
+" Paste replace visual selection without copying it
+vnoremap p "_dP
+
+" Easy insertion of a trailing ; or ,
+nnoremap .. A;<Esc>
+nnoremap ,, A,<Esc>
+
+" Clear search highlighting
+nmap <leader>k :noh<CR>
+
+" Clear all notifications
+nmap <leader>K :action ClearAllNotifications<CR>
+
+" Show settings
+nmap <leader>C :action ShowSettings<CR>
+
+" Shortcut for change word
+nmap cc cw
+
+" Splits
+nmap <leader>v :action SplitVertically<CR>
+nmap <leader>h :action SplitHorizontally<CR>
+nmap <leader>m :action MoveEditorToOppositeTabGroup<CR>
+nmap <c-left> <c-w>h
+nmap <c-right> <c-w>l
+nmap <c-up> <c-w>k
+nmap <c-down> <c-w>j
+
+" Move lines up and down
+nmap <A-down> :action MoveLineDown<CR>
+nmap <A-up> :action MoveLineUp<CR>
+vmap <A-down> :action MoveLineDown<CR>
+vmap <A-up> :action MoveLineUp<CR>
+imap <A-down> :action MoveLineDown<CR>
+imap <A-up> :action MoveLineUp<CR>
+
+" Go to
+nmap <leader>f :action GotoFile<CR>
+nmap <leader>c :action GotoClass<CR>
+nmap <leader>s :action GotoSymbol<CR>
+nmap <leader>d :action GotoDatabaseObject<CR>
+nmap <leader>a :action GotoAction<CR>
+vmap <leader>a :action GotoAction<CR>
+vmap <leader>A :action SearchEverywhere<CR>
+nmap <leader>h :action RecentChangedFiles<CR>
+nmap <leader>H :action RecentFiles<CR>
+
+" Find/replace
+nmap <leader>F :action FindInPath<CR>
+nmap <leader>R :action ReplaceInPath<CR>
+
+" Tool windows
+nmap <S-Bs> :action HideAllWindows<CR>
+nmap <S-Space> :action JumpToLastWindow<CR>
+nmap <leader>wc :action ActivateCommitToolWindow<CR>
+nmap <leader>wt :action ActivateTerminalToolWindow<CR>
+nmap <leader>ws :action ActivateStructureToolWindow<CR>
+nmap <leader>wf :action ActivateFindToolWindow<CR>
+nmap <leader>wr :action ActivateRunToolWindow<CR>
+nmap <leader>wd :action ActivateDebugToolWindow<CR>
+nmap <leader>wD :action ActivateDatabaseToolWindow<CR>
+nmap <leader>wg :action ActivateVersionControlToolWindow<CR>
+nmap <leader>wp :action ActivatePullRequestsToolWindow<CR>
+nmap <leader>wb :action ActivateBookmarksToolWindow<CR>
+nmap <leader>wn :action ActivateNotificationsToolWindow<CR>
+
+" Close editors/tabs
+nmap qq :action CloseContent<CR>
+nmap qo :action CloseAllEditorsButActive<CR>
+
+" Code
+nmap <A-Space> :action ShowIntentionActions<CR>
+nmap gd :action GotoDeclaration<CR>
+nmap gu :action ShowUsages<CR>
+nmap gU :action FindUsages<CR>
+nmap gi :action GotoImplementation<CR>
+nmap gG :action Generate<CR>
+nmap gp :action ParameterInfo<CR>
+nmap gI :action QuickImplementations<CR>
+nmap gD :action QuickJavaDoc<CR>
+nmap gJ :action EditorCodeBlockStart<CR>
+nmap gj :action EditorCodeBlockEnd<CR>
+nmap go :action OverrideMethods<CR>
+nmap gm :action ImplementMethods<CR>
+
+nmap ge :action ShowErrorDescription<CR>
+
+vmap gr :action Refactorings.QuickListPopupAction<CR>
+nmap gr :action Refactorings.QuickListPopupAction<CR>
+
+nmap gc :action CommentByLineComment<CR>
+vmap gc :action CommentByLineComment<CR>
+vmap gC :action CommentByBlockComment<CR>
+
+" Vcs
+nmap vv :action VcsShowNextChangeMarker<CR>
+nmap vV :action VcsShowPrevChangeMarker<CR>
+nmap vs :action VcsShowCurrentChangeMarker<CR>
+nmap vz :action Vcs.RollbackChangedLines<CR>
+
+nmap vy :action Vcs.QuickListPopupAction<CR>
+nmap vU :action Vcs.UpdateProject<CR>
+nmap va :action Annotate<CR>
+nmap vJ :action JumpToLastChange<CR>
+nmap vc :action Compare.LastVersion<CR>
+nmap vC :action Git.ResolveConflicts<CR>
+
+nmap vp :action Git.Pull<CR>
+nmap vP :action Vcs.Push<CR>
+nmap vr :action Git.Rebase<CR>
+nmap vm :action Git.Merge<CR>
+nmap vb :action Git.Branches<CR>
+nmap vo :action Github.Open.In.Browser<CR>
+
+" Debug
+nmap <C-A-d> :action Debug<CR>
+nmap <C-A-b> :action ViewBreakpoints<CR>
+nmap <C-A-r> :action Resume<CR>
+nmap <C-A-s> :action Stop<CR>
+nmap <C-A-o> :action StepOut<CR>
+nmap <C-A-i> :action StepInto<CR>
+nmap <C-A-S-o> :action StepOver<CR>
+
+" Easymotion
+nmap s <Plug>(easymotion-n)
+nmap m <Plug>(easymotion-j)
+nmap M <Plug>(easymotion-k)
+    " <ll>f{char}    |  <Plug>(easymotion-f) |  mapped to fn
+    " <ll>F{char}    |  <Plug>(easymotion-F) |  mapped to Fn
+    " <ll>t{char}    |  <Plug>(easymotion-t) |  mapped to tn
+    " <ll>T{char}    |  <Plug>(easymotion-T) |  mapped to Tn
+
+    " <ll>w          |  <Plug>(easymotion-w) |
+    " <ll>W          |  <Plug>(easymotion-W) |
+    " <ll>b          |  <Plug>(easymotion-b) |
+    " <ll>B          |  <Plug>(easymotion-B) |
+    " <ll>e          |  <Plug>(easymotion-e) |
+    " <ll>E          |  <Plug>(easymotion-E) |
+    " <ll>ge         |  <Plug>(easymotion-ge |
+    " <ll>gE         |  <Plug>(easymotion-gE |
+    " <ll>j          |  <Plug>(easymotion-j) |
+    " <ll>k          |  <Plug>(easymotion-k) |
+    " <ll>n          |  <Plug>(easymotion-n) |
+    " <ll>N          |  <Plug>(easymotion-N) |
+    " <ll>s          |  <Plug>(easymotion-s) |  mapped to sn
+
+" Diagnostics
+
+" Tests
+nmap <leader>tt :action Run<CR>
+nmap <leader>tg :action GotoTest<CR>
+nmap <leader>tr :action Rerun<CR>
+nmap <leader>tf :action RerunFailedTests<CR>
+nmap <leader>tc :action RunClass<CR>
+nmap <leader>ta :action ChooseRunConfiguration<CR>
+nmap <leader>ts :action Stop<CR>
+
+" Nerdtree/files
+nmap <leader>nn :NERDTreeToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+nmap <leader>nb :action ShowNavBar<CR>
+
+" Paste
+nmap <leader>p :action PasteMultiple<CR>
+
+" String manipulation
+nmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
+vmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
+
+" Surround
+vmap <leader>s :action SurroundWith<CR>
+
+" Bookmarks
+nmap <leader>b<CR> :action ToggleBookmark<CR>
+nmap <leader>bA :action ToggleBookmarkA<CR>
+nmap <leader>ba :action GotoBookmarkA<CR>
+nmap <leader>bB :action ToggleBookmarkB<CR>
+nmap <leader>bb :action GotoBookmarkB<CR>
+nmap <leader>bC :action ToggleBookmarkC<CR>
+nmap <leader>bc :action GotoBookmarkC<CR>
+nmap <leader>bD :action ToggleBookmarkD<CR>
+nmap <leader>bd :action GotoBookmarkD<CR>
+nmap <leader>bE :action ToggleBookmarkE<CR>
+nmap <leader>be :action GotoBookmarkE<CR>
+nmap <leader>bF :action ToggleBookmarkF<CR>
+nmap <leader>bf :action GotoBookmarkF<CR>
+nmap <leader>bG :action ToggleBookmarkG<CR>
+nmap <leader>bg :action GotoBookmarkG<CR>
+nmap <leader>bH :action ToggleBookmarkH<CR>
+nmap <leader>bh :action GotoBookmarkH<CR>
+nmap <leader>bI :action ToggleBookmarkI<CR>
+nmap <leader>bi :action GotoBookmarkI<CR>
+nmap <leader>bJ :action ToggleBookmarkJ<CR>
+nmap <leader>bj :action GotoBookmarkJ<CR>
+nmap <leader>bK :action ToggleBookmarkK<CR>
+nmap <leader>bk :action GotoBookmarkK<CR>
+nmap <leader>bL :action ToggleBookmarkL<CR>
+nmap <leader>bl :action GotoBookmarkL<CR>
+nmap <leader>bM :action ToggleBookmarkM<CR>
+nmap <leader>bm :action GotoBookmarkM<CR>
+nmap <leader>bN :action ToggleBookmarkN<CR>
+nmap <leader>bn :action GotoBookmarkN<CR>
+nmap <leader>bO :action ToggleBookmarkO<CR>
+nmap <leader>bo :action GotoBookmarkO<CR>
+nmap <leader>bP :action ToggleBookmarkP<CR>
+nmap <leader>bp :action GotoBookmarkP<CR>
+nmap <leader>bQ :action ToggleBookmarkQ<CR>
+nmap <leader>bq :action GotoBookmarkQ<CR>
+nmap <leader>bR :action ToggleBookmarkR<CR>
+nmap <leader>br :action GotoBookmarkR<CR>
+nmap <leader>bS :action ToggleBookmarkS<CR>
+nmap <leader>bs :action GotoBookmarkS<CR>
+nmap <leader>bT :action ToggleBookmarkT<CR>
+nmap <leader>bt :action GotoBookmarkT<CR>
+nmap <leader>bU :action ToggleBookmarkU<CR>
+nmap <leader>bu :action GotoBookmarkU<CR>
+nmap <leader>bV :action ToggleBookmarkV<CR>
+nmap <leader>bv :action GotoBookmarkV<CR>
+nmap <leader>bW :action ToggleBookmarkW<CR>
+nmap <leader>bw :action GotoBookmarkW<CR>
+nmap <leader>bX :action ToggleBookmarkX<CR>
+nmap <leader>bx :action GotoBookmarkX<CR>
+nmap <leader>bY :action ToggleBookmarkY<CR>
+nmap <leader>by :action GotoBookmarkY<CR>
+nmap <leader>bZ :action ToggleBookmarkZ<CR>
+nmap <leader>bz :action GotoBookmarkZ<CR>

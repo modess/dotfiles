@@ -113,14 +113,9 @@ use({
 -- Colorscheme
 use ({
     'catppuccin/nvim',
-    as = 'catppuccin',
+    as = 'colorscheme',
     config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-        integrations = {
-          illuminate = true,
-        }
-      })
+      vim.cmd('colorscheme catppuccin-mocha')
 
       vim.cmd("hi HopNextKey guifg=black guibg=#00FF00")
       vim.cmd("hi HopNextKey1 guifg=black guibg=#00dfff")
@@ -128,14 +123,12 @@ use ({
     end,
   })
 
-vim.cmd('colorscheme catppuccin-mocha')
-
 -- Display buffers as tabs.
 use({
     'akinsho/bufferline.nvim',
     tag = "v3.*",
     requires = 'kyazdani42/nvim-web-devicons',
-    after = 'catppuccin',
+    after = 'colorscheme',
     config = function()
       require('user/plugins/bufferline')
     end,
@@ -285,7 +278,7 @@ use {
   'sunjon/shade.nvim',
   config = function()
     require('shade').setup({
-        overlay_opacity = 50,
+        overlay_opacity = 75,
       })
   end,
 }
@@ -301,7 +294,7 @@ use {
 -- Illuminate highlighter
 use {
   'RRethy/vim-illuminate',
-  after = 'catppuccin',
+  after = 'colorscheme',
   config = function()
     vim.cmd("hi IlluminatedWordRead gui=none guibg=#45475a")
   end,
@@ -366,6 +359,64 @@ use ({
     vim.g.kitty_navigator_map_keys = 0
   end
 })
+
+use {
+  "folke/which-key.nvim",
+  config = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+    require("which-key").setup({})
+  end
+}
+
+use {
+  'sudormrfbin/cheatsheet.nvim',
+
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+    {'nvim-lua/popup.nvim'},
+    {'nvim-lua/plenary.nvim'},
+  }
+}
+
+use {
+  'codethread/qmk.nvim',
+  config = function()
+    local conf = {
+      name = 'LAYOUT',
+      layout = {
+        'x x x x x _ x x x x x',
+        'x x x x x _ x x x x x',
+        'x x x x x _ x x x x x',
+        '_ _ _ x x _ x x _ _ _',
+      },
+      comment_preview = {
+        position = 'inside',
+        keymap_overrides = {
+          ['KC_MZ'] = 'S(z)',
+          ['KC_MX'] = 'M(x)',
+          ['KC_MC'] = 'A(c)',
+          ['KC_MD'] = 'C(d)',
+
+          ['KC_MH'] = 'C(h)',
+          ['KC_MLBRC'] = 'A([)',
+          ['KC_MQUOT'] = 'M(\')',
+          ['KC_MSCLN'] = 'S(;)',
+
+          ['KC_SPM1'] = 'L1(Spc)',
+          ['KC_BSM2'] = 'L2(Bksp)',
+        },
+      },
+    }
+    require('qmk').setup(conf)
+  end
+}
+
+use {'akinsho/git-conflict.nvim', tag = "*", config = function()
+  require('git-conflict').setup({
+    default_mappings = false, -- disable buffer local mapping created by this plugin
+  })
+end}
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
