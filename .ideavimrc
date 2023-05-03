@@ -201,12 +201,11 @@ nmap M <Plug>(easymotion-k)
 " Diagnostics
 
 " Tests
-nmap <leader>tt :action Run<CR>
+nmap <leader>tt :action RunClass<CR>
 nmap <leader>tg :action GotoTest<CR>
 nmap <leader>tr :action Rerun<CR>
 nmap <leader>tf :action RerunFailedTests<CR>
-nmap <leader>tc :action RunClass<CR>
-nmap <leader>ta :action ChooseRunConfiguration<CR>
+nmap <leader>tc :action ChooseRunConfiguration<CR>
 nmap <leader>ts :action Stop<CR>
 
 " Nerdtree/files
