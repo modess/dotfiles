@@ -369,54 +369,28 @@ use {
   end
 }
 
-use {
-  'sudormrfbin/cheatsheet.nvim',
-
-  requires = {
-    {'nvim-telescope/telescope.nvim'},
-    {'nvim-lua/popup.nvim'},
-    {'nvim-lua/plenary.nvim'},
-  }
-}
-
-use {
-  'codethread/qmk.nvim',
-  config = function()
-    local conf = {
-      name = 'LAYOUT',
-      layout = {
-        'x x x x x _ x x x x x',
-        'x x x x x _ x x x x x',
-        'x x x x x _ x x x x x',
-        '_ _ _ x x _ x x _ _ _',
-      },
-      comment_preview = {
-        position = 'inside',
-        keymap_overrides = {
-          ['KC_MZ'] = 'S(z)',
-          ['KC_MX'] = 'M(x)',
-          ['KC_MC'] = 'A(c)',
-          ['KC_MD'] = 'C(d)',
-
-          ['KC_MH'] = 'C(h)',
-          ['KC_MLBRC'] = 'A([)',
-          ['KC_MQUOT'] = 'M(\')',
-          ['KC_MSCLN'] = 'S(;)',
-
-          ['KC_SPM1'] = 'L1(Spc)',
-          ['KC_BSM2'] = 'L2(Bksp)',
-        },
-      },
-    }
-    require('qmk').setup(conf)
-  end
-}
-
-use {'akinsho/git-conflict.nvim', tag = "*", config = function()
-  require('git-conflict').setup({
-    default_mappings = false, -- disable buffer local mapping created by this plugin
+-- Legendary, keymaps
+use ({
+    'mrjones2014/legendary.nvim',
+    requires = 'stevearc/dressing.nvim',
+    config = function()
+      require('user/keymaps')
+    end
   })
-end}
+
+-- Testing helper
+use({
+  'vim-test/vim-test',
+  config = function()
+    vim.cmd([[
+      function! ToggletermStrategy(cmd)
+        execute '2TermExec cmd="'.a:cmd.'" |less -X'
+      endfunction
+      let g:test#custom_strategies = {'toggleterm': function('ToggletermStrategy')}
+      let g:test#strategy = 'toggleterm'
+    ]])
+  end,
+})
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins

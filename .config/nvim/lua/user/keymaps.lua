@@ -2,143 +2,126 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Save
-vim.keymap.set('n', '<cr>', ':w<cr>')
+require('legendary').setup({
+  keymaps = {
+    { '<cr>', { n = ':w<cr>' }},
 
--- Redo
-vim.keymap.set('n', 'U', '<C-r>')
+    { 'U', { n = '<C-r>' }},
 
--- Keep centered when jumping search results
-vim.keymap.set('n', 'n', 'nzz')
+    { 'n', { n = 'nzz' }},
 
--- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+    -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
+    { 'k', { n = "v:count == 0 ? 'gk' : 'k'" }, opts = { expr = true }},
+    { 'j', { n = "v:count == 0 ? 'gj' : 'j'" }, opts = { expr = true }},
+    { '<', { v = '<gv' }},
+    { '>', { v = '>gv' }},
+    { 'y', { v = 'myy`y' }},
+    { 'p', { v = '"_dP' }},
 
--- Reselect visual selection after indenting.
-vim.keymap.set('v', '<', '<gv')
-vim.keymap.set('v', '>', '>gv')
+    { '<leader><leader>', { n = '<c-^>' }, description = 'Switch to previous buffer' },
 
--- Maintain the cursor position when yanking a visual selection.
--- http://ddrscott.github.io/blog/2016/yank-without-jank
-vim.keymap.set('v', 'y', 'myy`y')
+    { '<leader>k', { n = ':nohlsearch<CR>' }, description = 'Clear search highlighting' },
 
--- Paste replace visual selection without copying it.
-vim.keymap.set('v', 'p', '"_dP')
+    -- Change word
+    { 'cc', { n = 'cw' }, opts = { silent = true } },
 
--- Easy insertion of a trailing ; or , from insert mode.
-vim.keymap.set('i', '..', '<Esc>A;')
-vim.keymap.set('i', ',,', '<Esc>A,')
-vim.keymap.set('n', '..', 'A;<Esc>')
-vim.keymap.set('n', ',,', 'A,<Esc>')
+    { '<leader>|', { n = ':vs<C-l><CR>' }, description = 'Split vertical' },
+    { '<leader>-', { n = ':split<CR>' }, description = 'Split horizontal' },
 
--- Switch between previous and current buffer
-vim.keymap.set('n', '<leader><leader>', '<c-^>', { desc = 'Switch to previous buffer'})
+    { '<C-left>', { n = ':KittyNavigateLeft<cr>' }, opts = { silent = true } },
+    { '<C-down>', { n = ':KittyNavigateDown<cr>' }, opts = { silent = true } },
+    { '<C-up>', { n = ':KittyNavigateUp<cr>' }, opts = { silent = true } },
+    { '<C-right>', { n = ':KittyNavigateRight<cr>' }, opts = { silent = true } },
 
--- Quickly clear search highlighting.
-vim.keymap.set('n', '<Leader>k', ':nohlsearch<CR>', { desc = 'Clear search highlighting' })
+    { '<A-down>', { n = ':move .+1<CR>==gi', v = ":move '>+1<CR>gv=gv", i = '<Esc>:move .+1<CR>==gi' }, opts = { silent = true } },
+    { '<A-up>', { n = ':move .-2<CR>==gi', v = ":move '<-2<CR>gv=gv", i = '<Esc>:move .-2<CR>==gi' }, opts = { silent = true } },
 
--- Splits
-vim.keymap.set('n', '<leader>|', ':vs<C-l><CR>', { desc = 'Split vertical' })
-vim.keymap.set('n', '<leader>-', ':split<CR>', { desc = 'Split horizontal' })
-vim.keymap.set('n', '<c-left>', ':KittyNavigateLeft<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-down>', ':KittyNavigateDown<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-up>', ':KittyNavigateUp<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-right>', ':KittyNavigateRight<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-h>', ':KittyNavigateLeft<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-j>', ':KittyNavigateDown<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-k>', ':KittyNavigateUp<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<c-l>', ':KittyNavigateRight<cr>', { noremap = true, silent = true })
+    { '?', { n = ':Legendary<cr>' }},
 
--- Move lines up and down.
-vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
-vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
-vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
-vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
-vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
-vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
+    -- Bufdelete
+    { '<leader>q', { n = ':BufDel<cr>' }, description = 'Close buffer' },
+    { '<leader>Q', { n = ':BufDel!<cr>' }, description = 'Exit' },
 
--- Shortcuts for changing word
-vim.keymap.set('n', 'cc', 'cw');
+    -- Hop
+    { 'm', { n = ':HopLine<cr>' }, description = 'Jump to line' },
+    { 'M', { n = ':HopLineStart<cr>' }, description = 'Jump to line start' },
+    { '<leader>w', { n = ':HopWord<cr>' }, description = 'Jump to word' },
+    { 's', { n = ':HopChar1<cr>' }, description = 'Jump to character' },
+    { 'S', { n = ':HopChar2<cr>' }, description = 'Jump to characters' },
 
--- Packer
-vim.keymap.set('n', '<leader>Ps', ':PackerSync<cr>', { desc = 'Sync plugins' })
-vim.keymap.set('n', '<leader>Pc', ':PackerCompile<cr>', { desc = 'Compile plugins' })
+    -- VCS
+    { 'vv', { n = '<cmd>lua _lazygit_toggle()<CR>' }, description = 'Lazygit' },
+    { 'vn', { n = ':Gitsigns next_hunk<CR>' }, description = 'Next hunk' },
+    { 'vp', { n = ':Gitsigns prev_hunk<CR>' }, description = 'Previous hunk' },
+    { 'vs', { n = ':Gitsigns stage_hunk<CR>' }, description = 'Stage hunk' },
+    { 'vu', { n = ':Gitsigns undo_stage_hunk<CR>' }, description = 'Undo stage hunk' },
+    { 'vr', { n = ':Gitsigns reset_hunk<CR>' }, description = 'Reset hunk' },
+    { 'vP', { n = ':Gitsigns preview_hunk<CR>' }, description = 'Preview hunk' },
+    { 'vb', { n = ':Gitsigns blame_line<CR>' }, description = 'Blame line' },
 
--- Hop
-vim.keymap.set("n", "<leader>l", ":HopLine<cr>", { desc = "Jump to line" })
-vim.keymap.set("n", "<leader>L", ":HopLineStart<cr>", { desc = "Jump to line start" })
-vim.keymap.set("n", "<leader>w", ":HopWord<cr>", { desc = "Jump to word" })
-vim.keymap.set("n", "s", ":HopChar1<cr>", { desc = "Jump to character" })
-vim.keymap.set("n", "S", ":HopChar2<cr>", { desc = "Jump to characters" })
+    -- Find
+    { '<leader>f', { n = [[<cmd>lua require('telescope.builtin').find_files()<CR>]] }, description = 'Find file' },
+    { '<leader>a', { n = [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]}, description = 'Find file (all)' },
+    { '<leader>F', { n = [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]] }, description = 'Find in files' },
+    { '<leader>b', { n = [[<cmd>lua require('telescope.builtin').buffers()<CR>]] }, description = 'Find buffer' },
+    { '<leader>r', { n = [[<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>]]}, description = 'Recent files' },
+    { '<leader>s', { n = ':Telescope treesitter<cr>' }, description = 'Find treesitter symbol' },
+    { '<leader>S', { n = [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]] }, description = 'Find LSP symbol' },
+    { '<leader>dd',{ n = '<cmd>Telescope dir find_files<CR>' }, description = 'Find file in folder' },
+    { '<leader>dF',{ n = '<cmd>Telescope dir live_grep<CR>' }, description = 'Find in files in folder' },
+    { '<leader>gs', { n = ':Easypick changed_files<cr>'}, description = 'Find changed files in branch' },
+    { '<leader>gc', { n = ':Easypick conflicts<cr>'}, description = 'Find conflicts' },
 
--- Git
-vim.keymap.set('n', 'gn', ':Gitsigns next_hunk<CR>', { desc = 'Next hunk' })
-vim.keymap.set('n', 'gp', ':Gitsigns prev_hunk<CR>', { desc = 'Previous hunk' })
-vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage hunk' })
-vim.keymap.set('n', 'gu', ':Gitsigns undo_stage_hunk<CR>', { desc = 'Undo stage hunk' })
-vim.keymap.set('n', 'gr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset hunk' })
-vim.keymap.set('n', 'gP', ':Gitsigns preview_hunk<CR>', { desc = 'Preview hunk' })
-vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>', { desc = 'Blame line' })
+    -- Code
+    { '<leader>fr', { n = ':Telescope lsp_references<cr>' }, description = 'References' },
+    { '<leader>fd', { n = ':Telescope lsp_definitions<cr>' }, description = 'Definitions' },
+    { '<leader>fi', { n = ':Telescope lsp_implementations<cr>' }, description = 'Implementations' },
+    { '<leader>fa', { n = ':Telescope lsp_code_actions<cr>' }, description = 'Code actions' },
 
-vim.keymap.set('n', '<leader>gco', '<Plug>(git-conflict-ours)')
-vim.keymap.set('n', '<leader>gct', '<Plug>(git-conflict-theirs)')
-vim.keymap.set('n', '<leader>gcb', '<Plug>(git-conflict-both)')
-vim.keymap.set('n', '<leader>gc0', '<Plug>(git-conflict-none)')
-vim.keymap.set('n', '<leader>gcp', '<Plug>(git-conflict-prev-conflict)')
-vim.keymap.set('n', '<leader>gcn', '<Plug>(git-conflict-next-conflict)')
+    -- Tests
+    { '<leader>tt', { n = ':TestNearest<cr>' }, description = 'Test nearest' },
+    { '<leader>tf', { n = ':TestFile<cr>' }, description = 'Test file' },
+    { '<leader>ts', { n = ':TestSuite<cr>' }, description = 'Test suite' },
+    { '<leader>tl', { n = ':TestLast<cr>' }, description = 'Test last' },
+    { '<leader>tv', { n = ':TestVisit<cr>' }, description = 'Test visit' },
 
--- Bufdelete
-vim.keymap.set('n', '<Leader>q', ':Bdelete<CR>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<Leader>Q', ':q<CR>', { desc = 'Exit' })
+    -- Trouble
+    { '<leader>xx', { n = ':TroubleToggle<cr>' }, description = 'Toggle Trouble' },
+    { '<leader>xd', { n = ':TroubleToggle lsp_document_diagnostics<cr>' }, description = 'Trouble: document diagnostics' },
+    { '<leader>xr', { n = ':TroubleToggle lsp_references<cr>' }, description = 'Trouble: references' },
+    { '<leader>xd', { n = ':TroubleToggle lsp_definitions<cr>' }, description = 'Trouble: definitions' },
+    { '<leader>xD', { n = ':TroubleToggle lsp_type_definitions<cr>' }, description = 'Trouble: type definitions' },
+    { '<leader>xi', { n = ':TroubleToggle lsp_implementations<cr>' }, description = 'Trouble: implementations' },
+    { '<leader>xq', { n = ':TroubleToggle quickfix<cr>' }, description = 'Trouble: quickfix' },
 
--- Telescope
-vim.keymap.set('n', '<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], { desc = 'Find files' })
-vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]], { desc = 'Find files (including ignored)' })
-vim.keymap.set('n', '<leader>b', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { desc = 'Find buffers' })
-vim.keymap.set('n', '<leader>h', [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]], { desc = 'Grep in files' })
-vim.keymap.set('n', '<leader>e', [[<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>]], { desc = 'Show history' })
-vim.keymap.set('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], { desc = 'Show document symbols' })
-vim.keymap.set('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], { desc = 'Show modified files' })
-vim.keymap.set('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_bcommits()<CR>]], { desc = 'Show commits for buffer' })
-vim.keymap.set('n', '<leader>gf', ':Easypick changed_files<cr>', { desc = 'Show modified files in current branch' })
-vim.keymap.set('n', '<leader>gcc', ':Easypick conflicts<cr>', { desc = 'Show files with conflicts' })
+    -- LSP
+    { 'gp', { n = '<cmd>lua vim.diagnostic.open_float()<CR>'}, description = 'Show diagnostics popup' },
+    { 'gk', { n = '<cmd>lua vim.diagnostic.goto_next()<CR>'}, description = 'Next diagnostic' },
+    { 'gK', { n = '<cmd>lua vim.diagnostic.goto_prev()<CR>'}, description = 'Previous diagnostic' },
+    { 'gd', { n = '<cmd>lua vim.lsp.buf.definition()<CR>'}, description = 'Go to definition' },
+    { 'gi', { n = ':Telescope lsp_implementations<CR>'}, description = 'Show implementations' },
+    { 'gr', { n = ':Telescope lsp_references<CR>'}, description = 'Show references' },
+    { 'gR', { n = '<cmd>lua vim.lsp.buf.rename()<CR>'}, description = 'Rename' },
+    { 'ga', { n = '<cmd>lua vim.lsp.buf.code_action()<CR>'}, description = 'Code actions' },
+    { 'gf', { n = '<cmd>lua vim.lsp.buf.formatting()<CR>'}, description = 'Format code' },
 
-vim.keymap.set("n", "<leader>dd", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true, desc = "Find files in directory" })
-vim.keymap.set("n", "<leader>dw", "<cmd>Telescope dir live_grep<CR>", { noremap = true, silent = true, desc = "Grep in directory" })
+    -- Toggleterm
+    { '<C-t>', { n = ':ToggleTerm<CR>' }, description = 'Toggle terminal' },
 
--- Trouble
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true, desc = "Toggle Trouble"})
-vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",  {silent = true, noremap = true, desc = "Trouble: workspace diagnostics"})
-vim.keymap.set("n", "<leader>xk", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true, desc = "Trouble: document diagnostics"})
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true, desc = "Trouble: locations"})
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true, desc = "Trouble: quickfix"})
-vim.keymap.set("n", "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>",  {silent = true, noremap = true, desc = "Trouble: LSP references"})
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle lsp_definitions<cr>",  {silent = true, noremap = true, desc = "Trouble: LSP definitions"})
-vim.keymap.set("n", "<leader>xD", "<cmd>TroubleToggle lsp_type_definitions<cr>",  {silent = true, noremap = true, desc = "Trouble: LSP type definitions"})
+    -- NvimTree
+    { '<leader>nn', { n = ':NvimTreeToggle<CR>' }, description = 'Toggle file tree' },
+    { '<leader>nf', { n = ':NvimTreeFindFileToggle<CR>' }, description = 'Toggle file tree and show current file' },
 
--- LSP
-vim.keymap.set('n', '<Leader>D', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostics popup' })
-vim.keymap.set('n', '<leader>Gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { desc = 'Previous diagnostic' })
-vim.keymap.set('n', '<leader>Gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { desc = 'Next diagnostic' })
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = 'Go to definition' })
-vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<CR>', { desc = 'Show implementations' })
-vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>', { desc = 'Show references' })
-vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = 'Show definition popup' })
-vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = 'Rename symbol' })
-vim.keymap.set('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', { desc = 'Code actions' })
-vim.keymap.set('n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<cr>', { desc = 'Format buffer' })
+    -- Bufferline
+    { '<A-right>', { n = ':BufferLineCycleNext<cr>' }, description = 'Next buffer' },
+    { '<A-left>', { n = ':BufferLineCyclePrev<cr>' }, description = 'Previous buffer' },
 
--- Toggleterm
-vim.keymap.set('n', '<leader>t', ':ToggleTerm<CR>', { desc = 'Toggle terminal' })
-vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true, desc = "Toggle lazygit"})
-
--- NvimTree
-vim.keymap.set('n', '<Leader>nn', ':NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
-vim.keymap.set('n', '<Leader>nf', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle file tree and show current file' })
-
--- Bufferline
-vim.keymap.set('n', '<A-l>', ':BufferLineCycleNext<cr>')
-vim.keymap.set('n', '<A-h>', ':BufferLineCyclePrev<cr>')
-vim.keymap.set('n', '<A-right>', ':BufferLineCycleNext<cr>')
-vim.keymap.set('n', '<A-left>', ':BufferLineCyclePrev<cr>')
+    -- Packer
+    { '<leader>Ps', { n = ':PackerSync<cr>' }, description = 'Sync plugins' },
+    { '<leader>Pc', { n = ':PackerCompile<cr>' }, description = 'Compile plugins' },
+  },
+  extensions = {
+    -- load keymaps and commands from nvim-tree.lua
+    nvim_tree = true
+  },
+})
