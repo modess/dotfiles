@@ -1,0 +1,10 @@
+#!/bin/bash
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+target_branch=$1
+
+git fetch
+git checkout $target_branch
+git pull origin $target_branch --rebase
+git checkout $current_branch
+git rebase $target_branch

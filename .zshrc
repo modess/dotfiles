@@ -65,6 +65,8 @@ alias tail="grc tail"
 alias ps="grc ps"
 alias cat="grc cat"
 
+alias co="php bin/console"
+
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 export QT_STYLE_OVERRIDE=adwaita

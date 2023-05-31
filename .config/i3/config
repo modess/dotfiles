@@ -142,14 +142,12 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+y restart
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+
+bindsym $mod+u focus parent
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -240,7 +238,6 @@ workspace $ws10 output HDMI-A-0
 # bind program to workspace
 assign [class="Spotify"] $ws10
 assign [class="Signal"] $ws9
-assign [class="Slack"] $ws7
 
 # automatic set focus new window if it opens on another workspace then the current:
 #for_window [class=Brave-browser] focus
@@ -289,7 +286,7 @@ exec $HOME/.local/share/tresorit/tresorit --hidden
 exec mullvad-vpn
 exec solaar --window=hide
 exec signal-desktop
-exec unclutter --timeout=1
+#exec unclutter --timeout=1
 
 #exec --no-startup-id ~/code/xborder/xborders --config ~/.config/i3/borders_settings
 

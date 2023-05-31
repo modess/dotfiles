@@ -9,6 +9,8 @@ set easymotion
 set ideajoin
 set multiple-cursors
 set surround
+set which-key
+set notimeout
 
 set clipboard+=unnamed
 set clipboard+=ideaput
@@ -25,8 +27,12 @@ set scrolloff=3
 set incsearch
 set hls
 
+let g:WhichKey_FontSize = 18
+let g:WhichKey_KeyColor = "#74c7ec"
+
 " Source ideavimrc
 nmap <leader>Z :source ~/.ideavimrc<CR>
+let g:WhichKeyDesc_source = "<leader>Z Source .ideavimrc"
 
 " Save
 nmap <CR> :w<CR>
@@ -44,6 +50,8 @@ nmap Q gqap
 " These create newlines like o and O but stay in normal mode
 nmap <leader>o o<Esc>k
 nmap <leader>O O<Esc>j
+let g:WhichKeyDesc_newline_k = "<leader>o"
+let g:WhichKeyDesc_newline_j = "<leader>O"
 
 " Re-select visual selection after indenting
 vnoremap < <gv
@@ -61,20 +69,26 @@ nnoremap ,, A,<Esc>
 
 " Clear search highlighting
 nmap <leader>k :noh<CR>
+let g:WhichKeyDesc_clear_search = "<leader>k Clear search highlight"
 
 " Clear all notifications
 nmap <leader>K :action ClearAllNotifications<CR>
+let g:WhichKeyDesc_clear_notifications = "<leader>K Clear all notifications"
 
 " Show settings
 nmap <leader>C :action ShowSettings<CR>
+let g:WhichKeyDesc_show_settings = "<leader>C Show settings"
 
 " Shortcut for change word
 nmap cc cw
 
 " Splits
 nmap <leader>v :action SplitVertically<CR>
+let g:WhichKeyDesc_split_vertically = "<leader>v Split vertically"
 nmap <leader>h :action SplitHorizontally<CR>
+let g:WhichKeyDesc_split_horizontally = "<leader>h Split horizontally"
 nmap <leader>m :action MoveEditorToOppositeTabGroup<CR>
+let g:WhichKeyDesc_move_opposite = "<leader>m Move to opposite tab group"
 nmap <c-left> <c-w>h
 nmap <c-right> <c-w>l
 nmap <c-up> <c-w>k
@@ -90,81 +104,141 @@ imap <A-up> :action MoveLineUp<CR>
 
 " Go to
 nmap <leader>f :action GotoFile<CR>
+let g:WhichKeyDesc_goto_file = "<leader>f Go to file"
 nmap <leader>c :action GotoClass<CR>
+let g:WhichKeyDesc_goto_class = "<leader>c Go to class"
 nmap <leader>s :action GotoSymbol<CR>
+let g:WhichKeyDesc_goto_symbol = "<leader>s Go to symbol"
 nmap <leader>d :action GotoDatabaseObject<CR>
+let g:WhichKeyDesc_goto_database = "<leader>d Go to database object"
 nmap <leader>a :action GotoAction<CR>
 vmap <leader>a :action GotoAction<CR>
+let g:WhichKeyDesc_goto_action = "<leader>a Go to action"
 vmap <leader>A :action SearchEverywhere<CR>
+let g:WhichKeyDesc_goto_all = "<leader>A Go to all"
 nmap <leader>h :action RecentChangedFiles<CR>
+let g:WhichKeyDesc_goto_recent_changed = "<leader>h Go to recent changed files"
 nmap <leader>H :action RecentFiles<CR>
+let g:WhichKeyDesc_goto_recent = "<leader>H Go to recent files"
 
 " Find/replace
 nmap <leader>F :action FindInPath<CR>
+let g:WhichKeyDesc_find = "<leader>F Find in path"
 nmap <leader>R :action ReplaceInPath<CR>
+let g:WhichKeyDesc_replace = "<leader>R Replace in path"
 
 " Tool windows
+let g:WhichKeyDesc_windows = "<leader>e Tool windows"
 nmap <S-Bs> :action HideAllWindows<CR>
 nmap <S-Space> :action JumpToLastWindow<CR>
-nmap <leader>wc :action ActivateCommitToolWindow<CR>
-nmap <leader>wt :action ActivateTerminalToolWindow<CR>
-nmap <leader>ws :action ActivateStructureToolWindow<CR>
-nmap <leader>wf :action ActivateFindToolWindow<CR>
-nmap <leader>wr :action ActivateRunToolWindow<CR>
-nmap <leader>wd :action ActivateDebugToolWindow<CR>
-nmap <leader>wD :action ActivateDatabaseToolWindow<CR>
-nmap <leader>wg :action ActivateVersionControlToolWindow<CR>
-nmap <leader>wp :action ActivatePullRequestsToolWindow<CR>
-nmap <leader>wb :action ActivateBookmarksToolWindow<CR>
-nmap <leader>wn :action ActivateNotificationsToolWindow<CR>
+nmap <leader>ee :action JumpToLastWindow<CR>
+let g:WhichKeyDesc_window_commit = "<leader>ee Last window"
+nmap <leader>ec :action ActivateCommitToolWindow<CR>
+let g:WhichKeyDesc_window_commit = "<leader>ec Commit"
+nmap <leader>et :action ActivateTerminalToolWindow<CR>
+let g:WhichKeyDesc_window_terminal = "<leader>et Terminal"
+nmap <leader>es :action ActivateStructureToolWindow<CR>
+let g:WhichKeyDesc_window_structure = "<leader>es Structure"
+nmap <leader>ef :action ActivateFindToolWindow<CR>
+let g:WhichKeyDesc_window_find = "<leader>ef Find"
+nmap <leader>er :action ActivateRunToolWindow<CR>
+let g:WhichKeyDesc_window_run = "<leader>er Run"
+nmap <leader>ed :action ActivateDebugToolWindow<CR>
+let g:WhichKeyDesc_window_debug = "<leader>ed Debug"
+nmap <leader>eD :action ActivateDatabaseToolWindow<CR>
+let g:WhichKeyDesc_window_database = "<leader>eD Database"
+nmap <leader>eg :action ActivateVersionControlToolWindow<CR>
+let g:WhichKeyDesc_window_vcs = "<leader>eg Git"
+nmap <leader>ep :action ActivatePullRequestsToolWindow<CR>
+let g:WhichKeyDesc_window_pr = "<leader>ep Pull requests"
+nmap <leader>eb :action ActivateBookmarksToolWindow<CR>
+let g:WhichKeyDesc_window_bookmarks = "<leader>eb Bookmarks"
+nmap <leader>en :action ActivateNotificationsToolWindow<CR>
+let g:WhichKeyDesc_window_notification = "<leader>en Notifications"
 
 " Close editors/tabs
 nmap qq :action CloseContent<CR>
+let g:WhichKeyDesc_close = "qq Close current"
 nmap qo :action CloseAllEditorsButActive<CR>
+let g:WhichKeyDesc_close_other = "qo Close all other"
 
 " Code
 nmap <A-Space> :action ShowIntentionActions<CR>
+let g:WhichKeyDesc_code = "g Code"
 nmap gd :action GotoDeclaration<CR>
+let g:WhichKeyDesc_code_declaration = "gd Go to declaration"
 nmap gu :action ShowUsages<CR>
+let g:WhichKeyDesc_code_show_usages = "gu Show usages"
 nmap gU :action FindUsages<CR>
+let g:WhichKeyDesc_code_find_usages = "gU Find usages"
 nmap gi :action GotoImplementation<CR>
+let g:WhichKeyDesc_code_implementation = "gi Go to implementation"
 nmap gG :action Generate<CR>
+let g:WhichKeyDesc_code_generate = "gG Generate"
 nmap gp :action ParameterInfo<CR>
+let g:WhichKeyDesc_code_parameters = "gp Parameter info"
 nmap gI :action QuickImplementations<CR>
+let g:WhichKeyDesc_code_quick_implementations = "gI Quick implementations"
 nmap gD :action QuickJavaDoc<CR>
+let g:WhichKeyDesc_code_quick_javadoc = "gD Quick documentation"
 nmap gJ :action EditorCodeBlockStart<CR>
+let g:WhichKeyDesc_code_block_start = "gJ Code block start"
 nmap gj :action EditorCodeBlockEnd<CR>
+let g:WhichKeyDesc_code_block_end = "gj Code block end"
 nmap go :action OverrideMethods<CR>
+let g:WhichKeyDesc_code_override = "go Override methods"
 nmap gm :action ImplementMethods<CR>
+let g:WhichKeyDesc_code_implement_methods = "gm Implement methods"
 
 nmap ge :action ShowErrorDescription<CR>
+let g:WhichKeyDesc_code_error = "ge Show error description"
 
 vmap gr :action Refactorings.QuickListPopupAction<CR>
 nmap gr :action Refactorings.QuickListPopupAction<CR>
+let g:WhichKeyDesc_code_refactor = "gr Refactor"
 
 nmap gc :action CommentByLineComment<CR>
 vmap gc :action CommentByLineComment<CR>
+let g:WhichKeyDesc_code_line_comment = "gc Line comment"
 vmap gC :action CommentByBlockComment<CR>
+let g:WhichKeyDesc_code_block_comment = "gC Block comment"
 
 " Vcs
+let g:WhichKeyDesc_vcs = "v Git"
 nmap vv :action VcsShowNextChangeMarker<CR>
+let g:WhichKeyDesc_vcs_next_change = "vv Next change"
 nmap vV :action VcsShowPrevChangeMarker<CR>
+let g:WhichKeyDesc_vcs_prev_change = "vV Previous change"
 nmap vs :action VcsShowCurrentChangeMarker<CR>
+let g:WhichKeyDesc_vcs_current_change = "vs Show change"
 nmap vz :action Vcs.RollbackChangedLines<CR>
+let g:WhichKeyDesc_vcs_current_change_revert = "vz Revert change"
 
 nmap vy :action Vcs.QuickListPopupAction<CR>
+let g:WhichKeyDesc_vcs_quick = "vy Quick list"
 nmap vU :action Vcs.UpdateProject<CR>
+let g:WhichKeyDesc_vcs_update = "vU Update project"
 nmap va :action Annotate<CR>
+let g:WhichKeyDesc_vcs_annotate = "va Blame annotations"
 nmap vJ :action JumpToLastChange<CR>
+let g:WhichKeyDesc_vcs_last_change = "vJ Jump to last change"
 nmap vc :action Compare.LastVersion<CR>
+let g:WhichKeyDesc_vcs_compare = "vc Compare with last version"
 nmap vC :action Git.ResolveConflicts<CR>
+let g:WhichKeyDesc_vcs_conflict = "vC Resolve conflicts"
 
 nmap vp :action Git.Pull<CR>
+let g:WhichKeyDesc_vcs_pull = "vp Pull"
 nmap vP :action Vcs.Push<CR>
+let g:WhichKeyDesc_vcs_push = "vP Push"
 nmap vr :action Git.Rebase<CR>
+let g:WhichKeyDesc_vcs_rebase = "vr Rebase"
 nmap vm :action Git.Merge<CR>
+let g:WhichKeyDesc_vcs_merge = "vm Merge"
 nmap vb :action Git.Branches<CR>
+let g:WhichKeyDesc_vcs_branches = "vb Branches"
 nmap vo :action Github.Open.In.Browser<CR>
+let g:WhichKeyDesc_vcs_github_browser = "vo Open on Github"
 
 " Debug
 nmap <C-A-d> :action Debug<CR>
@@ -201,30 +275,47 @@ nmap M <Plug>(easymotion-k)
 " Diagnostics
 
 " Tests
+let g:WhichKeyDesc_test = "t Tests"
 nmap <leader>tt :action RunClass<CR>
+let g:WhichKeyDesc_test_run_class = "tt Run"
 nmap <leader>tg :action GotoTest<CR>
+let g:WhichKeyDesc_test_go_to = "tg Go to test"
 nmap <leader>tr :action Rerun<CR>
+let g:WhichKeyDesc_test_rerun = "tr Rerun"
 nmap <leader>tf :action RerunFailedTests<CR>
+let g:WhichKeyDesc_test_rerun_failed = "tf Rerun failed"
 nmap <leader>tc :action ChooseRunConfiguration<CR>
+let g:WhichKeyDesc_test_choose = "tc Choose configuration"
 nmap <leader>ts :action Stop<CR>
+let g:WhichKeyDesc_test_choose = "ts Stop"
 
 " Nerdtree/files
+let g:WhichKeyDesc_files = "<leader>n Files"
 nmap <leader>nn :NERDTreeToggle<CR>
+let g:WhichKeyDesc_files_toggle = "<leader>nn Toggle tree"
 nmap <leader>nf :NERDTreeFind<CR>
+let g:WhichKeyDesc_files_toggle_show = "<leader>nf Toggle tree, show file"
 nmap <leader>nb :action ShowNavBar<CR>
+let g:WhichKeyDesc_files_nav = "<leader>nb Show nav bar"
 
 " Paste
 nmap <leader>p :action PasteMultiple<CR>
+let g:WhichKeyDesc_paste = "<leader>p Paste (with history)"
 
 " String manipulation
 nmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
 vmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
+let g:WhichKeyDesc_string_manipulation = "<leader>S String manipulation"
 
 " Surround
+nmap <leader>s :action SurroundWith<CR>
 vmap <leader>s :action SurroundWith<CR>
+let g:WhichKeyDesc_surround = "<leader>s Surround with"
 
 " Bookmarks
+let g:WhichKeyDesc_bookmarks = "<leader>b Bookmarks"
 nmap <leader>b<CR> :action ToggleBookmark<CR>
+let g:WhichKeyDesc_bookmarks_toggle = "<leader>b<CR> Toggle"
 nmap <leader>bA :action ToggleBookmarkA<CR>
 nmap <leader>ba :action GotoBookmarkA<CR>
 nmap <leader>bB :action ToggleBookmarkB<CR>

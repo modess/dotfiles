@@ -1,5 +1,9 @@
 gui:
   showFileTree: false # for rendering changes files in a tree format
+  showIcons: true
+  branchColors:
+    'chore': '#11aaff'
+    'bug': '#fab387'
   theme:
     lightTheme: false
     activeBorderColor:
