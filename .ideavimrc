@@ -35,13 +35,16 @@ nmap <leader>Z :source ~/.ideavimrc<CR>
 let g:WhichKeyDesc_source = "<leader>Z Source .ideavimrc"
 
 " Save
-nmap <CR> :w<CR>
+nmap <C-s> :w<CR>
 
 " Redo
 nmap U <C-r>
 
 " Keep centered when jumping search results
 nmap n nzzzv
+
+" Escape in insert mode
+" inoremap uu <Esc>
 
 " Use Q for formatting the current paragraph (or visual selection)
 vmap Q gq
@@ -58,10 +61,13 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Maintain cursor position when yanking a visual selection
-vnoremap y myy`y
+" vnoremap y myy`y
 
 " Paste replace visual selection without copying it
-vnoremap p "_dP
+vnoremap <leader>p "0p
+vnoremap <leader>P "0P
+vnoremap <leader>y "0y
+vnoremap <leader>d "0d
 
 " Easy insertion of a trailing ; or ,
 nnoremap .. A;<Esc>
@@ -87,8 +93,8 @@ nmap <leader>v :action SplitVertically<CR>
 let g:WhichKeyDesc_split_vertically = "<leader>v Split vertically"
 nmap <leader>h :action SplitHorizontally<CR>
 let g:WhichKeyDesc_split_horizontally = "<leader>h Split horizontally"
-nmap <leader>m :action MoveEditorToOppositeTabGroup<CR>
-let g:WhichKeyDesc_move_opposite = "<leader>m Move to opposite tab group"
+nmap <leader>M :action MoveEditorToOppositeTabGroup<CR>
+let g:WhichKeyDesc_move_opposite = "<leader>M Move to opposite tab group"
 nmap <c-left> <c-w>h
 nmap <c-right> <c-w>l
 nmap <c-up> <c-w>k
@@ -109,8 +115,8 @@ nmap <leader>c :action GotoClass<CR>
 let g:WhichKeyDesc_goto_class = "<leader>c Go to class"
 nmap <leader>s :action GotoSymbol<CR>
 let g:WhichKeyDesc_goto_symbol = "<leader>s Go to symbol"
-nmap <leader>d :action GotoDatabaseObject<CR>
-let g:WhichKeyDesc_goto_database = "<leader>d Go to database object"
+nmap <leader>D :action GotoDatabaseObject<CR>
+let g:WhichKeyDesc_goto_database = "<leader>D Go to database object"
 nmap <leader>a :action GotoAction<CR>
 vmap <leader>a :action GotoAction<CR>
 let g:WhichKeyDesc_goto_action = "<leader>a Go to action"
@@ -120,6 +126,8 @@ nmap <leader>h :action RecentChangedFiles<CR>
 let g:WhichKeyDesc_goto_recent_changed = "<leader>h Go to recent changed files"
 nmap <leader>H :action RecentFiles<CR>
 let g:WhichKeyDesc_goto_recent = "<leader>H Go to recent files"
+nmap <leader>m :action FileStructurePopup<CR>
+let g:WhichKeyDesc_goto_recent = "<leader>m Go to file member"
 
 " Find/replace
 nmap <leader>F :action FindInPath<CR>
@@ -155,6 +163,8 @@ nmap <leader>eb :action ActivateBookmarksToolWindow<CR>
 let g:WhichKeyDesc_window_bookmarks = "<leader>eb Bookmarks"
 nmap <leader>en :action ActivateNotificationsToolWindow<CR>
 let g:WhichKeyDesc_window_notification = "<leader>en Notifications"
+nmap <leader>en :action ActivateAIAssistantToolWindow<CR>
+let g:WhichKeyDesc_window_ai = "<leader>ea AI Assistant"
 
 " Close editors/tabs
 nmap qq :action CloseContent<CR>
@@ -193,9 +203,15 @@ let g:WhichKeyDesc_code_implement_methods = "gm Implement methods"
 nmap ge :action ShowErrorDescription<CR>
 let g:WhichKeyDesc_code_error = "ge Show error description"
 
-vmap gr :action Refactorings.QuickListPopupAction<CR>
-nmap gr :action Refactorings.QuickListPopupAction<CR>
-let g:WhichKeyDesc_code_refactor = "gr Refactor"
+vmap gR :action Refactorings.QuickListPopupAction<CR>
+nmap gR :action Refactorings.QuickListPopupAction<CR>
+let g:WhichKeyDesc_code_refactor = "gR Refactor"
+vmap gr :action RenameElement<CR>
+nmap gr :action RenameElement<CR>
+let g:WhichKeyDesc_code_refactor = "gr Rename"
+vmap gf :action ReformatCode<CR>
+nmap gf :action ReformatCode<CR>
+let g:WhichKeyDesc_code_reformat = "gf Reformat code"
 
 nmap gc :action CommentByLineComment<CR>
 vmap gc :action CommentByLineComment<CR>
@@ -239,15 +255,6 @@ nmap vb :action Git.Branches<CR>
 let g:WhichKeyDesc_vcs_branches = "vb Branches"
 nmap vo :action Github.Open.In.Browser<CR>
 let g:WhichKeyDesc_vcs_github_browser = "vo Open on Github"
-
-" Debug
-nmap <C-A-d> :action Debug<CR>
-nmap <C-A-b> :action ViewBreakpoints<CR>
-nmap <C-A-r> :action Resume<CR>
-nmap <C-A-s> :action Stop<CR>
-nmap <C-A-o> :action StepOut<CR>
-nmap <C-A-i> :action StepInto<CR>
-nmap <C-A-S-o> :action StepOver<CR>
 
 " Easymotion
 nmap s <Plug>(easymotion-n)
@@ -299,8 +306,8 @@ nmap <leader>nb :action ShowNavBar<CR>
 let g:WhichKeyDesc_files_nav = "<leader>nb Show nav bar"
 
 " Paste
-nmap <leader>p :action PasteMultiple<CR>
-let g:WhichKeyDesc_paste = "<leader>p Paste (with history)"
+" nmap <leader>p :action PasteMultiple<CR>
+" let g:WhichKeyDesc_paste = "<leader>p Paste (with history)"
 
 " String manipulation
 nmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
@@ -308,9 +315,9 @@ vmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
 let g:WhichKeyDesc_string_manipulation = "<leader>S String manipulation"
 
 " Surround
-nmap <leader>s :action SurroundWith<CR>
-vmap <leader>s :action SurroundWith<CR>
-let g:WhichKeyDesc_surround = "<leader>s Surround with"
+nmap <leader>u :action SurroundWith<CR>
+vmap <leader>u :action SurroundWith<CR>
+let g:WhichKeyDesc_surround = "<leader>u Surround with"
 
 " Bookmarks
 let g:WhichKeyDesc_bookmarks = "<leader>b Bookmarks"

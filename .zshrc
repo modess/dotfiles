@@ -84,7 +84,6 @@ export NODE_PATH=/usr/lib/node_modules
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 export XDG_CONFIG_HOME=$HOME/.config/
-export NODE_OPTIONS=--openssl-legacy-provider
 
 # Includes
 [ -f ~/.aws-credentials ] && source ~/.aws-credentials

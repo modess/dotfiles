@@ -1,0 +1,16 @@
+window:
+  padding:
+    x: 5
+    y: 5
+
+scrolling:
+  history: 10000
+
+font:
+  normal:
+    family: JetBrains Mono Nerd Font
+    style: Bold
+  size: 7.0
+
+env:
+  TERM: xterm-256color

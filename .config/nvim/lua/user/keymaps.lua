@@ -4,15 +4,17 @@ vim.g.maplocalleader = ' '
 
 require('legendary').setup({
   keymaps = {
-    { '<cr>', { n = ':w<cr>' }},
+    { '<leader>Z', { n = ':source $HOME/.config/nvim/init.lua<CR>'}},
+
+    { '<C-s>', { n = ':w<cr>' }},
 
     { 'U', { n = '<C-r>' }},
 
     { 'n', { n = 'nzz' }},
 
     -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
-    { 'k', { n = "v:count == 0 ? 'gk' : 'k'" }, opts = { expr = true }},
-    { 'j', { n = "v:count == 0 ? 'gj' : 'j'" }, opts = { expr = true }},
+    { 'k', { n = "v:count == 0 ? 'gk' : 'k'" }, opts = { expr = true, silent = true }},
+    { 'j', { n = "v:count == 0 ? 'gj' : 'j'" }, opts = { expr = true, silent = true }},
     { '<', { v = '<gv' }},
     { '>', { v = '>gv' }},
     { 'y', { v = 'myy`y' }},
@@ -38,13 +40,15 @@ require('legendary').setup({
 
     { '?', { n = ':Legendary<cr>' }},
 
+    { 'uu', { i = '<Esc>' }},
+
     -- Bufdelete
     { '<leader>q', { n = ':BufDel<cr>' }, description = 'Close buffer' },
     { '<leader>Q', { n = ':BufDel!<cr>' }, description = 'Exit' },
 
     -- Hop
-    { 'm', { n = ':HopLine<cr>' }, description = 'Jump to line' },
-    { 'M', { n = ':HopLineStart<cr>' }, description = 'Jump to line start' },
+    { 'M', { n = ':HopLine<cr>' }, description = 'Jump to line' },
+    { 'm', { n = ':HopLineStart<cr>' }, description = 'Jump to line start' },
     { '<leader>w', { n = ':HopWord<cr>' }, description = 'Jump to word' },
     { 's', { n = ':HopChar1<cr>' }, description = 'Jump to character' },
     { 'S', { n = ':HopChar2<cr>' }, description = 'Jump to characters' },
@@ -64,9 +68,9 @@ require('legendary').setup({
     { '<leader>a', { n = [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]]}, description = 'Find file (all)' },
     { '<leader>F', { n = [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]] }, description = 'Find in files' },
     { '<leader>b', { n = [[<cmd>lua require('telescope.builtin').buffers()<CR>]] }, description = 'Find buffer' },
-    { '<leader>r', { n = [[<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>]]}, description = 'Recent files' },
-    { '<leader>s', { n = ':Telescope treesitter<cr>' }, description = 'Find treesitter symbol' },
-    { '<leader>S', { n = [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]] }, description = 'Find LSP symbol' },
+    { '<leader>h', { n = [[<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>]]}, description = 'Recent files' },
+    { '<leader>m', { n = ':Telescope treesitter<cr>' }, description = 'Find treesitter symbol' },
+    { '<leader>M', { n = [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]] }, description = 'Find LSP symbol' },
     { '<leader>dd',{ n = '<cmd>Telescope dir find_files<CR>' }, description = 'Find file in folder' },
     { '<leader>dF',{ n = '<cmd>Telescope dir live_grep<CR>' }, description = 'Find in files in folder' },
     { '<leader>gs', { n = ':Easypick changed_files<cr>'}, description = 'Find changed files in branch' },
@@ -82,7 +86,7 @@ require('legendary').setup({
     { '<leader>tt', { n = ':TestNearest<cr>' }, description = 'Test nearest' },
     { '<leader>tf', { n = ':TestFile<cr>' }, description = 'Test file' },
     { '<leader>ts', { n = ':TestSuite<cr>' }, description = 'Test suite' },
-    { '<leader>tl', { n = ':TestLast<cr>' }, description = 'Test last' },
+    { '<leader>tr', { n = ':TestLast<cr>' }, description = 'Test last' },
     { '<leader>tv', { n = ':TestVisit<cr>' }, description = 'Test visit' },
 
     -- Trouble
@@ -100,7 +104,7 @@ require('legendary').setup({
     { 'gK', { n = '<cmd>lua vim.diagnostic.goto_prev()<CR>'}, description = 'Previous diagnostic' },
     { 'gd', { n = '<cmd>lua vim.lsp.buf.definition()<CR>'}, description = 'Go to definition' },
     { 'gi', { n = ':Telescope lsp_implementations<CR>'}, description = 'Show implementations' },
-    { 'gr', { n = ':Telescope lsp_references<CR>'}, description = 'Show references' },
+    { 'gu', { n = ':Telescope lsp_references<CR>'}, description = 'Show usages/references' },
     { 'gR', { n = '<cmd>lua vim.lsp.buf.rename()<CR>'}, description = 'Rename' },
     { 'ga', { n = '<cmd>lua vim.lsp.buf.code_action()<CR>'}, description = 'Code actions' },
     { 'gf', { n = '<cmd>lua vim.lsp.buf.formatting()<CR>'}, description = 'Format code' },

@@ -28,21 +28,43 @@ require('lspconfig').jsonls.setup({
   },
 })
 
+-- Bash
+require('lspconfig').bashls.setup({
+  capabilities = capabilities
+})
+
+-- Yaml
+require('lspconfig').yamlls.setup({
+  capabilities = capabilities
+})
+
 -- null-ls
 require('null-ls').setup({
   sources = {
+    require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+
     require('null-ls').builtins.diagnostics.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({ '.eslintrc.js' })
       end,
     }),
-    require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
-    require('null-ls').builtins.formatting.eslint_d.with({
+
+    require('null-ls').builtins.diagnostics.phpcs.with({
+      command = 'php',
+      args = { "vendor/bin/phpcs", "--report=json", "-q", "-s", "--runtime-set", "ignore_warnings_on_exit", "1", "--runtime-set", "ignore_errors_on_exit", "1", "$FILENAME"},
       condition = function(utils)
-        return utils.root_has_file({ '.eslintrc.js' })
+        return utils.root_has_file({ 'phpcs.xml.dist', 'phpcs.xml' })
       end,
     }),
-    require('null-ls').builtins.formatting.prettierd,
+
+    require('null-ls').builtins.diagnostics.phpstan.with({
+      command = 'php',
+      args = { "vendor/bin/phpstan", "analyze", "--error-format", "json", "--no-progress", "$FILENAME" },
+      temp_dir = "/tmp",
+      condition = function(utils)
+        return utils.root_has_file({ 'phpstan.neon.dist', 'phpstan.neon' })
+      end,
+    }),
   },
 })
 

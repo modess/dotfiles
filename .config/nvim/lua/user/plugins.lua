@@ -115,6 +115,8 @@ use ({
     'catppuccin/nvim',
     as = 'colorscheme',
     config = function()
+      require("catppuccin").setup({})
+
       vim.cmd('colorscheme catppuccin-mocha')
 
       vim.cmd("hi HopNextKey guifg=black guibg=#00FF00")

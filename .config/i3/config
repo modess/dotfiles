@@ -27,7 +27,7 @@ workspace_layout default
 
 # Default border
 for_window[all] title_window_icon on
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 5
 
 # Set inner/outer gaps
 gaps inner 15
@@ -109,14 +109,14 @@ bindsym $mod+Shift+$ws10_key_qwerty    move container to workspace  $ws10
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -130,7 +130,7 @@ bindsym $mod+z mode "resize"
 ######################################
 
 # start a termina
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+w kill
@@ -236,8 +236,11 @@ workspace $ws9 output HDMI-A-0
 workspace $ws10 output HDMI-A-0
 
 # bind program to workspace
+assign [class="Firefox"] $ws4
+assign [class="thunderbird"] $ws5
 assign [class="Spotify"] $ws10
 assign [class="Signal"] $ws9
+assign [class="discord"] $ws9
 
 # automatic set focus new window if it opens on another workspace then the current:
 #for_window [class=Brave-browser] focus
@@ -286,6 +289,7 @@ exec $HOME/.local/share/tresorit/tresorit --hidden
 exec mullvad-vpn
 exec solaar --window=hide
 exec signal-desktop
+exec thunderbird
 #exec unclutter --timeout=1
 
 #exec --no-startup-id ~/code/xborder/xborders --config ~/.config/i3/borders_settings
@@ -312,6 +316,8 @@ exec --no-startup-id cbatticon
 
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="Blueman-manager" instance="blueman-manager"] floating enable
+for_window [class="steamwebhelper" instance="steamwebhelper"] floating disable
+for_window [class="steam" instance="steam"] floating disable
 
 ######################################
 # color settings for bar and windows #
@@ -365,9 +371,6 @@ bindsym $mod+space exec ~/.config/rofi/bin/launcher
 
 # windows
 bindsym $mod+BackSpace exec rofi -modi drun -show window -config ~/.config/rofi/rofidmenu.rasi
-
-# bitwarden
-bindsym $mod+b exec bwmenu -c 60
 
 # emoji
 bindsym $mod+period exec rofi -show emoji -modi emoji:rofimoji -config ~/.config/rofi/rofidmenu.rasi

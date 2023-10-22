@@ -1,14 +1,14 @@
-output DisplayPort-0
+output DisplayPort-1
 off
 output DisplayPort-2
 off
-output DisplayPort-1
+output DisplayPort-0
 crtc 1
 mode 3840x2160
 pos 0x0
 rate 60.00
-rotate left
-x-prop-max_bpc 8
+rotate right
+x-prop-max_bpc 16
 x-prop-non_desktop 0
 x-prop-scaling_mode None
 x-prop-tearfree auto
@@ -21,7 +21,7 @@ mode 3840x2160
 pos 2160x840
 primary
 rate 60.00
-x-prop-max_bpc 8
+x-prop-max_bpc 16
 x-prop-non_desktop 0
 x-prop-scaling_mode None
 x-prop-tearfree auto
