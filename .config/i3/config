@@ -183,12 +183,6 @@ bindsym XF86AudioLowerVolume exec ~/.config/i3/changevolume down
 bindsym Alt+XF86AudioRaiseVolume exec ~/.config/i3/changevolume up-1
 bindsym Alt+XF86AudioLowerVolume exec ~/.config/i3/changevolume down-1
 
-# spt volume
-bindsym Shift+XF86AudioRaiseVolume exec ~/.config/i3/spt-changevolume up
-bindsym Shift+XF86AudioLowerVolume exec ~/.config/i3/spt-changevolume down
-bindsym Shift+Control+XF86AudioRaiseVolume exec ~/.config/i3/spt-changevolume up
-bindsym Shift+Control+XF86AudioLowerVolume exec ~/.config/i3/spt-changevolume down
-
 # mute
 bindsym XF86AudioMute exec amixer sset Master toggle
 
