@@ -1,15 +1,12 @@
-require('indent_blankline').setup({
-  filetype_exclude = {
-    'help',
-    'terminal',
-    'dashboard',
-    'packer',
-    'lspinfo',
-    'TelescopePrompt',
-    'TelescopeResults',
-  },
-  buftype_exclude = {
-    'terminal',
-    'NvimTree',
-  },
-})
+local highlight = {
+    "CursorColumn",
+    "Whitespace",
+}
+require("ibl").setup {
+    indent = { highlight = highlight, char = "" },
+    whitespace = {
+        highlight = highlight,
+        remove_blankline_trail = false,
+    },
+    scope = { enabled = false },
+}
