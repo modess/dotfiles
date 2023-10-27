@@ -183,6 +183,9 @@ bindsym XF86AudioLowerVolume exec ~/.config/i3/changevolume down
 bindsym Alt+XF86AudioRaiseVolume exec ~/.config/i3/changevolume up-1
 bindsym Alt+XF86AudioLowerVolume exec ~/.config/i3/changevolume down-1
 
+# brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # mute
 bindsym XF86AudioMute exec amixer sset Master toggle
 
