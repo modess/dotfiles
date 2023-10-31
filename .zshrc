@@ -83,6 +83,7 @@ export PATH=$PATH:/var/lib/flatpak/exports/share
 export NODE_PATH=/usr/lib/node_modules
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
+export PATH=~/.npm-global/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config/
 
 # Includes
@@ -101,4 +102,3 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH=$PATH:/home/niklas/.spicetify

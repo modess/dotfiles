@@ -246,7 +246,7 @@ assign [class="discord"] $ws9
 # compositor #
 ##############
 
-exec_always --no-startup-id picom --config  ~/.config/picom.conf
+#exec_always --no-startup-id picom --config  ~/.config/picom.conf
 
 #############################################
 # autostart applications/services on login: #
@@ -264,7 +264,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id autorandr external
+exec --no-startup-id autorandr laptop
 bindsym $mod+Shift+F1 exec autorandr external
 bindsym $mod+Shift+F2 exec autorandr laptop
 
@@ -296,7 +296,7 @@ exec thunderbird
 ###############
 
 # clipboard manager
-exec parcellite
+exec --no-startup-id parcellite
 
 # start blueman applet
 exec --no-startup-id blueman-applet
