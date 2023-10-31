@@ -89,10 +89,10 @@ let g:WhichKeyDesc_show_settings = "<leader>C Show settings"
 nmap cc cw
 
 " Splits
-nmap <leader>v :action SplitVertically<CR>
-let g:WhichKeyDesc_split_vertically = "<leader>v Split vertically"
-nmap <leader>h :action SplitHorizontally<CR>
-let g:WhichKeyDesc_split_horizontally = "<leader>h Split horizontally"
+nmap <leader>V :action SplitVertically<CR>
+let g:WhichKeyDesc_split_vertically = "<leader>V Split vertically"
+nmap <leader>H :action SplitHorizontally<CR>
+let g:WhichKeyDesc_split_horizontally = "<leader>H Split horizontally"
 nmap <leader>M :action MoveEditorToOppositeTabGroup<CR>
 let g:WhichKeyDesc_move_opposite = "<leader>M Move to opposite tab group"
 nmap <c-left> <c-w>h
@@ -243,18 +243,18 @@ let g:WhichKeyDesc_vcs_compare = "vc Compare with last version"
 nmap vC :action Git.ResolveConflicts<CR>
 let g:WhichKeyDesc_vcs_conflict = "vC Resolve conflicts"
 
-nmap vp :action Git.Pull<CR>
-let g:WhichKeyDesc_vcs_pull = "vp Pull"
-nmap vP :action Vcs.Push<CR>
-let g:WhichKeyDesc_vcs_push = "vP Push"
-nmap vr :action Git.Rebase<CR>
-let g:WhichKeyDesc_vcs_rebase = "vr Rebase"
-nmap vm :action Git.Merge<CR>
-let g:WhichKeyDesc_vcs_merge = "vm Merge"
-nmap vb :action Git.Branches<CR>
-let g:WhichKeyDesc_vcs_branches = "vb Branches"
-nmap vo :action Github.Open.In.Browser<CR>
-let g:WhichKeyDesc_vcs_github_browser = "vo Open on Github"
+nmap <leader>vp :action Git.Pull<CR>
+let g:WhichKeyDesc_vcs_pull = "<leader>vp Pull"
+nmap <leader>vP :action Vcs.Push<CR>
+let g:WhichKeyDesc_vcs_push = "<leader>vP Push"
+nmap <leader>vr :action Git.Rebase<CR>
+let g:WhichKeyDesc_vcs_rebase = "<leader>vr Rebase"
+nmap <leader>vm :action Git.Merge<CR>
+let g:WhichKeyDesc_vcs_merge = "<leader>vm Merge"
+nmap <leader>vb :action Git.Branches<CR>
+let g:WhichKeyDesc_vcs_branches = "<leader>vb Branches"
+nmap <leader>vo :action Github.Open.In.Browser<CR>
+let g:WhichKeyDesc_vcs_github_browser = "<leader>vo Open on Github"
 
 " Easymotion
 nmap s <Plug>(easymotion-n)
