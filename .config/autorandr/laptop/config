@@ -1,16 +1,14 @@
-output DP1
+output HDMI-1
 off
-output DP2
+output DP-1
 off
-output DP3
+output DP-2
 off
-output DP4
+output DP-3
 off
-output HDMI1
+output DP-4
 off
-output VIRTUAL1
-off
-output eDP1
+output eDP-1
 crtc 0
 mode 1920x1200
 pos 0x0
