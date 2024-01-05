@@ -40,6 +40,9 @@ nmap <C-s> :w<CR>
 " Redo
 nmap U <C-r>
 
+" Exit insert
+imap ii <Esc>
+
 " Keep centered when jumping search results
 nmap n nzzzv
 
@@ -122,9 +125,9 @@ vmap <leader>a :action GotoAction<CR>
 let g:WhichKeyDesc_goto_action = "<leader>a Go to action"
 vmap <leader>A :action SearchEverywhere<CR>
 let g:WhichKeyDesc_goto_all = "<leader>A Go to all"
-nmap <leader>h :action RecentChangedFiles<CR>
+nmap <leader>i :action RecentChangedFiles<CR>
 let g:WhichKeyDesc_goto_recent_changed = "<leader>h Go to recent changed files"
-nmap <leader>H :action RecentFiles<CR>
+nmap <leader>I :action RecentFiles<CR>
 let g:WhichKeyDesc_goto_recent = "<leader>H Go to recent files"
 nmap <leader>m :action FileStructurePopup<CR>
 let g:WhichKeyDesc_goto_recent = "<leader>m Go to file member"
@@ -220,39 +223,23 @@ vmap gC :action CommentByBlockComment<CR>
 let g:WhichKeyDesc_code_block_comment = "gC Block comment"
 
 " Vcs
-let g:WhichKeyDesc_vcs = "v Git"
-nmap vv :action VcsShowNextChangeMarker<CR>
-let g:WhichKeyDesc_vcs_next_change = "vv Next change"
-nmap vV :action VcsShowPrevChangeMarker<CR>
-let g:WhichKeyDesc_vcs_prev_change = "vV Previous change"
-nmap vs :action VcsShowCurrentChangeMarker<CR>
-let g:WhichKeyDesc_vcs_current_change = "vs Show change"
-nmap vz :action Vcs.RollbackChangedLines<CR>
-let g:WhichKeyDesc_vcs_current_change_revert = "vz Revert change"
+let g:WhichKeyDesc_vcs = "<leader>v Git"
+nmap <leader>vn :action VcsShowNextChangeMarker<CR>
+let g:WhichKeyDesc_vcs_next_change = "<leader>vn Next change"
+nmap <leader>vp :action VcsShowPrevChangeMarker<CR>
+let g:WhichKeyDesc_vcs_prev_change = "<leader>vp Previous change"
+nmap <leader>vs :action VcsShowCurrentChangeMarker<CR>
+let g:WhichKeyDesc_vcs_current_change = "<leader>vs Show change"
+nmap <leader>vz :action Vcs.RollbackChangedLines<CR>
+let g:WhichKeyDesc_vcs_current_change_revert = "<leader>vz Revert change"
 
-nmap vy :action Vcs.QuickListPopupAction<CR>
-let g:WhichKeyDesc_vcs_quick = "vy Quick list"
-nmap vU :action Vcs.UpdateProject<CR>
-let g:WhichKeyDesc_vcs_update = "vU Update project"
-nmap va :action Annotate<CR>
-let g:WhichKeyDesc_vcs_annotate = "va Blame annotations"
-nmap vJ :action JumpToLastChange<CR>
-let g:WhichKeyDesc_vcs_last_change = "vJ Jump to last change"
-nmap vc :action Compare.LastVersion<CR>
-let g:WhichKeyDesc_vcs_compare = "vc Compare with last version"
-nmap vC :action Git.ResolveConflicts<CR>
-let g:WhichKeyDesc_vcs_conflict = "vC Resolve conflicts"
+nmap <leader>vy :action Vcs.QuickListPopupAction<CR>
+let g:WhichKeyDesc_vcs_quick = "<leader>vy Quick list"
+nmap <leader>va :action Annotate<CR>
+let g:WhichKeyDesc_vcs_annotate = "<leader>va Blame annotations"
+nmap <leader>vr :action Git.ResolveConflicts<CR>
+let g:WhichKeyDesc_vcs_conflict = "<leader>vr Resolve conflicts"
 
-nmap <leader>vp :action Git.Pull<CR>
-let g:WhichKeyDesc_vcs_pull = "<leader>vp Pull"
-nmap <leader>vP :action Vcs.Push<CR>
-let g:WhichKeyDesc_vcs_push = "<leader>vP Push"
-nmap <leader>vr :action Git.Rebase<CR>
-let g:WhichKeyDesc_vcs_rebase = "<leader>vr Rebase"
-nmap <leader>vm :action Git.Merge<CR>
-let g:WhichKeyDesc_vcs_merge = "<leader>vm Merge"
-nmap <leader>vb :action Git.Branches<CR>
-let g:WhichKeyDesc_vcs_branches = "<leader>vb Branches"
 nmap <leader>vo :action Github.Open.In.Browser<CR>
 let g:WhichKeyDesc_vcs_github_browser = "<leader>vo Open on Github"
 

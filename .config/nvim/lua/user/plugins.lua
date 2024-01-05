@@ -37,29 +37,11 @@ use {
 -- Add, change, and delete surrounding text.
 use('tpope/vim-surround')
 
--- Pairs of handy bracket mappings, like [b and ]b.
-use('tpope/vim-unimpaired')
-
--- Allow plugins to enable repeating of commands.
-use('tpope/vim-repeat')
-
--- Add more languages.
-use('sheerun/vim-polyglot')
-
 -- Jump to the last location when opening a file.
 use('farmergreg/vim-lastplace')
 
 -- Automatically create parent dirs when saving.
 use('jessarcher/vim-heritage')
-
--- Useful commands like :Rename and :SudoWrite.
-use('tpope/vim-eunuch')
-
--- Text objects for HTML attributes.
-use({
-    'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user',
-  })
 
 -- Automatically set the working directory to the project root.
 use({
@@ -81,16 +63,8 @@ use({
     end,
   })
 
--- Add smooth scrolling to avoid jarring jumps
-use({
-    'karb94/neoscroll.nvim',
-    config = function()
-      require('user/plugins/neoscroll')
-    end,
-  })
-
 -- All closing buffers without closing the split window.
-use('famiu/bufdelete.nvim')
+use('kazhala/close-buffers.nvim')
 
 -- Split arrays and methods onto multiple lines, or join them back up.
 use({
@@ -122,17 +96,6 @@ use ({
       vim.cmd("hi HopNextKey guifg=black guibg=#00FF00")
       vim.cmd("hi HopNextKey1 guifg=black guibg=#00dfff")
       vim.cmd("hi HopNextKey2 guifg=black guibg=#2b8db3")
-    end,
-  })
-
--- Display buffers as tabs.
-use({
-    'akinsho/bufferline.nvim',
-    tag = "v3.*",
-    requires = 'kyazdani42/nvim-web-devicons',
-    after = 'colorscheme',
-    config = function()
-      require('user/plugins/bufferline')
     end,
   })
 
@@ -275,24 +238,6 @@ use {
   end
 }
 
--- Shade
-use {
-  'sunjon/shade.nvim',
-  config = function()
-    require('shade').setup({
-        overlay_opacity = 75,
-      })
-  end,
-}
-
--- Color highlighter
-use {
-  'NvChad/nvim-colorizer.lua',
-  config = function()
-    require('colorizer').setup()
-  end,
-}
-
 -- Illuminate highlighter
 use {
   'RRethy/vim-illuminate',
@@ -301,32 +246,6 @@ use {
     vim.cmd("hi IlluminatedWordRead gui=none guibg=#45475a")
   end,
 }
-
--- Scrollbar
-use {
-  'petertriho/nvim-scrollbar',
-  config = function()
-    require('scrollbar').setup()
-  end,
-}
-
--- Barbecue (winbar)
-use({
-  "utilyre/barbecue.nvim",
-  tag = "*",
-  requires = {
-    "SmiteshP/nvim-navic",
-    "nvim-tree/nvim-web-devicons", -- optional dependency
-  },
-  after = "nvim-web-devicons", -- keep this if you're using NvChad
-  config = function()
-    require("barbecue").setup({
-        theme = {
-          normal = { bg = "#303446" },
-        }
-      })
-  end,
-})
 
 -- Easypick
 use ({
@@ -355,13 +274,7 @@ use {
   end,
 }
 
-use ({
-  'knubie/vim-kitty-navigator',
-  config = function()
-    vim.g.kitty_navigator_map_keys = 0
-  end
-})
-
+-- Which-key
 use {
   "folke/which-key.nvim",
   config = function()
@@ -382,17 +295,68 @@ use ({
 
 -- Testing helper
 use({
-  'vim-test/vim-test',
+  'vim-test/vim-test'
+})
+
+-- Debug
+use({
+  'rcarriga/nvim-dap-ui',
+  requires = {
+    'mfussenegger/nvim-dap',
+    'rcarriga/nvim-dap-ui',
+    'theHamsta/nvim-dap-virtual-text',
+    'nvim-telescope/telescope-dap.nvim',
+  },
   config = function()
-    vim.cmd([[
-      function! ToggletermStrategy(cmd)
-        execute '2TermExec cmd="'.a:cmd.'" |less -X'
-      endfunction
-      let g:test#custom_strategies = {'toggleterm': function('ToggletermStrategy')}
-      let g:test#strategy = 'toggleterm'
-    ]])
+    require('user/plugins/dap')
   end,
 })
+
+-- Harpoon
+use {
+  "ThePrimeagen/harpoon",
+  requires = {"nvim-lua/plenary.nvim"},
+  config = function()
+    require("telescope").load_extension('harpoon')
+
+    require("harpoon").setup({
+      global_settings = {
+        mark_branch = true,
+      },
+      menu = {
+        width = vim.api.nvim_win_get_width(0) - 20,
+      }
+    })
+  end,
+}
+
+-- Tmux navigation
+use {
+  'alexghergh/nvim-tmux-navigation',
+  config = function()
+    require'nvim-tmux-navigation'.setup({})
+  end
+}
+
+-- Diffview
+use "sindrets/diffview.nvim"
+
+-- Easy align
+use { 'junegunn/vim-easy-align' }
+
+-- todo.txt
+use {
+    "vimwiki/vimwiki",
+    setup = function()
+        vim.g.vimwiki_list = {
+            {
+                path = "~/Dropbox/notes",
+                syntax = "markdown",
+                ext = ".md",
+            },
+        }
+    end,
+}
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins

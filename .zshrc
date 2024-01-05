@@ -22,9 +22,21 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias vim="nvim"
-alias vv="nvim"
+alias v="nvim"
 
-alias gg="lazygit"
+alias r="ranger"
+
+export TODOTXT_DEFAULT_ACTION=ls
+export TODO_DIR=~/Documents/todo
+export TODO_FILE=~/Documents/todo/todo.txt
+alias t="clear && todo.sh -d ~/.config/todotxt/todo.cfg"
+alias te="v ~/Dropbox/todo.txt"
+alias tD="v ~/Dropbox/done.txt"
+alias tt="t due 0"
+alias ta="t add"
+alias td="t do"
+
+alias g="lazygit"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%cn)%Creset' --abbrev-commit --date=relative"
 alias gu="git up"
 alias gco="git checkout"

@@ -3,6 +3,8 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 
+vim.opt.background = 'dark'
+
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
@@ -44,6 +46,7 @@ vim.opt.signcolumn = 'yes:2'
 vim.opt.ruler = true
 vim.opt.colorcolumn = "120"
 
+vim.opt.swapfile = false
 vim.opt.undofile = true -- persistent undo
 vim.opt.backup = true -- automatically save a backup file
 vim.opt.backupdir:remove('.') -- keep backups out of the current directory
