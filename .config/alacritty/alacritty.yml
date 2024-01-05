@@ -8,9 +8,12 @@ scrolling:
 
 font:
   normal:
-    family: JetBrains Mono Nerd Font
+    family: JetBrainsMono NF
     style: Bold
-  size: 6.0
+  size: 10.0
+  offset:
+    x: 0
+    y: 4
 
 env:
   TERM: xterm-256color
