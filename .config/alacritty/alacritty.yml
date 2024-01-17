@@ -10,7 +10,7 @@ font:
   normal:
     family: JetBrainsMono NF
     style: Bold
-  size: 10.0
+  size: 8.0
   offset:
     x: 0
     y: 4
