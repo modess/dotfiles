@@ -64,7 +64,16 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
+        "on-click": "alacritty -e nmtui",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "bluetooth": {
+        "format": "{icon}",
+        "format-icons": {
+            "on": "",
+            "off": "󰝟"
+        },
+        "on-click": "blueman-manager"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",

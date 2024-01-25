@@ -99,6 +99,24 @@ use ({
     end,
   })
 
+-- notify
+use({
+    'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require('notify')
+    end,
+  })
+
+-- Better escape
+use({
+    'max397574/better-escape.nvim',
+    config = function()
+        require("better_escape").setup {
+            mapping = {"ii"}, -- a table with mappings to use
+        }
+    end,
+})
+
 -- Fuzzy finder
 use({
     'nvim-telescope/telescope.nvim',
@@ -303,7 +321,6 @@ use({
   'rcarriga/nvim-dap-ui',
   requires = {
     'mfussenegger/nvim-dap',
-    'rcarriga/nvim-dap-ui',
     'theHamsta/nvim-dap-virtual-text',
     'nvim-telescope/telescope-dap.nvim',
   },
@@ -356,6 +373,19 @@ use {
             },
         }
     end,
+}
+
+-- Github, octo
+use {
+  'pwntester/octo.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-tree/nvim-web-devicons',
+  },
+  config = function ()
+    require"octo".setup()
+  end
 }
 
 -- Automatically set up your configuration after cloning packer.nvim

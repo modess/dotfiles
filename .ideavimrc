@@ -92,10 +92,10 @@ let g:WhichKeyDesc_show_settings = "<leader>C Show settings"
 nmap cc cw
 
 " Splits
-nmap <leader>V :action SplitVertically<CR>
-let g:WhichKeyDesc_split_vertically = "<leader>V Split vertically"
-nmap <leader>H :action SplitHorizontally<CR>
-let g:WhichKeyDesc_split_horizontally = "<leader>H Split horizontally"
+nmap <leader>_ :action SplitVertically<CR>
+let g:WhichKeyDesc_split_vertically = "<leader>_ Split vertically"
+nmap <leader>- :action SplitHorizontally<CR>
+let g:WhichKeyDesc_split_horizontally = "<leader>- Split horizontally"
 nmap <leader>M :action MoveEditorToOppositeTabGroup<CR>
 let g:WhichKeyDesc_move_opposite = "<leader>M Move to opposite tab group"
 nmap <c-left> <c-w>h
@@ -126,9 +126,9 @@ let g:WhichKeyDesc_goto_action = "<leader>a Go to action"
 vmap <leader>A :action SearchEverywhere<CR>
 let g:WhichKeyDesc_goto_all = "<leader>A Go to all"
 nmap <leader>i :action RecentChangedFiles<CR>
-let g:WhichKeyDesc_goto_recent_changed = "<leader>h Go to recent changed files"
+let g:WhichKeyDesc_goto_recent_changed = "<leader>i Go to recent changed files"
 nmap <leader>I :action RecentFiles<CR>
-let g:WhichKeyDesc_goto_recent = "<leader>H Go to recent files"
+let g:WhichKeyDesc_goto_recent = "<leader>i Go to recent files"
 nmap <leader>m :action FileStructurePopup<CR>
 let g:WhichKeyDesc_goto_recent = "<leader>m Go to file member"
 
@@ -306,59 +306,6 @@ nmap <leader>u :action SurroundWith<CR>
 vmap <leader>u :action SurroundWith<CR>
 let g:WhichKeyDesc_surround = "<leader>u Surround with"
 
-" Bookmarks
-let g:WhichKeyDesc_bookmarks = "<leader>b Bookmarks"
-nmap <leader>b<CR> :action ToggleBookmark<CR>
-let g:WhichKeyDesc_bookmarks_toggle = "<leader>b<CR> Toggle"
-nmap <leader>bA :action ToggleBookmarkA<CR>
-nmap <leader>ba :action GotoBookmarkA<CR>
-nmap <leader>bB :action ToggleBookmarkB<CR>
-nmap <leader>bb :action GotoBookmarkB<CR>
-nmap <leader>bC :action ToggleBookmarkC<CR>
-nmap <leader>bc :action GotoBookmarkC<CR>
-nmap <leader>bD :action ToggleBookmarkD<CR>
-nmap <leader>bd :action GotoBookmarkD<CR>
-nmap <leader>bE :action ToggleBookmarkE<CR>
-nmap <leader>be :action GotoBookmarkE<CR>
-nmap <leader>bF :action ToggleBookmarkF<CR>
-nmap <leader>bf :action GotoBookmarkF<CR>
-nmap <leader>bG :action ToggleBookmarkG<CR>
-nmap <leader>bg :action GotoBookmarkG<CR>
-nmap <leader>bH :action ToggleBookmarkH<CR>
-nmap <leader>bh :action GotoBookmarkH<CR>
-nmap <leader>bI :action ToggleBookmarkI<CR>
-nmap <leader>bi :action GotoBookmarkI<CR>
-nmap <leader>bJ :action ToggleBookmarkJ<CR>
-nmap <leader>bj :action GotoBookmarkJ<CR>
-nmap <leader>bK :action ToggleBookmarkK<CR>
-nmap <leader>bk :action GotoBookmarkK<CR>
-nmap <leader>bL :action ToggleBookmarkL<CR>
-nmap <leader>bl :action GotoBookmarkL<CR>
-nmap <leader>bM :action ToggleBookmarkM<CR>
-nmap <leader>bm :action GotoBookmarkM<CR>
-nmap <leader>bN :action ToggleBookmarkN<CR>
-nmap <leader>bn :action GotoBookmarkN<CR>
-nmap <leader>bO :action ToggleBookmarkO<CR>
-nmap <leader>bo :action GotoBookmarkO<CR>
-nmap <leader>bP :action ToggleBookmarkP<CR>
-nmap <leader>bp :action GotoBookmarkP<CR>
-nmap <leader>bQ :action ToggleBookmarkQ<CR>
-nmap <leader>bq :action GotoBookmarkQ<CR>
-nmap <leader>bR :action ToggleBookmarkR<CR>
-nmap <leader>br :action GotoBookmarkR<CR>
-nmap <leader>bS :action ToggleBookmarkS<CR>
-nmap <leader>bs :action GotoBookmarkS<CR>
-nmap <leader>bT :action ToggleBookmarkT<CR>
-nmap <leader>bt :action GotoBookmarkT<CR>
-nmap <leader>bU :action ToggleBookmarkU<CR>
-nmap <leader>bu :action GotoBookmarkU<CR>
-nmap <leader>bV :action ToggleBookmarkV<CR>
-nmap <leader>bv :action GotoBookmarkV<CR>
-nmap <leader>bW :action ToggleBookmarkW<CR>
-nmap <leader>bw :action GotoBookmarkW<CR>
-nmap <leader>bX :action ToggleBookmarkX<CR>
-nmap <leader>bx :action GotoBookmarkX<CR>
-nmap <leader>bY :action ToggleBookmarkY<CR>
-nmap <leader>by :action GotoBookmarkY<CR>
-nmap <leader>bZ :action ToggleBookmarkZ<CR>
-nmap <leader>bz :action GotoBookmarkZ<CR>
+" HarpoonIJ
+nmap <leader>h :action ShowHarpoon<cr>
+nmap <leader>H :action AddToHarpoon<cr>

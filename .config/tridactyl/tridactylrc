@@ -1,2 +1,8 @@
+bind --mode=normal o open
+bind --mode=normal O tabopen
+
+bind --mode=normal t current_url open
+bind --mode=normal T current_url tabopen
+
 bind --mode=normal <A-ArrowRight> tabnext
 bind --mode=normal <A-ArrowLeft> tabprev

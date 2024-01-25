@@ -30,7 +30,12 @@ require('telescope').setup({
         ["<c-t>"] = trouble.open_with_trouble
       },
     },
-    file_ignore_patterns = { '.git/' },
+    file_ignore_patterns = {
+      '.git/',
+      'etc/',
+      'phpstan-baseline.neon',
+      'var/',
+    },
   },
   pickers = {
     find_files = {

@@ -24,7 +24,7 @@ require('legendary').setup({
 
     { '<leader>k', { n = ':nohlsearch<CR>' }, description = 'Clear search highlighting' },
 
-    { 'ii', { i = '<esc>' }, description = 'Exit insert' },
+    -- { 'ii', { i = '<esc>' }, description = 'Exit insert' },
 
     -- Change word
     { 'cc', { n = 'cw' }, opts = { silent = true }, description = 'Change word alias' },
@@ -44,7 +44,7 @@ require('legendary').setup({
     { '?', { n = ':Legendary<cr>' }},
 
     -- Slits
-    { '<leader>|', { n = ':vs<C-l><CR>' }, description = 'Split vertical' },
+    { '<leader>_', { n = ':vs<C-l><CR>' }, description = 'Split vertical' },
     { '<leader>-', { n = ':split<CR>' }, description = 'Split horizontal' },
 
     -- Resize panes
@@ -150,6 +150,10 @@ require('legendary').setup({
 
     -- Easy align
     { '<leader>A', { n = '<Plug>(EasyAlign)', x = '<Plug>(EasyAlign)' }, description = 'Align' },
+
+    -- Octo (github)
+    { '<leader>or', { n = '<cmd>Octo search is:open is:pr user-review-requested:@me archived:false draft:false label:rebase<cr>' }, description = 'PRs to review' },
+    { '<leader>om', { n = '<cmd>Octo search is:open is:pr author:@me<cr>' }, description = 'PRs by me' },
 
     -- Packer
     { '<leader>Ps', { n = ':PackerSync<cr>' }, description = 'Sync plugins' },
