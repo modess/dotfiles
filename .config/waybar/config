@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "bluetooth", "network", "cpu", "memory", "temperature", "battery", "battery#bat2", "tray"],
+    "modules-right": ["custom/weather", "pulseaudio", "bluetooth", "network", "cpu", "memory", "temperature", "battery", "battery#bat2", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -102,5 +102,12 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "custom/weather": {
+        "format": "{} °",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar --location Stockholm,Sweden --custom-indicator '{ICON} {temp_C} ({FeelsLikeC})'",
+        "return-type": "json"
+    },
 }

@@ -86,12 +86,14 @@ use({
 
 -- Colorscheme
 use ({
-    'catppuccin/nvim',
+    -- 'catppuccin/nvim',
+    'folke/tokyonight.nvim',
     as = 'colorscheme',
     config = function()
-      require("catppuccin").setup({})
+      -- require("catppuccin").setup({})
+      -- vim.cmd('colorscheme catppuccin-mocha')
 
-      vim.cmd('colorscheme catppuccin-mocha')
+      vim.cmd('colorscheme tokyonight-night')
 
       vim.cmd("hi HopNextKey guifg=black guibg=#00FF00")
       vim.cmd("hi HopNextKey1 guifg=black guibg=#00dfff")
@@ -100,12 +102,12 @@ use ({
   })
 
 -- notify
-use({
-    'rcarriga/nvim-notify',
-    config = function()
-      vim.notify = require('notify')
-    end,
-  })
+-- use({
+--     'rcarriga/nvim-notify',
+--     config = function()
+--       vim.notify = require('notify')
+--     end,
+--   })
 
 -- Better escape
 use({
@@ -375,18 +377,23 @@ use {
     end,
 }
 
--- Github, octo
-use {
-  'pwntester/octo.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'nvim-tree/nvim-web-devicons',
-  },
-  config = function ()
-    require"octo".setup()
-  end
-}
+-- oil
+use({
+  "stevearc/oil.nvim",
+  config = function()
+    require("oil").setup()
+  end,
+})
+
+-- folke/noice
+-- use {
+--
+--   "folke/noice.nvim",
+--   config = function()
+--     -- require("noice").setup({})
+--     --
+--   end,
+-- }
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins

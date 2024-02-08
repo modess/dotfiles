@@ -24,7 +24,7 @@ require('legendary').setup({
 
     { '<leader>k', { n = ':nohlsearch<CR>' }, description = 'Clear search highlighting' },
 
-    -- { 'ii', { i = '<esc>' }, description = 'Exit insert' },
+    { 'II', { i = '<esc>pa' }, description = 'Exit insert, paste, re-enter insert' },
 
     -- Change word
     { 'cc', { n = 'cw' }, opts = { silent = true }, description = 'Change word alias' },
@@ -38,20 +38,21 @@ require('legendary').setup({
     { '<C-up>', { n = '<cmd>NvimTmuxNavigateUp<CR>' }, opts = { silent = true } },
     { '<C-right>', { n = '<cmd>NvimTmuxNavigateRight<CR>' }, opts = { silent = true } },
 
-    { '<A-down>', { n = ':move .+1<CR>==gi', v = ":move '>+1<CR>gv=gv", i = '<Esc>:move .+1<CR>==gi' }, opts = { silent = true } },
     { '<A-up>', { n = ':move .-2<CR>==gi', v = ":move '<-2<CR>gv=gv", i = '<Esc>:move .-2<CR>==gi' }, opts = { silent = true } },
+    { '<A-down>', { n = ':move .+1<CR>==gi', v = ":move '>+1<CR>gv=gv", i = '<Esc>:move .+1<CR>==gi' }, opts = { silent = true } },
 
     { '?', { n = ':Legendary<cr>' }},
 
     -- Slits
     { '<leader>_', { n = ':vs<C-l><CR>' }, description = 'Split vertical' },
     { '<leader>-', { n = ':split<CR>' }, description = 'Split horizontal' },
+    { '<leader>=', { n = '<C-w>=' }, description = 'Split auto size' },
 
     -- Resize panes
-    { '<leader>+', { n = ':vertical resize +15<CR>' }, description = 'Increase vertical size' },
-    { '<leader>-', { n = ':vertical resize -15<CR>' }, description = 'Decrease vertical size' },
-    { '<leader>=', { n = ':resize +15<CR>' }, description = 'Increase horizontal size' },
-    { '<leader>_', { n = ':resize -15<CR>' }, description = 'Decrease horizontal size' },
+    { '<leader>)', { n = ':vertical resize +15<CR>' }, description = 'Increase vertical size' },
+    { '<leader>(', { n = ':vertical resize -15<CR>' }, description = 'Decrease vertical size' },
+    { '<leader>}', { n = ':resize +5<CR>' }, description = 'Increase horizontal size' },
+    { '<leader>{', { n = ':resize -5<CR>' }, description = 'Decrease horizontal size' },
 
 
     -- Bufdelete
@@ -122,15 +123,16 @@ require('legendary').setup({
     { 'gf', { n = '<cmd>lua vim.lsp.buf.formatting()<CR>'}, description = 'Format code' },
 
     -- Debug
+    { '<leader>du', { n = ':lua require"dapui".toggle()<CR>' }, description = 'Toggle dap UI' },
     { '<leader>db', { n = ':lua require"dap".toggle_breakpoint()<CR>' }, description = 'Toggle breakpoint' },
-    { '<leader>dc', { n = ':lua require"dap".continue()<CR>' }, description = 'Continue' },
+    { '<leader>dd', { n = ':lua require"dap".continue()<CR>' }, description = 'Continue' },
     { '<leader>dr', { n = ':lua require"dap".repl.open()<CR>' }, description = 'Open REPL' },
-    { '<leader>ds', { n = ':lua require"dap".step_over()<CR>' }, description = 'Step over' },
+    { '<leader>dv', { n = ':lua require"dap".step_over()<CR>' }, description = 'Step over' },
     { '<leader>di', { n = ':lua require"dap".step_into()<CR>' }, description = 'Step into' },
     { '<leader>do', { n = ':lua require"dap".step_out()<CR>' }, description = 'Step out' },
-    { '<leader>du', { n = ':lua require"dap".up()<CR>' }, description = 'Up' },
-    { '<leader>dd', { n = ':lua require"dap".down()<CR>' }, description = 'Down' },
     { '<leader>dl', { n = ':lua require"dap".run_last()<CR>' }, description = 'Run last' },
+    { '<leader>d<Up>', { n = ':lua require"dap".up()<CR>' }, description = 'Up' },
+    { '<leader>d<Down>', { n = ':lua require"dap".down()<CR>' }, description = 'Down' },
 
     -- Toggleterm
     { '<C-t>', { n = ':ToggleTerm<CR>' }, description = 'Toggle terminal' },
@@ -154,6 +156,9 @@ require('legendary').setup({
     -- Octo (github)
     { '<leader>or', { n = '<cmd>Octo search is:open is:pr user-review-requested:@me archived:false draft:false label:rebase<cr>' }, description = 'PRs to review' },
     { '<leader>om', { n = '<cmd>Octo search is:open is:pr author:@me<cr>' }, description = 'PRs by me' },
+
+    -- Oil
+    { '-', { n = ':Oil<cr>' }, description = 'Open oil' },
 
     -- Packer
     { '<leader>Ps', { n = ':PackerSync<cr>' }, description = 'Sync plugins' },

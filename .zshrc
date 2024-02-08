@@ -77,10 +77,6 @@ alias lla="exa -la -g --icons"
 alias ls="exa --icons"
 alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
 
-alias tail="grc tail"
-alias ps="grc ps"
-alias cat="grc cat"
-
 alias co="php bin/console"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
@@ -107,8 +103,6 @@ export XDG_CONFIG_HOME=$HOME/.config/
 [ -f ~/.github_token ] && source ~/.github_token
 [ -f ~/.secrets/chatgpt ] && source ~/.secrets/chatgpt
 [ -f ~/.aliases ] && source ~/.aliases
-
-[[ -f /etc/grc.zsh ]] && source /etc/grc.zsh
 
 [[ -f ~/.fzf/fzf.zsh ]] && source ~/.fzf/fzf.zsh
 

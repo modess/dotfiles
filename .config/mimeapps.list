@@ -16,9 +16,9 @@ application/pdf=firefox.desktop
 [Added Associations]
 text/markdown=nvim.desktop;
 application/pdf=firefox.desktop;
-image/jpeg=org.gnome.gThumb.desktop;feh.desktop;
 text/x-chdr=code-oss.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 image/png=org.gnome.gThumb.desktop;
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;transmission-gtk.desktop;
+image/jpeg=feh.desktop;org.gnome.gThumb.desktop;
