@@ -1,0 +1,5 @@
+--glob=!phpstan-baseline.neon
+--glob=!var/**
+--glob=!dump/**
+--glob=!bin/**
+--glob=!etc/**

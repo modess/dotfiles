@@ -73,7 +73,7 @@
             "on": "",
             "off": "󰝟"
         },
-        "on-click": "blueman-manager"
+        "on-click": "alacritty -e bluetuith",
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
@@ -89,7 +89,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "alacritty -e ncpamixer",
     },
     "custom/media": {
         "format": "{icon} {}",

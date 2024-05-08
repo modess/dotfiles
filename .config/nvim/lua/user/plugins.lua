@@ -258,15 +258,6 @@ use {
   end
 }
 
--- Illuminate highlighter
-use {
-  'RRethy/vim-illuminate',
-  after = 'colorscheme',
-  config = function()
-    vim.cmd("hi IlluminatedWordRead gui=none guibg=#45475a")
-  end,
-}
-
 -- Easypick
 use ({
   'axkirillov/easypick.nvim',
@@ -287,7 +278,10 @@ use {
         auto_trigger = true,
         keymap = {
           accept = "<C-Space>",
+          accept_word = "<C-M-Space>",
           dismiss = "<C-w>",
+          next = "<C-Esc>",
+          prev = "<C-Tab>",
         }
       }
     })
@@ -323,6 +317,7 @@ use({
   'rcarriga/nvim-dap-ui',
   requires = {
     'mfussenegger/nvim-dap',
+    'nvim-neotest/nvim-nio',
     'theHamsta/nvim-dap-virtual-text',
     'nvim-telescope/telescope-dap.nvim',
   },
@@ -363,20 +358,6 @@ use "sindrets/diffview.nvim"
 -- Easy align
 use { 'junegunn/vim-easy-align' }
 
--- todo.txt
-use {
-    "vimwiki/vimwiki",
-    setup = function()
-        vim.g.vimwiki_list = {
-            {
-                path = "~/Dropbox/notes",
-                syntax = "markdown",
-                ext = ".md",
-            },
-        }
-    end,
-}
-
 -- oil
 use({
   "stevearc/oil.nvim",
@@ -384,6 +365,9 @@ use({
     require("oil").setup()
   end,
 })
+
+-- undotree
+use "mbbill/undotree"
 
 -- folke/noice
 -- use {

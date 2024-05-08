@@ -6,3 +6,8 @@ bind --mode=normal T current_url tabopen
 
 bind --mode=normal <A-ArrowRight> tabnext
 bind --mode=normal <A-ArrowLeft> tabprev
+
+bind --mode=visual <ArrowLeft> js document.getSelection().modify("extend","backward","character")
+bind --mode=visual <ArrowRight> js document.getSelection().modify("extend","forward","character")
+bind --mode=visual <ArrowUp> js document.getSelection().modify("extend","backward","line")
+bind --mode=visual <ArrowDown> js document.getSelection().modify("extend","forward","line")

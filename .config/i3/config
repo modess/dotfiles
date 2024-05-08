@@ -3,7 +3,9 @@
 #######################
 
 # disable focus between monitors
-focus_wrapping workspace
+focus_wrapping no
+
+mouse_warping none
 
 # Do not focus with mouse
 focus_follows_mouse no
@@ -34,12 +36,10 @@ gaps inner 15
 gaps outer 0
 
 # move focused workspace between monitors
-bindsym $mod+Ctrl+Shift+h move workspace to output left
-bindsym $mod+Ctrl+Shift+l move workspace to output right
-bindsym $mod+Ctrl+Shift+Left move workspace to output left
-bindsym $mod+Ctrl+Shift+Right move workspace to output right
-bindsym $mod+Ctrl+Shift+Up move workspace to output up
-bindsym $mod+Ctrl+Shift+Down move workspace to output down
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Down move workspace to output down
 
 set $ws1_key_colemak a
 set $ws2_key_colemak r
@@ -149,7 +149,7 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+u focus parent
+bindsym $mod+Alt+p focus parent
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -162,20 +162,20 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+| split h
+bindsym $mod+- split h
 
 # split in vertical orientation
-bindsym $mod+- split v
+bindsym $mod+_ split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+control+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+control+t layout tabbed
-bindsym $mod+control+s layout toggle split
+bindsym $mod+Ctrl+Shift+t layout tabbed
+bindsym $mod+Ctrl+Shift+s layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Ctrl+Shift+f floating toggle
 
 # Multimedia Keys
 
@@ -275,7 +275,7 @@ bindsym $mod+Shift+F1 exec autorandr external
 bindsym $mod+Shift+F2 exec autorandr laptop
 
 # set wallpaper
-exec --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-755726.jpeg
+exec --no-startup-id sleep 3 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-755726.jpeg
 
 # set powersavings for display:
 # exec --no-startup-id xset s 480 dpms 600 600 600
@@ -292,17 +292,13 @@ exec $HOME/.local/share/tresorit/tresorit --hidden
 exec mullvad-vpn
 exec solaar --window=hide
 exec signal-desktop
-exec thunderbird
-#exec unclutter --timeout=1
+exec unclutter --timeout=1
 
 #exec --no-startup-id ~/code/xborder/xborders --config ~/.config/i3/borders_settings
 
 ###############
 # system tray #
 ###############
-
-# clipboard manager
-exec --no-startup-id parcellite
 
 # start blueman applet
 exec --no-startup-id blueman-applet
@@ -383,3 +379,21 @@ bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort -calc-com
 
 # powermenu
 bindsym $mod+Shift+q exec ~/.config/i3/powermenu
+
+# clipboard
+bindsym $mod+h exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# clipboard
+bindsym $mod+x exec rofi-pass
+
+# bluetooth
+bindsym $mod+Ctrl+b exec alacritty -e bluetuith
+
+# ranger
+bindsym $mod+Ctrl+f exec alacritty -e ranger
+
+# network
+bindsym $mod+Ctrl+n exec alacritty -e nmtui
+
+# sound
+bindsym $mod+Ctrl+s exec alacritty -e ncpamixer

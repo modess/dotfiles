@@ -1,6 +1,6 @@
- if [[ -o interactive ]]; then
-    fastfetch
-fi
+#  if [[ -o interactive ]]; then
+#     fastfetch
+# fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -19,7 +19,7 @@ plugins=(
     git
     zsh-autosuggestions
     fzf-zsh-plugin
-    z
+    zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -29,16 +29,6 @@ alias vim="nvim"
 alias v="nvim"
 
 alias r="ranger"
-
-export TODOTXT_DEFAULT_ACTION=ls
-export TODO_DIR=~/Documents/todo
-export TODO_FILE=~/Documents/todo/todo.txt
-alias t="clear && todo.sh -d ~/.config/todotxt/todo.cfg"
-alias te="v ~/Dropbox/todo.txt"
-alias tD="v ~/Dropbox/done.txt"
-alias tt="t due 0"
-alias ta="t add"
-alias td="t do"
 
 alias g="lazygit"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%cn)%Creset' --abbrev-commit --date=relative"
@@ -60,6 +50,9 @@ alias grco="git rebase --continue"
 alias gfu="git fetch upstream"
 alias grd="git rebase develop"
 alias grm="git rebase master"
+alias gp="git push"
+alias gpf="git push --force-with-lease"
+alias gpF="git push --force"
 
 alias dc="docker-compose"
 alias dcu="docker-compose up -d"
@@ -81,8 +74,6 @@ alias co="php bin/console"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
-export QT_STYLE_OVERRIDE=adwaita
-
 # Path
 export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -92,11 +83,15 @@ export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export PATH=~/.dotfiles/scripts:$PATH
 export PATH=~/.scripts:$PATH
 export PATH=$PATH:/var/lib/flatpak/exports/share
-export NODE_PATH=/usr/lib/node_modules
+export PATH=~/.npm-global/bin:$PATH
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
-export PATH=~/.npm-global/bin:$PATH
-export XDG_CONFIG_HOME=$HOME/.config/
+
+# Other exports
+export NODE_PATH=/usr/lib/node_modules
+export XDG_CONFIG_HOME=$HOME/.config
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export AWS_PROFILE=sweetspot
 
 # Includes
 [ -f ~/.aws-credentials ] && source ~/.aws-credentials
@@ -108,7 +103,9 @@ export XDG_CONFIG_HOME=$HOME/.config/
 
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

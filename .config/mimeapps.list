@@ -12,6 +12,8 @@ x-scheme-handler/https=firefox.desktop
 inode/directory=ranger.desktop
 image/png=org.gnome.gThumb.desktop
 application/pdf=firefox.desktop
+x-scheme-handler/lens=OpenLens.desktop
+x-scheme-handler/notion=notion-app.desktop
 
 [Added Associations]
 text/markdown=nvim.desktop;
@@ -22,3 +24,4 @@ x-scheme-handler/http=firefox.desktop;
 image/png=org.gnome.gThumb.desktop;
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;transmission-gtk.desktop;
 image/jpeg=feh.desktop;org.gnome.gThumb.desktop;
+image/jpg=feh.desktop;org.gnome.gThumb.desktop;

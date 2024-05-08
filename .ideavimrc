@@ -4,13 +4,15 @@ Plug 'preservim/nerdtree'
 let mapleader=" "
 let localmapleader=" "
 
+set timeoutlen=400
+
 set NERDTree
-set easymotion
 set ideajoin
 set multiple-cursors
 set surround
 set which-key
 set notimeout
+set easymotion
 
 set clipboard+=unnamed
 set clipboard+=ideaput
@@ -46,13 +48,6 @@ imap ii <Esc>
 " Keep centered when jumping search results
 nmap n nzzzv
 
-" Escape in insert mode
-" inoremap uu <Esc>
-
-" Use Q for formatting the current paragraph (or visual selection)
-vmap Q gq
-nmap Q gqap
-
 " These create newlines like o and O but stay in normal mode
 nmap <leader>o o<Esc>k
 nmap <leader>O O<Esc>j
@@ -63,18 +58,21 @@ let g:WhichKeyDesc_newline_j = "<leader>O"
 vnoremap < <gv
 vnoremap > >gv
 
-" Maintain cursor position when yanking a visual selection
-" vnoremap y myy`y
-
-" Paste replace visual selection without copying it
-vnoremap <leader>p "0p
-vnoremap <leader>P "0P
-vnoremap <leader>y "0y
-vnoremap <leader>d "0d
+" Fix yank, paste, delete with cipboard
+nnoremap yy "+yy
+vnoremap y "+y
+nnoremap p "+p
+vnoremap p "+p
+nnoremap P "+P
+vnoremap P "+P
+nnoremap dd "+dd
+vnoremap d "+d
 
 " Easy insertion of a trailing ; or ,
 nnoremap .. A;<Esc>
 nnoremap ,, A,<Esc>
+inoremap .. <Esc>A;<Esc>
+inoremap ,, <Esc>A,
 
 " Clear search highlighting
 nmap <leader>k :noh<CR>
@@ -90,6 +88,7 @@ let g:WhichKeyDesc_show_settings = "<leader>C Show settings"
 
 " Shortcut for change word
 nmap cc cw
+nmap cC ciw
 
 " Splits
 nmap <leader>_ :action SplitVertically<CR>
@@ -98,26 +97,26 @@ nmap <leader>- :action SplitHorizontally<CR>
 let g:WhichKeyDesc_split_horizontally = "<leader>- Split horizontally"
 nmap <leader>M :action MoveEditorToOppositeTabGroup<CR>
 let g:WhichKeyDesc_move_opposite = "<leader>M Move to opposite tab group"
-nmap <c-left> <c-w>h
-nmap <c-right> <c-w>l
-nmap <c-up> <c-w>k
-nmap <c-down> <c-w>j
+nmap <A-left> <c-w>h
+nmap <A-right> <c-w>l
+nmap <A-up> <c-w>k
+nmap <A-down> <c-w>j
 
 " Move lines up and down
-nmap <A-down> :action MoveLineDown<CR>
-nmap <A-up> :action MoveLineUp<CR>
-vmap <A-down> :action MoveLineDown<CR>
-vmap <A-up> :action MoveLineUp<CR>
-imap <A-down> :action MoveLineDown<CR>
-imap <A-up> :action MoveLineUp<CR>
+nmap <C-down> :action MoveLineDown<CR>
+nmap <C-up> :action MoveLineUp<CR>
+vmap <C-down> :action MoveLineDown<CR>
+vmap <C-up> :action MoveLineUp<CR>
+imap <C-down> :action MoveLineDown<CR>
+imap <C-up> :action MoveLineUp<CR>
 
 " Go to
 nmap <leader>f :action GotoFile<CR>
 let g:WhichKeyDesc_goto_file = "<leader>f Go to file"
 nmap <leader>c :action GotoClass<CR>
 let g:WhichKeyDesc_goto_class = "<leader>c Go to class"
-nmap <leader>s :action GotoSymbol<CR>
-let g:WhichKeyDesc_goto_symbol = "<leader>s Go to symbol"
+nmap <leader>b :action GotoSymbol<CR>
+let g:WhichKeyDesc_goto_symbol = "<leader>b Go to symbol"
 nmap <leader>D :action GotoDatabaseObject<CR>
 let g:WhichKeyDesc_goto_database = "<leader>D Go to database object"
 nmap <leader>a :action GotoAction<CR>
@@ -125,10 +124,10 @@ vmap <leader>a :action GotoAction<CR>
 let g:WhichKeyDesc_goto_action = "<leader>a Go to action"
 vmap <leader>A :action SearchEverywhere<CR>
 let g:WhichKeyDesc_goto_all = "<leader>A Go to all"
-nmap <leader>i :action RecentChangedFiles<CR>
-let g:WhichKeyDesc_goto_recent_changed = "<leader>i Go to recent changed files"
-nmap <leader>I :action RecentFiles<CR>
-let g:WhichKeyDesc_goto_recent = "<leader>i Go to recent files"
+nmap <leader>i :action RecentFiles<CR>
+let g:WhichKeyDesc_goto_recent_files = "<leader>i Go to recent files"
+nmap <leader>I :action RecentChangedFiles<CR>
+let g:WhichKeyDesc_goto_recent_changed = "<leader>I Go to recent changed files"
 nmap <leader>m :action FileStructurePopup<CR>
 let g:WhichKeyDesc_goto_recent = "<leader>m Go to file member"
 
@@ -198,8 +197,8 @@ nmap gJ :action EditorCodeBlockStart<CR>
 let g:WhichKeyDesc_code_block_start = "gJ Code block start"
 nmap gj :action EditorCodeBlockEnd<CR>
 let g:WhichKeyDesc_code_block_end = "gj Code block end"
-nmap go :action OverrideMethods<CR>
-let g:WhichKeyDesc_code_override = "go Override methods"
+nmap go :action OptimizeImports<CR>
+let g:WhichKeyDesc_optimize_imports = "go Optimize imports"
 nmap gm :action ImplementMethods<CR>
 let g:WhichKeyDesc_code_implement_methods = "gm Implement methods"
 
@@ -244,9 +243,8 @@ nmap <leader>vo :action Github.Open.In.Browser<CR>
 let g:WhichKeyDesc_vcs_github_browser = "<leader>vo Open on Github"
 
 " Easymotion
-nmap s <Plug>(easymotion-n)
-nmap m <Plug>(easymotion-j)
-nmap M <Plug>(easymotion-k)
+nmap s :action AceWordStartAction<CR>
+nmap m :action AceLineIndentsAction<cr>
     " <ll>f{char}    |  <Plug>(easymotion-f) |  mapped to fn
     " <ll>F{char}    |  <Plug>(easymotion-F) |  mapped to Fn
     " <ll>t{char}    |  <Plug>(easymotion-t) |  mapped to tn
@@ -293,8 +291,8 @@ nmap <leader>nb :action ShowNavBar<CR>
 let g:WhichKeyDesc_files_nav = "<leader>nb Show nav bar"
 
 " Paste
-" nmap <leader>p :action PasteMultiple<CR>
-" let g:WhichKeyDesc_paste = "<leader>p Paste (with history)"
+nmap <leader>p :action PasteMultiple<CR>
+let g:WhichKeyDesc_paste = "<leader>p Paste (with history)"
 
 " String manipulation
 nmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>

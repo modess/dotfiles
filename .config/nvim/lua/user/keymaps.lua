@@ -8,9 +8,11 @@ require('legendary').setup({
 
     { '<C-s>', { n = ':w<cr>' }},
 
-    { 'U', { n = '<C-r>' }},
-
     { 'n', { n = 'nzz' }},
+
+    --.Undo/redo
+    { 'U', { n = '<C-r>' }},
+    { '<leader>u', { n = '<cmd>UndotreeToggle<cr>' }, description = 'Toggle undotree' },
 
     -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
     { 'k', { n = "v:count == 0 ? 'gk' : 'k'" }, opts = { expr = true, silent = true }},
@@ -26,24 +28,28 @@ require('legendary').setup({
 
     { 'II', { i = '<esc>pa' }, description = 'Exit insert, paste, re-enter insert' },
 
+    { '..', { i = '<esc>A;<esc>' }, description = 'End line with ;' },
+    { ',,', { i = '<esc>A,<esc>' }, description = 'End line with ,' },
+
     -- Change word
     { 'cc', { n = 'cw' }, opts = { silent = true }, description = 'Change word alias' },
+    { 'cC', { n = 'ciw' }, opts = { silent = true }, description = 'Change in word alias' },
 
-    { '<C-h>', { n = '<cmd>NvimTmuxNavigateLeft<CR>' }, opts = { silent = true } },
-    { '<C-j>', { n = '<cmd>NvimTmuxNavigateDown<CR>' }, opts = { silent = true } },
-    { '<C-k>', { n = '<cmd>NvimTmuxNavigateUp<CR>' }, opts = { silent = true } },
-    { '<C-l>', { n = '<cmd>NvimTmuxNavigateRight<CR>' }, opts = { silent = true } },
-    { '<C-left>', { n = '<cmd>NvimTmuxNavigateLeft<CR>' }, opts = { silent = true } },
-    { '<C-down>', { n = '<cmd>NvimTmuxNavigateDown<CR>' }, opts = { silent = true } },
-    { '<C-up>', { n = '<cmd>NvimTmuxNavigateUp<CR>' }, opts = { silent = true } },
-    { '<C-right>', { n = '<cmd>NvimTmuxNavigateRight<CR>' }, opts = { silent = true } },
+    { '<A-h>', { n = '<cmd>NvimTmuxNavigateLeft<CR>' }, opts = { silent = true } },
+    { '<A-j>', { n = '<cmd>NvimTmuxNavigateDown<CR>' }, opts = { silent = true } },
+    { '<A-k>', { n = '<cmd>NvimTmuxNavigateUp<CR>' }, opts = { silent = true } },
+    { '<A-l>', { n = '<cmd>NvimTmuxNavigateRight<CR>' }, opts = { silent = true } },
+    { '<A-left>', { n = '<cmd>NvimTmuxNavigateLeft<CR>' }, opts = { silent = true } },
+    { '<A-down>', { n = '<cmd>NvimTmuxNavigateDown<CR>' }, opts = { silent = true } },
+    { '<A-up>', { n = '<cmd>NvimTmuxNavigateUp<CR>' }, opts = { silent = true } },
+    { '<A-right>', { n = '<cmd>NvimTmuxNavigateRight<CR>' }, opts = { silent = true } },
 
-    { '<A-up>', { n = ':move .-2<CR>==gi', v = ":move '<-2<CR>gv=gv", i = '<Esc>:move .-2<CR>==gi' }, opts = { silent = true } },
-    { '<A-down>', { n = ':move .+1<CR>==gi', v = ":move '>+1<CR>gv=gv", i = '<Esc>:move .+1<CR>==gi' }, opts = { silent = true } },
+    { '<C-up>', { n = ':move .-2<CR>==g', v = ":move '<-2<CR>gv=gv", i = '<Esc>:move .-2<CR>==gi' }, opts = { silent = true } },
+    { '<C-down>', { n = ':move .+1<CR>==g', v = ":move '>+1<CR>gv=gv", i = '<Esc>:move .+1<CR>==gi' }, opts = { silent = true } },
 
     { '?', { n = ':Legendary<cr>' }},
 
-    -- Slits
+    -- Splits
     { '<leader>_', { n = ':vs<C-l><CR>' }, description = 'Split vertical' },
     { '<leader>-', { n = ':split<CR>' }, description = 'Split horizontal' },
     { '<leader>=', { n = '<C-w>=' }, description = 'Split auto size' },
@@ -145,11 +151,6 @@ require('legendary').setup({
     { '<leader>co', { n = ':DiffviewOpen<cr>' }, description = 'Open diffview' },
     { '<leader>cc', { n = ':DiffviewClose<cr>' }, description = 'Close diffview' },
 
-    -- Vimwiki
-    { '<leader>ww', { n = ':VimwikiIndex<cr>' }, description = 'Open vimwiki index' },
-    { '<leader>wd', { n = ':VimwikiDeleteFile<cr>'}, description = 'Delete vimwiki file' },
-    { '<leader>wr', { n = ':VimwikiRenameFile<cr>'}, description = 'Rename vimwiki file' },
-
     -- Easy align
     { '<leader>A', { n = '<Plug>(EasyAlign)', x = '<Plug>(EasyAlign)' }, description = 'Align' },
 
@@ -159,6 +160,9 @@ require('legendary').setup({
 
     -- Oil
     { '-', { n = ':Oil<cr>' }, description = 'Open oil' },
+
+    -- Toggleterm
+    { 'ii', { t = '<C-\\><C-n>' }, description = 'Exit terminal mode' },
 
     -- Packer
     { '<leader>Ps', { n = ':PackerSync<cr>' }, description = 'Sync plugins' },
