@@ -3,6 +3,8 @@
 FILE=docker/composer
 if [ -f "$FILE" ]; then
     ./docker/composer "$@"
+elif [ -f "./vendor/bin/sail" ]; then
+    ./vendor/bin/sail composer "$@"
 else
     docker run --user $UID:$UID -e COMPOSER_MEMORY_LIMIT=-1 --rm --interactive --tty --volume $PWD:/app composer "$@"
 fi

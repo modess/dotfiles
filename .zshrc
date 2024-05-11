@@ -1,7 +1,3 @@
-#  if [[ -o interactive ]]; then
-#     fastfetch
-# fi
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -14,6 +10,7 @@ export BROWSER=firefox
 export ZSH=/home/niklas/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 plugins=(
     git
@@ -78,14 +75,11 @@ alias co="php bin/console"
 export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH="$PATH:`yarn global bin`"
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
 export PATH=~/.dotfiles/scripts:$PATH
 export PATH=~/.scripts:$PATH
 export PATH=$PATH:/var/lib/flatpak/exports/share
 export PATH=~/.npm-global/bin:$PATH
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
 
 # Other exports
 export NODE_PATH=/usr/lib/node_modules
@@ -100,10 +94,6 @@ export AWS_PROFILE=sweetspot
 [ -f ~/.aliases ] && source ~/.aliases
 
 [[ -f ~/.fzf/fzf.zsh ]] && source ~/.fzf/fzf.zsh
-
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 eval "$(zoxide init zsh)"
 

@@ -3,6 +3,8 @@
 FILE=docker/phpunit
 if [ -f "$FILE" ]; then
     ./docker/phpunit "$@"
+elif [ -f "./vendor/bin/sail" ]; then
+    ./vendor/bin/sail phpunit "$@"
 else
     phpunit "$@"
 fi
