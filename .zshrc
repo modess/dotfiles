@@ -51,10 +51,10 @@ alias gp="git push"
 alias gpf="git push --force-with-lease"
 alias gpF="git push --force"
 
-alias dc="docker-compose"
-alias dcu="docker-compose up -d"
-alias dcd="docker-compose down"
-alias dck="docker-compose kill"
+alias dc="docker compose"
+alias dcu="docker compose up -d"
+alias dcd="docker compose down"
+alias dck="docker compose kill"
 alias de="docker exec -it --user $(id -u):$(id -g) "
 
 alias cu="composer update"
@@ -69,6 +69,8 @@ alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoi
 
 alias co="php bin/console"
 
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # Path
@@ -76,10 +78,10 @@ export PATH=vendor/bin:../../vendor/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$PATH:/usr/local/lib/node_modules/bin"
-export PATH=~/.dotfiles/scripts:$PATH
-export PATH=~/.scripts:$PATH
 export PATH=$PATH:/var/lib/flatpak/exports/share
 export PATH=~/.npm-global/bin:$PATH
+export PATH=~/.dotfiles/scripts:$PATH
+export PATH=~/.scripts:$PATH
 
 # Other exports
 export NODE_PATH=/usr/lib/node_modules

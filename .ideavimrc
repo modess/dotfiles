@@ -48,12 +48,6 @@ imap ii <Esc>
 " Keep centered when jumping search results
 nmap n nzzzv
 
-" These create newlines like o and O but stay in normal mode
-nmap <leader>o o<Esc>k
-nmap <leader>O O<Esc>j
-let g:WhichKeyDesc_newline_k = "<leader>o"
-let g:WhichKeyDesc_newline_j = "<leader>O"
-
 " Re-select visual selection after indenting
 vnoremap < <gv
 vnoremap > >gv
@@ -86,10 +80,6 @@ let g:WhichKeyDesc_clear_notifications = "<leader>K Clear all notifications"
 nmap <leader>C :action ShowSettings<CR>
 let g:WhichKeyDesc_show_settings = "<leader>C Show settings"
 
-" Shortcut for change word
-nmap cc cw
-nmap cC ciw
-
 " Splits
 nmap <leader>_ :action SplitVertically<CR>
 let g:WhichKeyDesc_split_vertically = "<leader>_ Split vertically"
@@ -97,18 +87,14 @@ nmap <leader>- :action SplitHorizontally<CR>
 let g:WhichKeyDesc_split_horizontally = "<leader>- Split horizontally"
 nmap <leader>M :action MoveEditorToOppositeTabGroup<CR>
 let g:WhichKeyDesc_move_opposite = "<leader>M Move to opposite tab group"
-nmap <A-left> <c-w>h
-nmap <A-right> <c-w>l
-nmap <A-up> <c-w>k
-nmap <A-down> <c-w>j
+nmap <C-h> <c-w>h
+nmap <C-j> <c-w>j
+nmap <C-k> <c-w>k
+nmap <C-l> <c-w>l
 
 " Move lines up and down
-nmap <C-down> :action MoveLineDown<CR>
-nmap <C-up> :action MoveLineUp<CR>
-vmap <C-down> :action MoveLineDown<CR>
-vmap <C-up> :action MoveLineUp<CR>
-imap <C-down> :action MoveLineDown<CR>
-imap <C-up> :action MoveLineUp<CR>
+nmap <A-j> :action MoveLineDown<CR>
+nmap <A-k> :action MoveLineUp<CR>
 
 " Go to
 nmap <leader>f :action GotoFile<CR>
@@ -268,12 +254,12 @@ nmap m :action AceLineIndentsAction<cr>
 
 " Tests
 let g:WhichKeyDesc_test = "t Tests"
-nmap <leader>tt :action RunClass<CR>
-let g:WhichKeyDesc_test_run_class = "tt Run"
+nmap <leader>tr :action RunClass<CR>
+let g:WhichKeyDesc_test_run_class = "tr Run"
 nmap <leader>tg :action GotoTest<CR>
 let g:WhichKeyDesc_test_go_to = "tg Go to test"
-nmap <leader>tr :action Rerun<CR>
-let g:WhichKeyDesc_test_rerun = "tr Rerun"
+nmap <leader>tt :action Rerun<CR>
+let g:WhichKeyDesc_test_rerun = "tt Rerun"
 nmap <leader>tf :action RerunFailedTests<CR>
 let g:WhichKeyDesc_test_rerun_failed = "tf Rerun failed"
 nmap <leader>tc :action ChooseRunConfiguration<CR>
@@ -290,10 +276,6 @@ let g:WhichKeyDesc_files_toggle_show = "<leader>nf Toggle tree, show file"
 nmap <leader>nb :action ShowNavBar<CR>
 let g:WhichKeyDesc_files_nav = "<leader>nb Show nav bar"
 
-" Paste
-nmap <leader>p :action PasteMultiple<CR>
-let g:WhichKeyDesc_paste = "<leader>p Paste (with history)"
-
 " String manipulation
 nmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
 vmap <leader>S :action osmedile.intellij.stringmanip.PopupChoiceAction<CR>
@@ -303,7 +285,3 @@ let g:WhichKeyDesc_string_manipulation = "<leader>S String manipulation"
 nmap <leader>u :action SurroundWith<CR>
 vmap <leader>u :action SurroundWith<CR>
 let g:WhichKeyDesc_surround = "<leader>u Surround with"
-
-" HarpoonIJ
-nmap <leader>h :action ShowHarpoon<cr>
-nmap <leader>H :action AddToHarpoon<cr>
