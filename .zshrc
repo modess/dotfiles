@@ -82,6 +82,7 @@ export PATH=$PATH:/var/lib/flatpak/exports/share
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/.dotfiles/scripts:$PATH
 export PATH=~/.scripts:$PATH
+export PATH=$HOME/.tmux/plugins/tmuxifier/bin:$PATH
 
 # Other exports
 export NODE_PATH=/usr/lib/node_modules
