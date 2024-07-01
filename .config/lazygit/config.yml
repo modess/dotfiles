@@ -4,6 +4,8 @@ gui:
   branchColors:
     'chore': '#11aaff'
     'bug': '#fab387'
+    'hotfix': '#f38ba8'
+    'fix': '#f38ba8'
   # theme:
   #   lightTheme: false
   #   activeBorderColor:

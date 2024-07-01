@@ -191,12 +191,12 @@ let g:WhichKeyDesc_code_implement_methods = "gm Implement methods"
 nmap ge :action ShowErrorDescription<CR>
 let g:WhichKeyDesc_code_error = "ge Show error description"
 
-vmap gR :action Refactorings.QuickListPopupAction<CR>
-nmap gR :action Refactorings.QuickListPopupAction<CR>
-let g:WhichKeyDesc_code_refactor = "gR Refactor"
-vmap gr :action RenameElement<CR>
-nmap gr :action RenameElement<CR>
-let g:WhichKeyDesc_code_refactor = "gr Rename"
+vmap gr :action Refactorings.QuickListPopupAction<CR>
+nmap gr :action Refactorings.QuickListPopupAction<CR>
+let g:WhichKeyDesc_code_refactor = "gr Refactor"
+vmap <leader>rn :action RenameElement<CR>
+nmap <leader>rn :action RenameElement<CR>
+let g:WhichKeyDesc_code_refactor = "<leader>rn Rename"
 vmap gf :action ReformatCode<CR>
 nmap gf :action ReformatCode<CR>
 let g:WhichKeyDesc_code_reformat = "gf Reformat code"
@@ -222,8 +222,10 @@ nmap <leader>vy :action Vcs.QuickListPopupAction<CR>
 let g:WhichKeyDesc_vcs_quick = "<leader>vy Quick list"
 nmap <leader>va :action Annotate<CR>
 let g:WhichKeyDesc_vcs_annotate = "<leader>va Blame annotations"
-nmap <leader>vr :action Git.ResolveConflicts<CR>
-let g:WhichKeyDesc_vcs_conflict = "<leader>vr Resolve conflicts"
+nmap <leader>vR :action Git.ResolveConflicts<CR>
+let g:WhichKeyDesc_vcs_conflict = "<leader>vR Resolve conflicts"
+nmap <leader>vr :action ChangesView.Refresh<CR>
+let g:WhichKeyDesc_vcs_refresh = "<leader>vr Refresh VCS changes"
 
 nmap <leader>vo :action Github.Open.In.Browser<CR>
 let g:WhichKeyDesc_vcs_github_browser = "<leader>vo Open on Github"
@@ -254,8 +256,8 @@ nmap m :action AceLineIndentsAction<cr>
 
 " Tests
 let g:WhichKeyDesc_test = "t Tests"
-nmap <leader>tr :action RunClass<CR>
-let g:WhichKeyDesc_test_run_class = "tr Run"
+nmap <leader>tn :action RunClass<CR>
+let g:WhichKeyDesc_test_run_class = "tr Run nearest"
 nmap <leader>tg :action GotoTest<CR>
 let g:WhichKeyDesc_test_go_to = "tg Go to test"
 nmap <leader>tt :action Rerun<CR>

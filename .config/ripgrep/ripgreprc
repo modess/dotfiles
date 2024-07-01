@@ -4,3 +4,6 @@
 --glob=!dump/**
 --glob=!bin/**
 --glob=!etc/**
+--glob=!node_modules/**
+--glob=!.git/**
+--hidden
