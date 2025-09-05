@@ -8,10 +8,10 @@ set timeoutlen=400
 
 set NERDTree
 set ideajoin
-set multiple-cursors
-set surround
-set which-key
-set notimeout
+" set multiple-cursors
+" set surround
+" set which-key
+" set notimeout
 set easymotion
 
 set clipboard+=unnamed
@@ -24,7 +24,7 @@ set number
 
 set ignorecase
 set smartcase
-set scrolloff=3
+set scrolloff=5
 
 set incsearch
 set hls
@@ -42,9 +42,6 @@ nmap <C-s> :w<CR>
 " Redo
 nmap U <C-r>
 
-" Exit insert
-imap ii <Esc>
-
 " Keep centered when jumping search results
 nmap n nzzzv
 
@@ -61,12 +58,6 @@ nnoremap P "+P
 vnoremap P "+P
 nnoremap dd "+dd
 vnoremap d "+d
-
-" Easy insertion of a trailing ; or ,
-nnoremap .. A;<Esc>
-nnoremap ,, A,<Esc>
-inoremap .. <Esc>A;<Esc>
-inoremap ,, <Esc>A,
 
 " Clear search highlighting
 nmap <leader>k :noh<CR>
@@ -169,16 +160,16 @@ nmap gu :action ShowUsages<CR>
 let g:WhichKeyDesc_code_show_usages = "gu Show usages"
 nmap gU :action FindUsages<CR>
 let g:WhichKeyDesc_code_find_usages = "gU Find usages"
-nmap gi :action GotoImplementation<CR>
-let g:WhichKeyDesc_code_implementation = "gi Go to implementation"
+nmap gI :action GotoImplementation<CR>
+let g:WhichKeyDesc_code_implementation = "gI Go to implementation"
 nmap gG :action Generate<CR>
 let g:WhichKeyDesc_code_generate = "gG Generate"
 nmap gp :action ParameterInfo<CR>
 let g:WhichKeyDesc_code_parameters = "gp Parameter info"
-nmap gI :action QuickImplementations<CR>
-let g:WhichKeyDesc_code_quick_implementations = "gI Quick implementations"
-nmap gD :action QuickJavaDoc<CR>
-let g:WhichKeyDesc_code_quick_javadoc = "gD Quick documentation"
+" nmap gI :action QuickImplementations<CR>
+" let g:WhichKeyDesc_code_quick_implementations = "gI Quick implementations"
+nmap gK :action QuickJavaDoc<CR>
+let g:WhichKeyDesc_code_quick_javadoc = "gK Quick documentation"
 nmap gJ :action EditorCodeBlockStart<CR>
 let g:WhichKeyDesc_code_block_start = "gJ Code block start"
 nmap gj :action EditorCodeBlockEnd<CR>

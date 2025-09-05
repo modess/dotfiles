@@ -2,10 +2,12 @@
 TERM = "xterm-256color"
 
 [font]
-size = 10.0
+size = 10
 
 [font.normal]
+# family = "Geist Mono"
 family = "JetBrainsMono NF"
+# family = "DejaVu Sans Mono"
 style = "Bold"
 
 [font.offset]
@@ -16,5 +18,5 @@ y = 4
 history = 10000
 
 [window.padding]
-x = 5
-y = 5
+x = 10
+y = 10
