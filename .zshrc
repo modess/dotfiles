@@ -6,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export EDITOR=nvim
-export BROWSER=firefox
 export ZSH=/home/niklas/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -62,10 +61,11 @@ alias cda="composer dump-autoload"
 alias cr="composer require"
 alias crd="composer require --dev "
 
-alias ll="exa -l -g --icons"
-alias lla="exa -la -g --icons"
-alias ls="exa --icons"
-alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+# alias ll="exa -l -g --icons"
+# alias lla="exa -la -g --icons"
+# alias ls="exa --icons"
+# alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+alias lla="ls -la"
 
 alias co="php bin/console"
 
@@ -82,7 +82,12 @@ export PATH=$PATH:/var/lib/flatpak/exports/share
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/.dotfiles/scripts:$PATH
 export PATH=~/.scripts:$PATH
+export PATH=~/.cargo/bin:$PATH
+export PATH=~/go/bin:$PATH
 export PATH=$HOME/.tmux/plugins/tmuxifier/bin:$PATH
+
+# export PATH=$HOME/.rye/env:$PATH
+# source "$HOME/.rye/env"
 
 # Other exports
 export NODE_PATH=/usr/lib/node_modules
@@ -92,8 +97,9 @@ export AWS_PROFILE=sweetspot
 
 # Includes
 [ -f ~/.aws-credentials ] && source ~/.aws-credentials
-[ -f ~/.github_token ] && source ~/.github_token
+# [ -f ~/.github_token ] && source ~/.github_token
 [ -f ~/.secrets/chatgpt ] && source ~/.secrets/chatgpt
+[ -f ~/.secrets/mcp ] && source ~/.secrets/mcp
 [ -f ~/.aliases ] && source ~/.aliases
 
 [[ -f ~/.fzf/fzf.zsh ]] && source ~/.fzf/fzf.zsh
@@ -102,3 +108,9 @@ eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# export PATH="/home/niklas/.config/herd-lite/bin:$PATH"
+# export PHP_INI_SCAN_DIR="/home/niklas/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(mcfly init zsh)"
