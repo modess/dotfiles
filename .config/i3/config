@@ -254,6 +254,7 @@ assign [class="discord"] $ws9
 # autostart applications/services on login: #
 #############################################
 exec lxpolkit
+exec kanshi
 exec waybar
 exec $HOME/.local/share/tresorit/tresorit --hidden
 exec dunst
