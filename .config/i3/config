@@ -1,6 +1,8 @@
 #######################
 # config starts here: #
 #######################
+# output eDP-1 pos 1011 2160 res 1920x1080
+# output DP-1 pos 0 0 res 3840x2160
 
 # disable focus between monitors
 focus_wrapping no
@@ -28,12 +30,15 @@ workspace_layout default
 ##############################
 
 # Default border
-for_window[all] title_window_icon on
-for_window [class="^.*"] border pixel 2
+# for_window[all] title_window_icon on
+default_border pixel 5
+for_window [class="^.*"] border pixel 5
 
-# Set inner/outer gaps
-gaps inner 0
-gaps outer 0
+set $clear #ffffff00
+
+# class                  border   background  text     indicator  child_border
+client.focused_inactive  #333333  #5f676a     #ffffff  #484e50    $clear
+client.unfocused         #333333  #222222     #888888  #292d2e    $clear
 
 # move focused workspace between monitors
 bindsym $mod+Ctrl+h move workspace to output left
@@ -130,6 +135,10 @@ bindsym $mod+z mode "resize"
 # start a termina
 bindsym $mod+Return exec alacritty
 
+bindsym $mod+Space exec wofi --show drun
+
+bindsym $mod+Shift+Q exec wlogout
+
 # kill focused window
 bindsym $mod+w kill
 
@@ -193,7 +202,12 @@ bindsym Shift+XF86AudioNext exec spt playback --next
 bindsym Shift+XF86AudioPrev exec spt playback --previous
 
 ## App shortcuts
-bindsym $mod+p exec flameshot gui
+bindsym $mod+p exec grim -g "$(slurp)" $(xdg-user-dir)/Screenshots/Screenshot_$(date +'%s.png')
+bindsym $mod+Shift+p exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+y exec clipman pick -t wofi
+bindsym $mod+c exec ~/src/wofi-calc/wofi-calc.sh 
+bindsym $mod+b exec ~/.config/sway/toggle_trackball_speed.sh
+# bindsym $mod+Ctrl+k exec dunstctl close-all
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -201,16 +215,16 @@ bindsym $mod+p exec flameshot gui
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
@@ -232,67 +246,25 @@ workspace $ws10 output $monitor2
 
 # bind program to workspace
 assign [class="Firefox"] $ws4
-assign [class="thunderbird"] $ws5
 assign [class="Spotify"] $ws10
 assign [class="Signal"] $ws9
 assign [class="discord"] $ws9
 
-# automatic set focus new window if it opens on another workspace then the current:
-#for_window [class=Brave-browser] focus
-
-##############
-# compositor #
-##############
-
-exec_always --no-startup-id picom --config  ~/.config/picom.conf
-
 #############################################
 # autostart applications/services on login: #
 #############################################
-exec_always "setxkbmap se,us"
-
-#get auth work with polkit-gnome
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# dex execute .desktop files + apps using /etc/xdg/autostart.
-# when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
-# in this cases better disable dex and use manual starting apps using xdg/autostart
-# if enabled you should comment welcome app.
-# https://github.com/jceb/dex
-exec --no-startup-id dex --autostart --environment i3
-
-# start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id autorandr laptop
-bindsym $mod+Shift+F1 exec autorandr external
-bindsym $mod+Shift+F2 exec autorandr laptop
-
-# set wallpaper
-exec --no-startup-id sleep 10 && feh --bg-fill ~/Pictures/Wallpapers/pexels-photo-755726.jpeg
-
-# set powersavings for display:
-# exec --no-startup-id xset s 480 dpms 600 600 600
-
-# Desktop notifications
-exec --no-startup-id ~/.config/dunst/run.sh
-
-# autotiling script
-# https://github.com/nwg-piotr/autotiling
-exec_always --no-startup-id autotiling
-
-# lock.sh
-exec --no-startup-id xss-lock -- ~/.config/i3/lock.sh
-
-# Autostart apps
+exec lxpolkit
+exec waybar
 exec $HOME/.local/share/tresorit/tresorit --hidden
-#exec mullvad-vpn
-exec protonvpn-app
-exec solaar --window=hide
+exec dunst
+exec nm-applet
 exec flatpak run org.signal.Signal
-exec signal-desktop
-exec unclutter --timeout=1
-
-#exec --no-startup-id ~/code/xborder/xborders --config ~/.config/i3/borders_settings
+exec solaar --window=hide
+exec gammastep-indicator
+exec wl-paste -t text --watch clipman store
+exec_always --no-startup-id autotiling
+exec swayidle
+exec flatpak run ch.protonmail.protonmail-bridge
 
 ###############
 # system tray #
@@ -304,96 +276,17 @@ exec --no-startup-id blueman-applet
 # networkmanager-applet
 exec --no-startup-id nm-applet
 
-# battery
-# exec --no-startup-id cbatticon
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-##################
-# floating rules #
-##################
+input "7504:24926:Charybdis_Mouse" {
+    pointer_accel -0.2
+    accel_profile adaptive
+}
 
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="Blueman-manager" instance="blueman-manager"] floating enable
-for_window [class="steamwebhelper" instance="steamwebhelper"] floating disable
-for_window [class="steam" instance="steam"] floating disable
+input * {
+    xkb_layout "se"
+}
 
-######################################
-# color settings for bar and windows #
-######################################
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+include @sysconfdir@/sway/config.d/*
 
-# target                 title     bg    text   indicator  border
-client.focused           $base     $pink $base  $rosewater $pink
-client.focused_inactive  $mauve    $base $text  $rosewater $base
-client.unfocused         $surface2    $base $text  $rosewater $base
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
 
-############################################
-# bar settings                             #
-############################################
-
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-#####################################
-# Application menu handled by rofi: #
-#####################################
-
-# applications
-bindsym $mod+space exec ~/.config/rofi/bin/launcher
-
-# windows
-bindsym $mod+BackSpace exec rofi -modi drun -show window -config ~/.config/rofi/rofidmenu.rasi
-
-# emoji
-bindsym $mod+period exec rofi -show emoji -modi emoji:rofimoji -config ~/.config/rofi/rofidmenu.rasi
-
-# calculator
-bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | xclip" -kb-accept-custom="Alt+Return" -config ~/.config/rofi/rofidmenu.rasi
-
-# powermenu
-bindsym $mod+Shift+q exec ~/.config/i3/powermenu
-
-# clipboard
-bindsym $mod+y exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-
-# clipboard
-bindsym $mod+x exec rofi-pass
-
-# bluetooth
-bindsym $mod+Ctrl+b exec alacritty -e bluetuith
-
-# ranger
-bindsym $mod+Ctrl+f exec alacritty -e ranger
-
-# network
-bindsym $mod+Ctrl+n exec alacritty -e nmtui
-
-# sound
-bindsym $mod+Ctrl+s exec alacritty -e ncpamixer
-
-bindsym $mod+u exec keynav toggle-start
