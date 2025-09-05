@@ -1,3 +1,13 @@
+autocmd TabEnter .* no_mouse_mode
+autocmd TabEnter https://*youtube.com.* mouse_mode
+autocmd TabEnter https://*proton.me.* mouse_mode
+autocmd TabEnter https://*gmail.com.* mouse_mode
+autocmd TabEnter https://*calendar.google.com.* mouse_mode
+#autocmd TabEnter https://*linear.app.* mouse_mod
+
+bind m mouse_mode
+bind <C-m> no_mouse_mode
+
 bind --mode=normal o open
 bind --mode=normal O tabopen
 

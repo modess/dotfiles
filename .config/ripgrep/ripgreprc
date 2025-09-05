@@ -6,4 +6,5 @@
 --glob=!etc/**
 --glob=!node_modules/**
 --glob=!.git/**
+--glob=!*.map
 --hidden
