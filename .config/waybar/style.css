@@ -4,7 +4,6 @@
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-size: .9rem;
-  border-radius: 1rem;
   transition-property: background-color;
   transition-duration: 0.5s;
   background-color: shade(@base, 0.9);
@@ -45,6 +44,7 @@ window > box {
 #workspaces button.active {
   color: @blue;
   border: 1px solid @blue;
+  background: black;
 }
 
 /* Tooltip */

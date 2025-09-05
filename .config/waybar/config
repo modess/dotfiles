@@ -4,15 +4,15 @@
     "height": 30,
     "spacing": 4,
 
-    "modules-left": ["hyprland/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/weather", "pulseaudio", "bluetooth", "network", "cpu", "memory", "temperature", "battery", "battery#bat2", "tray"],
+    "modules-right": ["custom/weather", "pulseaudio", "bluetooth", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
-        "format": "{name}: {icon}"
+        "format": "{name}"
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
