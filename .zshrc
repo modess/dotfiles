@@ -140,3 +140,6 @@ command -v mcfly &>/dev/null && eval "$(mcfly init zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Local overrides (must be at the very end to override everything above)
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
