@@ -136,3 +136,10 @@ tooltip label {
 #custom-weather {
   color: @red;
 }
+
+/* Separator */
+#custom-separator {
+  color: @overlay0;
+  padding-left: .6rem;
+  padding-right: .6rem;
+}

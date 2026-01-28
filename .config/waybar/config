@@ -1,21 +1,25 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
+    "height": 36,
     "spacing": 4,
+    "output": ["DP-3", "eDP-1"],
 
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/weather", "pulseaudio", "bluetooth", "network", "cpu", "memory", "battery", "battery#bat2", "tray"],
+    "modules-left": ["hyprland/workspaces", "custom/separator", "custom/media"],
+    "modules-center": [],
+    "modules-right": ["clock", "pulseaudio", "bluetooth", "battery", "tray"],
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}"
+        "format": "{id}",
+        "active-only": false,
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -45,6 +49,7 @@
         "format-icons": ["", "", ""]
     },
     "battery": {
+        "adapter": "AC",
         "states": {
             "warning": 20,
             "critical": 10
@@ -73,7 +78,7 @@
             "on": "",
             "off": "󰝟"
         },
-        "on-click": "alacritty -e bluetuith",
+        "on-click": "alacritty -e bluetuith"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
@@ -90,6 +95,8 @@
             "default": ["", "", ""]
         },
         "on-click": "alacritty -e ncpamixer",
+        "tooltip-format": "{desc}",
+        "max-length": 40
     },
     "custom/media": {
         "format": "{icon} {}",
@@ -110,4 +117,15 @@
         "exec": "wttrbar --location Stockholm,Sweden --custom-indicator '{ICON} {temp_C} ({FeelsLikeC})'",
         "return-type": "json"
     },
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    },
+    "custom/separator#right": {
+        "format": "|",
+        "tooltip": false
+    },
+    "disk": {
+        "format": "{percentage_used}% "
+    }
 }
