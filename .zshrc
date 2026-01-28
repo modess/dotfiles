@@ -15,7 +15,6 @@ plugins=(
     git
     zsh-autosuggestions
     fzf-zsh-plugin
-    zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -50,6 +49,25 @@ alias gp="git push"
 alias gpf="git push --force-with-lease"
 alias gpF="git push --force"
 
+alias codex="codex"
+alias c="claude"
+alias cc="claude --continue"
+alias cr="claude --resume"
+
+# =============================================================================
+# Claude Code Global Sandbox
+# =============================================================================
+# Run Claude Code in isolated container from any project directory
+# See ~/.claude-sandbox/README.md for setup and usage
+
+[[ -f ~/.claude-sandbox/shell-functions.sh ]] && source ~/.claude-sandbox/shell-functions.sh
+
+alias vu="vagrant up"
+alias vd="vagrant halt"
+alias vp="vagrant provision"
+alias vdf="vagrant destroy -f"
+alias vs="vagrant ssh"
+
 alias dc="docker compose"
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
@@ -61,11 +79,11 @@ alias cda="composer dump-autoload"
 alias cr="composer require"
 alias crd="composer require --dev "
 
-# alias ll="exa -l -g --icons"
-# alias lla="exa -la -g --icons"
-# alias ls="exa --icons"
-# alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
-alias lla="ls -la"
+alias ll="eza -l -g --icons"
+alias lla="eza -la -g --icons"
+alias ls="eza --icons"
+alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+#alias lla="ls -la"
 
 alias co="php bin/console"
 
@@ -84,7 +102,8 @@ export PATH=~/.dotfiles/scripts:$PATH
 export PATH=~/.scripts:$PATH
 export PATH=~/.cargo/bin:$PATH
 export PATH=~/go/bin:$PATH
-export PATH=$HOME/.tmux/plugins/tmuxifier/bin:$PATH
+export PATH=~/.bun/bin:$PATH
+export PATH="./bin:$PATH"
 
 # export PATH=$HOME/.rye/env:$PATH
 # source "$HOME/.rye/env"
@@ -112,5 +131,12 @@ eval "$(zoxide init zsh)"
 # export PATH="/home/niklas/.config/herd-lite/bin:$PATH"
 # export PHP_INI_SCAN_DIR="/home/niklas/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(mcfly init zsh)"
+[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+command -v mcfly &>/dev/null && eval "$(mcfly init zsh)"
+
+# bun completions
+[ -s "/home/niklas/.bun/_bun" ] && source "/home/niklas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
